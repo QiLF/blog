@@ -257,367 +257,22 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     		
     		
     		
-                <div class="layui-tab-item">
-                    <div  class="mainContent" style="position:relative;right:35px">
-                        <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-                        
-                            <ul class="layui-tab-title">
-                            <li class="layui-this">任务1</li>
-                            <li>任务2</li>
-                            <li>任务3</li>
-                            <li>任务4</li>
-                            <li>任务5</li>
-                            </ul>
-                            <div class="layui-tab-content" style="height: 100px;">
-                            <div class="layui-tab-item layui-show">
-                            <div>
-                                <p style="float:left;">任务进展</p>            <p style="float:right">完成情况</p>
-                                <br/>
-                            </div>
+               <div class="layui-tab-item" style="position:relative; margin-right:45px">
+							 <div>
+								<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+								
+									<ul class="layui-tab-title" id="tab_title" style="margin-bottom:10px">
+										<!--任务进度的任务标题部分，通过jquery添加-->
+									</ul>
+									
+									<div class="layui-tab-content" style="height:auto"  id="task_part">
+									
+										<!--任务进度的任务内容部分，通过jquery添加-->
 
-
-                            
-                            
-                            <!--进度条-->
-                                <div  class="layui-progress" id="task_bar1" layui-progress-big>
-                                    <div   class="layui-progress-bar layui-bg-red" lay-percent="80%"></div>
-                                </div>
-                            <!--子项完成情况-->
-                                <ul class="layui-timeline">
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task1-1_content');"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task1-1">子项1-1</span><i id="face1-1" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>			
-                                    <div id="sub_task1-1_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task1-2_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task1-2">子项1-2</span><i id="face1-2" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	
-                                    <div id="sub_task1-2_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task1-3_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task1-3">子项1-3</span><i id="face1-3" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>		
-                                    <div id="sub_task1-3_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task1-4_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task1-4">子项1-4</span><i id="face1-4" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	  			
-                                    <div id="sub_task1-4_content" style="display:none" >
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task1-5_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task1-5">子项1-5</span><i id="face1-5" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	 			
-                                    <div id="sub_task1-5_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </ul>
-                            </div>
-                            
-                            
-                            
-                            <div class="layui-tab-item">
-                            内容2
-                            <!--进度条-->
-                                <div class="layui-progress">
-                                <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>
-                                </div>
-                            <!--子项完成情况-->
-                                <ul class="layui-timeline">
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task2-1_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task2-1">子项2-1</span><i id="face2-1" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	  			
-                                    <div id="sub_task2-1_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task2-2_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task2-2">子项2-2</span><i id="face2-2" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task2-2_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task2-3_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task2-3">子项2-3</span><i id="face2-3" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i> 			
-                                    <div id="sub_task2-3_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task2-4_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task2-4">子项2-4</span><i id="face2-4" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task2-4_content" style="display:none" >
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task2-5_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task2-5">子项2-5</span><i id="face2-5" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task2-5_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                </ul>
-                            </div>
-                            
-                            
-                            <div class="layui-tab-item">
-                            内容3
-                                
-                            <!--进度条-->
-                                <div class="layui-progress">
-                                    <div class="layui-progress-bar layui-bg-green" lay-percent="40%"></div>
-                                </div>
-                            <!--子项完成情况-->
-                                <ul class="layui-timeline">
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task3-1_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task3-1">子项3-1</span><i id="face3-1" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	  			
-                                    <div id="sub_task3-1_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task3-2_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task3-2">子项3-2</span><i id="face3-2" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task3-2_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task3-3_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task3-3">子项3-3</span><i id="face3-3" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i> 			
-                                    <div id="sub_task3-3_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task3-4_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task3-4">子项3-4</span><i id="face3-4" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task3-4_content" style="display:none" >
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task3-5_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task3-5">子项3-5</span><i id="face3-5" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task3-5_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                </ul>
-                            </div>
-                            
-                            
-                            <div class="layui-tab-item">
-                            内容4
-                            <!--进度条-->
-                                <div class="layui-progress">
-                                <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>
-                                </div>
-                                
-                                <ul class="layui-timeline">
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task4-1_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task4-1">子项4-1</span><i id="face4-1" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	  			
-                                    <div id="sub_task4-1_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task4-2_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task4-2">子项4-2</span><i id="face4-2" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task4-2_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task4-3_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task4-3">子项4-3</span><i id="face4-3" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i> 			
-                                    <div id="sub_task4-3_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task4-4_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task4-4">子项4-4</span><i id="face4-4" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task4-4_content" style="display:none" >
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task4-5_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task4-5">子项4-5</span><i id="face4-5" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task4-5_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                </ul>
-                            </div>
-                            
-                            
-                            <div class="layui-tab-item">
-                            内容5
-                                
-                            <!--进度条-->
-                                <div class="layui-progress">
-                                    <div class="layui-progress-bar layui-bg-red" lay-percent="20%"></div>
-                                </div>
-                            <!--子项完成情况-->
-                                <ul class="layui-timeline">
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task5-1_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task5-1">子项5-1</span><i id="face5-1" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>	  			
-                                    <div id="sub_task5-1_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task5-2_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task5-2">子项5-2</span><i id="face5-2" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task5-2_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task5-3_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task5-3">子项5-3</span><i id="face5-3" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i> 			
-                                    <div id="sub_task5-3_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task5-4_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task5-4">子项5-4</span><i id="face5-4" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task5-4_content" style="display:none" >
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                <li class="layui-timeline-item">
-                                    <a onclick="change_display('sub_task5-5_content')"><i class="layui-icon layui-timeline-axis"></i></a>
-                                    
-                                    <div class="layui-timeline-content layui-text" >
-                                    <span class="layui-timeline-title" id="sub_task5-5">子项5-5</span><i id="face5-5" class="layui-icon" style="font-size: 20px; color: #1E9FFF;float:right">&#xe60c;</i>  			
-                                    <div id="sub_task5-5_content" style="display:none">
-                                        <div class="layui-timeline-title" >完成时间：</div>
-                                        <div class="layui-timeline-title">负责人：</div>
-                                    </div>
-                                    </div>
-                                </li>
-                                </ul>
-                                
-                                
-                                </div>
-                            </div>
-                        </div> 
-                   </div>
-                    
-               </div>	
+									</div>
+								</div> 
+                             </div>     
+                         </div>	
                                 <!--		<?php
                             $v1='20%';$v2='30%';$v3='20%';$v4='40%';$v5='20%';$v6='50%';$v7='20%';//这些数据将是从后端获取的进度数据，或是计算后得到的。
                             echo '<div class="layui-progress"><div class="layui-progress-bar layui-bg-cyan" lay-percent="'.$v1.'"></div></div><br/>';
@@ -838,9 +493,9 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
                 
                 <dl id="team_own" class="layui-nav-child"><!--此处内容动态填充--></dl>
             </li>
-            <li  class="layui-nav-item " onselectstart="return false;">
+            <li class="layui-nav-item " onselectstart="return false;">
                 <a href="javascript:;">我加入的团队</a>
-                <dl id="team_in" class="layui-nav-child"><!--此处内容动态填充--></dl>
+                <dl  id="team_in" class="layui-nav-child"><!--此处内容动态填充--></dl>
             </li>
             <li class="layui-nav-item"><a id="create_team">创建团队</a></li>
         </ul>
@@ -1078,6 +733,8 @@ layui.use(['form', 'layedit', 'laydate'], function(){
    }
 
 </script>
+
+<script type="text/javascript" src="js/taskprogress.js"></script>
     
 
  <script type="text/javascript" src="js/manageman.js">//团队管理js</script>  
