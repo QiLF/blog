@@ -4,9 +4,12 @@
 <head>
   <!--here two script is for 弹出子框~-->
   <script src="js_for_citychoose/jquery-1.12.4.js"></script>
+  
   <script src="layer/layer.js"></script>
+  
   <script type="text/javascript" src="js/add_and_drop.js">/*动态增减子项目*/</script>
   
+  <script src="layui/layui.js" charset="utf-8"></script>
   
   <meta charset="utf-8">
   <title>团队界面</title>
@@ -56,6 +59,8 @@
    margin-left:100px;
 
    margin-top:30px;
+   
+   margin-bottom:100px;
 
    background: #FFF;
     padding-left: 80px;
@@ -135,7 +140,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
 
 
-<div class="mainContent  layui-fluid" style="height:1800px"><!--11111111111111111111111111111111111-->
+<div class="mainContent  layui-fluid" style="min-height:800px">
   <div class="layui-col-sm8">
     <div>
     	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
@@ -481,7 +486,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
   <div class="layui-col-sm4">
     <!--侧边栏-->
     <div id="float" class="div1">
-    	<ul style="margin-top:60px" class="layui-nav layui-nav-tree layui-bg-cyan layui-inline" lay-filter="demo">
+    	<ul style="margin-top:60px" class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
             <li  class="layui-nav-item layui-nav-itemed">
                 <a  href="javascript:;">我拥有的团队</a>
                 
@@ -491,7 +496,8 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
                 <a href="javascript:;">我加入的团队</a>
                 <dl  id="team_in" class="layui-nav-child"><!--此处内容动态填充--></dl>
             </li>
-            <li class="layui-nav-item"><a id="create_team">创建团队</a></li>
+            <li class="layui-nav-item"><a id="create_team">创建新的团队</a></li>
+            <li class="layui-nav-item"><a href="javascript:leave_team();">退出当前团队</a></li>
         </ul>
     </div>
   </div>
@@ -555,10 +561,6 @@ return xmlHttp;
 window.onload = get_info_function;
 </script>
 
-
-
-<script src="layui/layui.js" charset="utf-8"></script>
-<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
 
 <script>
@@ -668,17 +670,15 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
 	<script type="text/javascript" src="js/taskprogress.js"></script>
     
-
 	<script type="text/javascript" src="js/manageman.js">//团队管理js</script>  
- 
  
 	<script type="text/javascript" src="js/team_init.js">//侧边栏团队信息加载</script>
 
 	<script>window.onload=team_init();//同上,调用引入的团队信息加载函数</script>
  
-  <div class="layui-footer footer footer-demo" style="text-align:center;height:40px;font-size:larger">
-       使用条款和隐私条款。保留一切权利。 版权所有：布拉格科技有限公司。 皖ICP备00000001号
-  <div>
+ <div style="text-align:center;padding:20px">
+        <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn.</a></p>
+</div>
 
 
 </body>

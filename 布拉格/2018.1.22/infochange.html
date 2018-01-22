@@ -55,10 +55,14 @@
    float:right;
    }
  .bootstrap-frm {
-   margin-left:100px;
+   margin-left:250px;
 
-   margin-top:30px;
-
+   margin-right:250px;
+   
+   margin-top:50px;
+   
+   margin-bottom:200px;
+   
    background: #FFF;
     padding-left: 80px;
    text-shadow: 1px 1px 1px #FFF;
@@ -136,9 +140,9 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 	</div >
 
 
-	<div class="mainContent layui-fluid" style="height:1200px">
+	<div class="mainContent layui-fluid" style="min-height:800px">
 
-    <div class="layui-col-sm8">
+    <div class="layui-col-sm12">
     	<div class="bootstrap-frm" style="position:relative;top:30px">
     		  <br/><br/>
     			<fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;position:relative;right:40px">
@@ -311,39 +315,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     	  </div>
     </div>
 
-		<!--侧边栏-->
-
-    <div class="layui-col-sm4">
-  		<div id="float" class="div1">
-
-  			<ul class="layui-nav layui-nav-tree layui-inline" style="margin-right:20px;margin-top:60px;" lay-filter="demo">
-  				<li class="layui-nav-item layui-nav-itemed"><a href="">我的团队</a> </li>
-  				<div class="avatar"><a href="about.html"><span>关于团队</span></a></div>
-  				<li><p style="text-align:center;">lalala</p></li>
-  				<li class="layui-nav-item layui-nav-itemed">
-  					<a href="javascript:;">团队成员</a>
-  					<dl class="layui-nav-child">
-  						<dd><a href="javascript:;">布拉格</a></dd>
-  						<dd><a href="javascript:;">拉布格</a></dd>
-  						<dd><a href="javascript:;">拉格布</a></dd>
-  					</dl>
-  				</li>
-  				<li class="layui-nav-item"><a href="">团队信息</a></li>
-  				<li class="layui-nav-item"><a href="">邀请新成员</a></li>
-  				<li class="layui-nav-item">
-  					<a href="javascript:;">切换团队</a>
-  					<dl class="layui-nav-child">
-  						<dd><a href="">移动模块</a></dd>
-  						<dd><a href="">后台模版</a></dd>
-  						<dd><a href="">电商平台</a></dd>
-  					</dl>
-  				</li>
-  				<li class="layui-nav-item"><a href="">返回我的主页</a></li>
-  			</ul>
-  		</div>
-    </div>
-
-	</div>
+</div>
 
 
 <!-- 这里的script是为加载数据库数据用的 -->
@@ -576,9 +548,13 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
 </script>
 <script type="text/javascript" src="js/changekey.js"></script>
-  <div class="layui-footer footer footer-demo" style="text-align:center;height:40px;font-size:larger">
-       使用条款和隐私条款。保留一切权利。 版权所有：布拉格科技有限公司。 皖ICP备00000001号
-  <div>
+
+
+
+
+  <div style="text-align:center;padding:20px">
+        <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn.</a></p>
+  </div>
 
 
 </body>
