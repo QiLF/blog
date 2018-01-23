@@ -1,22 +1,22 @@
 
-flag=3;
+sub_task_flag=3;
 function add_file() 
 {  
-   if(flag<9)
+   if(sub_task_flag<9)
    {
-	flag++;
-	var addelem=' <div class="layui-form-item layui-fluid" id="submisdiv'+flag+'">\
+	sub_task_flag++;
+	var addelem=' <div class="layui-form-item layui-fluid" id="submisdiv'+sub_task_flag+'">\
 				<div class="layui-col-sm1"></div>\
 		                <div class="layui-col-sm5">\
-		                  <label class="layui-form-label">子项'+flag+'</label>\
+		                  <label class="layui-form-label">子项'+sub_task_flag+'</label>\
 		                  <div class="layui-input-block">\
-		                    <input name="sub_task'+flag+'" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off" lay-verify="required">\
+		                    <input name="sub_task'+sub_task_flag+'" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off">\
 		                  </div>\
 		                </div>\
 		                <div class="layui-col-sm5">\
 		                  <label class="layui-form-label">执行者</label>\
 		                  <div class="layui-input-block">\
-		                   <input name="pic'+flag+'" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off" lay-verify="required">\
+		                   <input name="pic'+sub_task_flag+'" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">\
 		                  </div>\
 		                </div>\
 		                <div class="layui-col-sm1"></div>\
@@ -32,10 +32,10 @@ function add_file()
 
 function drop_file()
 {
-   if(flag>1)
+   if(sub_task_flag>1)
    {
-		$("#submisdiv"+flag).remove();
-		flag--;
+		$("#submisdiv"+sub_task_flag).remove();
+		sub_task_flag--;
    }
    else
    {

@@ -327,17 +327,17 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
     			<div class="layui-tab-item">
 					<br/>
-					<fieldset class="layui-elem-field layui-field-title" style="position:relative;right:50px">
+					<fieldset class="layui-elem-field layui-field-title" style="position:relative;right:40px">
 					  <legend>编辑你的任务</legend>
 					</fieldset>
-					<fieldset class="layui-elem-field" style="position:relative;right:50px">
-						<div class="layui-field-box">
+					<fieldset class="layui-elem-field" style="position:relative;right:40px">
+						<div class="layui-field-box" style="position:relative;right:40px">
 							<br/> <br/>  <br/>
-							<form id="task_release_form" class="layui-form" action="">
-								<div class="layui-form-item" style="position:relative;width:700px;">
+							<form id="task_release_form" class="layui-form" action="" >
+								<div class="layui-form-item">
 									<label class="layui-form-label">任务名称</label>
 									<div class="layui-input-block">
-										<input name="task_title" class="layui-input" type="text" placeholder="请输入任务名称" autocomplete="off" lay-verify="title">
+										<input name="task_title" class="layui-input" type="text" placeholder="请输入任务名称" autocomplete="off">
 									</div>
 								</div>
 								<!--
@@ -350,14 +350,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 								-->
 	
 								<!--富文本编辑器-->
-								<div class="layui-form-item" style="position:relative;width:700px;float:left">
+								<div class="layui-form-item">
 									<label class="layui-form-label">任务介绍</label>
 									<div class="layui-input-block">
-										<textarea class="layui-textarea" name="task_description" id="task_description" style="display: none;"></textarea>
+										<textarea  class="layui-textarea" name="task_description" id="task_description" style="display: none;"></textarea>
 									</div>
 								</div>
 								<!--富文本编辑器结束-->
-								<div class="layui-form-item layui-fluid">
+								<div class="layui-form-item layui-fluid" style="margin-left:100px">
 									 <div class="layui-row">
 										  <div class="layui-col-sm1"></div>
 										  <div class="layui-col-sm5">
@@ -379,11 +379,11 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 										  <div class="layui-col-sm1"></div>
 									</div>
 								</div>
-								<fieldset class="layui-elem-field" style="margin-left:110px;width:590px;margin-right:100px;">
+								<fieldset class="layui-elem-field" style="margin-left:110px">
 									<div class="layui-field-box">
 
 										<div id="submissiondiv">
-											<div class="layui-form-item" style="position:relative;left:80px">
+											<div class="layui-form-item">
 												<button type="button" class="layui-btn layui-btn-sm" onclick="javascript:add_file();"><i class="layui-icon">&#xe654;</i></button>
 												<button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onclick="javascript:drop_file();"><i class="layui-icon">&#x1006;</i></button>
 											</div>
@@ -396,14 +396,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 												<div class="layui-col-sm5">
 													<label class="layui-form-label">子项1</label>
 														<div class="layui-input-block">
-															<input name="sub_task1" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off" lay-verify="required">
+															<input name="sub_task1" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off" >
 														</div>
 												</div>
 
 												<div class="layui-col-sm5">
 													<label class="layui-form-label">执行者</label>
 													<div class="layui-input-block">
-														<input name="pic1" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off" lay-verify="required">
+														<input name="pic1" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">
 													</div>
 												</div>
 
@@ -417,14 +417,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 												<div class="layui-col-sm5">
 													<label class="layui-form-label">子项2</label>
 													<div class="layui-input-block">
-														<input name="sub_task2" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off" lay-verify="required">
+														<input name="sub_task2" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off">
 													</div>
 												</div>
 
 												<div class="layui-col-sm5">
 													<label class="layui-form-label">执行者</label>
 													<div class="layui-input-block">
-														<input name="pic2" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off" lay-verify="required">
+														<input name="pic2" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">
 													</div>
 												</div>
 
@@ -438,14 +438,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 												<div class="layui-col-sm5">
 													<label class="layui-form-label">子项3</label>
 													<div class="layui-input-block">
-														<input name="sub_task3" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off" lay-verify="required">
+														<input name="sub_task3" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off">
 													</div>
 												</div>
 
 												<div class="layui-col-sm5">
 													<label class="layui-form-label">执行者</label>
 													<div class="layui-input-block">
-														<input name="pic3" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off" lay-verify="required">
+														<input name="pic3" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">
 													</div>
 												</div>
 
@@ -460,7 +460,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 								<div class="layui-form-item">
 									<label class="layui-form-label">优先级</label>
 									<div class="layui-input-block">
-									<input name="superior" title="极高" type="radio" checked="" value="极高">
+									<input name="superior" title="极高" type="radio" checked="" value="极高"> 
 									<input name="superior" title="高" type="radio" value="高">
 									<input name="superior" title="中" type="radio" value="中">
 									<input name="superior" title="低" type="radio" value="低">
@@ -469,7 +469,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 								</div>
 								<div class="layui-form-item">
 									<div class="layui-input-block">
-									<button onclick="onclick_sumit()" class="layui-btn" lay-filter="demo1" lay-submit="">立即提交</button>
+									<button onclick="onclick_sumit()" type="button" class="layui-btn" lay-filter="demo1" lay-submit="">立即提交</button>
 									<button onclick="onclick_reset()" class="layui-btn layui-btn-primary" type="reset">重置</button>
 									</div>
 								</div>
