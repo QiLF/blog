@@ -3,9 +3,13 @@
   参数：无
   返回：true/false
   */
-  function validateForm(){
+  function validateForm()
+{
   var userName=document.forms["register-form"]["userName"].value;
   var first_pwd=document.forms["register-form"]["first_pwd"].value;
+  var second_pwd=document.forms["register-form"]["second_pwd"].value;
+  var check_agree=document.forms["register-form"]["agree"].value;
+  var checked=document.forms["register-form"]["agree"].checked;
   if (userName==null || userName==""){
 	alert("用户名必须填写");
 	return false;
@@ -14,7 +18,6 @@
 	alert("密码必须填写");
 	return false;
 	}
-	var second_pwd=document.forms["register-form"]["second_pwd"].value;
   if (second_pwd==null || second_pwd==""){
 	alert("请再次确认密码");
 	return false;
@@ -23,15 +26,38 @@
 	  alert("请检查密码格式是否正确");
 	  }
   if(first_pwd!=second_pwd)
-  {
+	{
 	  alert("两次密码输入不一致");
 	  return false;
-  }
+	}
   if(check_userName(userName)==false){
 	  alert("请检查用户名格式是否正确");
 	  return false;
-	  }
-  document.getElementById("register-form").submit();
+	}
+  if(checked==false){
+	  alert("请确认用户协议");
+	  return false;
+	}
+	var temp={"data":{"username":userName,"first_password":first_pwd,"second_password":second_pwd,"check_agree":check_agree}};
+	var str = JSON.stringify(temp);
+	//alert(str);
+	$(function(){
+        $.ajax({ 
+             url: "php/register.php",  
+             type: "POST", 
+             data:{res:str}, 
+             dataType: "json", 
+             error: function(){   
+                 alert('Error loading XML document');   
+             },   
+             success: function(data){
+				if(data.success=="true"){
+					window.location.href="index.html";
+				}else{
+					alert(data.error);
+				}
+             } });
+	}); 
   return true;
   }
   /*
