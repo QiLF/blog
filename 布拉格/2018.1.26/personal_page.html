@@ -6,6 +6,7 @@
     <script src="js_for_citychoose/jquery-1.12.4.js"></script>
     <script src="layer/layer.js"></script>
     <script src="layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/cookiemanage.js"></script>
   <meta charset="utf-8">
   <title>个人页面</title>
   <meta name="renderer" content="webkit">
@@ -220,12 +221,43 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
       								<li>日志管理</li>
       							</ul>
       							<div class="layui-tab-content">
+							<!--日志预览部分-->
       								<div class="layui-tab-item layui-show">
-      									1. 高度默认自适应，也可以随意固宽。
-      									<br>2. Tab进行了响应式处理，所以无需担心数量多少。
+										<fieldset class="layui-elem-field" style="margin-top: 30px;">
+										  <legend>我的日志</legend>
+										  <div id="links_block">
+											 <!--日志链接-->
+										  </div>
+										  <div id="blog_show"  style="display:none">
+												<button id="return" onclick="change_display('blog_show');change_display('links_block')" class="layui-btn"><i class="layui-icon" style="font-size: 20px; color: white;">&#xe65c;</i>返回</button>
+												<form disabled id="log_edit_form" class="layui-form" action="" style="position:relative;right:30px">
+													<div class="layui-form-item">
+														<label class="layui-form-label">主题</label>
+														<div class="layui-input-block">
+															<input name="log_edit_title" id="log_edit_title" disabled="" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
+														</div>
+													</div>
+													<div class="layui-form-item layui-form-text">
+														<label class="layui-form-label">内容</label>
+														<div class="layui-input-block">
+														   <textarea name="log_edit_content" id="log_edit_content" placeholder="请输入内容" class="layui-textarea"  style="display: none;"></textarea>
+														</div>
+													</div>
+													<div class="layui-form-item">
+														<div class="layui-input-block">
+														   <button id="form_edit" onclick="button_change()" type="button" class="layui-btn" >编辑</button>
+														   <button id="form_undo" onclick="button_change()" style="display:none" type="button" class="layui-btn layui-btn-primary">取消</button>
+														   <button id="form_sumit" onclick="edit_form_sumit()" style="display:none" type="button" class="layui-btn layui-btn-danger">提交</button>
+														</div>
+													</div>
+												</form>
+										  <!---->
+										  </div>
+										</fieldset>
+										<div id="change_page"></div><!--分页功能-->
       								</div>
-
       								<div class="layui-tab-item">
+							<!--日志发布部分-->
       									<form id="log_release_form" class="layui-form" action="" style="position:relative;right:30px">
       										<div class="layui-form-item">
       											<label class="layui-form-label">主题</label>
@@ -402,7 +434,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
     <script>window.onload=team_init();//同上,调用引入的团队信息加载函数</script>
  
-	
+	<script type="text/javascript" src="js/blogs_show.js"></script>
 	
 
    <div style="text-align:center;padding:20px">
