@@ -1,0 +1,137 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+   <!--head部分就是设置各种关键词和风格、样式-->
+   <!--meta http-equiv="Content-Type" content="text/html; charset=utf-8"-->
+   <link rel="shortcut icon" href="blog.ico">
+   <title>blog账号注册</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+   <meta name="description" content="团队管理blog。" />
+   <meta name="keywords" content="账号，注册，登录，忘记密码，找回密码，Account，Sign in，登陆，团队，管理" />
+   <script type="text/javascript" charset="utf-8" src="js/register.js"></script>
+   <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
+   <link rel="stylesheet" href="layui/css/layui.css" media="all">
+   
+
+   
+<!--风格设置-->
+<!--分别为整体、输入框、文字等样式-->
+<style>
+  .bootstrap-frm {
+   margin-left:auto;
+   margin-right:auto;
+   margin-top:120px;
+   max-width: 450px;
+   background: #fcfcfc;
+   padding: 20px 30px 20px 30px;
+   font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+   color: #888;
+   text-shadow: 1px 1px 1px #FFF;
+   border:1px solid #DDD;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   }
+
+   #footer {
+    color:white;
+    clear:both;
+    text-align:center;
+    padding:5px;
+    margin-bottom: 8px;	 
+    margin-top: 100px;	 
+   }
+ .figure{
+       
+       background: url("imageshow/images/布拉格img.jpg") no-repeat;
+       overflow: hidden;
+       background-size:100%;
+     }
+ #title_index {
+       font: "title_big";
+       margin-top:17px;
+       display: block;
+       color:#F8F8FF;
+       float:left;
+     }
+</style>
+</head>
+<!--背景图，存在和本文件相同的路径下-->
+<body class="figure">
+<!--设置整体样式-->
+
+<div class="mainContent">
+<h1 id="title_index" style="padding:15px">———USTC布拉格———
+    <a style="float:;padding:10px;font-size:60%;color:#E0E0E0" href="index.html">首页</a>
+</h1>
+<div class="bootstrap-frm" style="background:rgba(255,255,255,0.8)">
+
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;padding:10px">
+        <legend>布拉格注册</legend>
+    </fieldset>
+
+
+   <!--以下各部分已经用空行隔开-->
+   <div style="padding:30px;position:relative;right:30px">
+        <form action="php\reg.php" id="register-form" name="register-form" method="post">
+                <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:black">用户名</label>
+                        <div class="layui-input-block">
+                            <input class="layui-input" type="text" placeholder="只能含字母数字下划线，8-20字节" name="userName" autocomplete="off" onblur="oBlur_check_userName()" onFocus="oFocus_userName()"> 
+                            <p id="reminder_userName" style="color:red"></p>
+                        </div>
+                </div>
+                
+                
+                <br/>
+                
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="color:black">登录密码:</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input" type="password" placeholder="只能含英文字符数字下划线，6~16字符" name="first_pwd" autocomplete="off" onblur="oBlur_check_first_pwd()" onFocus="oFocus_first_pwd()"/>
+                        <p id="reminder_first_pwd" style="color:red" ></p>
+                    </div>
+                </div>
+                
+                <br/>
+                
+                <div class="layui-form-item">
+                    <label class="layui-form-label" style="color:black">确认密码:</label>
+                    <div class="layui-input-block">
+                        <input class="layui-input" type="password" placeholder="请再次输入密码" name="second_pwd" autocomplete="off" onblur="oBlur_check_second_pwd()" onFocus="oFocus_second_pwd()"/>
+                        <p id="reminder_second_pwd" style="color:red" ></p>
+                    </div>
+                </div>
+                
+                <br/>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="checkbox" name="agree" value="agree"/>我已阅读并同意<a href="agreement.html" style="font-size:14px;color:blue">《用户注册协议》</a>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-primary" type="button" name="Submit" value="reg" onclick="validateForm();" >注册</button>
+                        <button class="layui-btn layui-btn-primary" type="reset">重置</button>
+                    </div>
+                </div>
+        </form>
+   </div>
+   <div style="text-align:center">
+        <a href="index.html" style="font-size:14px;color:blue">我已有账号，点此快速登录</a>
+   </div>
+</div>  
+</div>
+   <div id="footer">
+        <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn</a>.</p>
+   </div>
+
+   
+<script type="text/javascript" href="layui/layui.js"></script>   
+   
+   
+</body>
+</html>
