@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
    <!--head部分就是设置各种关键词和风格、样式-->
    <!--meta http-equiv="Content-Type" content="text/html; charset=utf-8"-->
-   <title>blog账号登陆注册</title>
+   <link rel="shortcut icon" href="blog.ico">
+   <title>blog账号注册</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -43,14 +44,27 @@
     margin-bottom: 8px;	 
     margin-top: 100px;	 
    }
+ .figure{
+       
+       background: url("imageshow/images/布拉格img.jpg") no-repeat;
+       overflow: hidden;
+       background-size:100%;
+     }
+ #title_index {
+       font: "title_big";
+       margin-top:17px;
+       display: block;
+       color:#F8F8FF;
+       float:left;
+     }
 </style>
 </head>
 <!--背景图，存在和本文件相同的路径下-->
-<body background="regback.jpg">
+<body class="figure">
 <!--设置整体样式-->
 
 <div class="mainContent">
-<h1 style="color:gray;padding:15px">———USTC布拉格———
+<h1 id="title_index" style="padding:15px">———USTC布拉格———
     <a style="float:;padding:10px;font-size:60%;color:#E0E0E0" href="index.html">首页</a>
 </h1>
 <div class="bootstrap-frm" style="background:rgba(255,255,255,0.8)">
