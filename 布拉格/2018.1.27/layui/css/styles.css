@@ -18,13 +18,13 @@ header nav ul li a:hover, #nav_current { color: #fff; background: #299982; trans
 .mainContent { width: 100%; overflow: hidden; border-top: 1px solid #fff;border-bottom: 1px solid #fff }
 .ulist { width: 1000px; margin: 30px auto; overflow:hidden }
 .ulist section { width: 600px; float: left }
-.ulist section img { width: 100px; height: 100px; -webkit-border-radius: 100px; -moz-border-radius: 100px; -ms-border-radius: 100px; -o-border-radius: 100px; border-radius: 100px; overflow: hidden; border: 4px solid #fff; float: left; margin-right: 10px;  }
+.ulist section img { width: 100px; height: 100px; -webkit-border-radius: 100px; -moz-border-radius: 100px; -ms-border-radius: 100px; -o-border-radius: 100px; border-radius: 100px; overflow: hidden; border: 4px solid #BEBEBE; float: left; margin-right: 10px;  }
 .ulist section  a:hover img{ opacity:0.8;border-radius: 0px;}
 .ulist ul { padding: 15px 0 0 }
 .ulist h2 { font-size: 40px;  }
-.ulist h2 a{color: #fff; text-shadow:#999 1px 1px 1px}
+.ulist h2 a{color: #7B7B7B; text-shadow:#FCFCFC 1px 1px 1px}
 .ulist h2 a:hover{ padding:0 0 0 20px;}
-.ulist p { ine-height: 22px; color: #CCFFF6;text-shadow:#999 1px 1px 1px}
+.ulist p { ine-height: 22px; color: #743A3A;text-shadow:#FCFCFC 1px 1px 1px}
 .ulist section:nth-child(1) img { -webkit-animation: bounceIn 1s ease 1.6s backwards; -moz-animation: bounceIn 1s ease 1.6s backwards; -ms-animation: bounceIn 1s ease 1.6s backwards; -o-animation: bounceIn 1s ease 1.6s backwards; animation: bounceIn 1s ease 1.6s backwards }
 .ulist section:nth-child(1) h2 { -webkit-animation: fadeInRight 1s ease 1.8s backwards; -moz-animation: fadeInRight 1s ease 1.8s backwards; -ms-animation: fadeInRight 1s ease 1.8s backwards; -o-animation: fadeInRight 1s ease 1.8s backwards; animation: fadeInRight 1s ease 1.8s backwards }
 .ulist section:nth-child(1) p { -webkit-animation: fadeInRight 1s ease 2.2s backwards; -moz-animation: fadeInRight 1s ease 2.2s backwards; -ms-animation: fadeInRight 1s ease 2.2s backwards; -o-animation: fadeInRight 1s ease 2.2s backwards; animation: fadeInRight 1s ease 2.2s backwards }

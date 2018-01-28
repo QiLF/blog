@@ -20,6 +20,10 @@
 <!--风格设置-->
 <!--分别为整体、输入框、文字等样式-->
 <style>
+   @font-face {
+       font-family: 'title_big';   /*字体名称*/
+       src: url('layui/font/title_big.ttf');       /*字体源文件*/
+     }
   .bootstrap-frm {
    margin-left:auto;
    margin-right:auto;
@@ -41,17 +45,17 @@
     clear:both;
     text-align:center;
     padding:5px;
-    margin-bottom: 8px;	 
-    margin-top: 100px;	 
+    margin-bottom: 4px;	 
+    margin-top:20px;
    }
  .figure{
-       
+       height:700px;
        background: url("imageshow/images/布拉格img.jpg") no-repeat;
        overflow: hidden;
        background-size:100%;
      }
- #title_index {
-       font: "title_big";
+ .title_index {
+       font-family:华文宋体;
        margin-top:17px;
        display: block;
        color:#F8F8FF;
@@ -60,12 +64,12 @@
 </style>
 </head>
 <!--背景图，存在和本文件相同的路径下-->
-<body class="figure">
+<body >
 <!--设置整体样式-->
 
-<div class="mainContent">
-<h1 id="title_index" style="padding:15px">———USTC布拉格———
-    <a style="float:;padding:10px;font-size:60%;color:#E0E0E0" href="index.html">首页</a>
+<div class="mainContent figure" >
+<h1 class="title_index" style="padding:15px">———USTC布拉格———
+    <a style="float:;padding:10px;font-size:55%;color:#E0E0E0" href="index.html">首页</a>
 </h1>
 <div class="bootstrap-frm" style="background:rgba(255,255,255,0.8)">
 
@@ -78,7 +82,7 @@
    <div style="padding:30px;position:relative;right:30px">
         <form action="php\reg.php" id="register-form" name="register-form" method="post">
                 <div class="layui-form-item">
-                        <label class="layui-form-label" style="color:black">用户名</label>
+                        <label class="layui-form-label" style="color:black">用户名:</label>
                         <div class="layui-input-block">
                             <input class="layui-input" type="text" placeholder="只能含字母数字下划线，8-20字节" name="userName" autocomplete="off" onblur="oBlur_check_userName()" onFocus="oFocus_userName()"> 
                             <p id="reminder_userName" style="color:red"></p>
@@ -123,11 +127,12 @@
    <div style="text-align:center">
         <a href="index.html" style="font-size:14px;color:blue">我已有账号，点此快速登录</a>
    </div>
-</div>  
-</div>
-   <div id="footer">
+</div> 
+ <div id="footer">
         <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn</a>.</p>
-   </div>
+   </div> 
+</div>
+  
 
    
 <script type="text/javascript" href="layui/layui.js"></script>   

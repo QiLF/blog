@@ -13,7 +13,7 @@
 
   <meta charset="utf-8">
   <link rel="shortcut icon" href="blog.ico">
-  <title>布拉格团队界面</title>
+  <title>布拉格团队空间</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -71,15 +71,16 @@
    -webkit-border-radius: 5px;
    -moz-border-radius: 5px;
    }
-.special { background: #CD853F; height: 35px; line-height: 35px;
+.special { background: #6C6C6C; height: 35px; line-height: 35px;
  margin-left:100px;margin-top:60px;
-padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #3333333, endColorstr = #3333333);
+ padding-left: 65px; 
 }/* 兼容IE6 透明 */
-.special li { display: inline-block; font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding: 0 22px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s;cursor:pointer; }
+.special li { display: inline-block; font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding-left: 46px;padding-right: 40px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s;cursor:pointer; }
 .special li a{display:block}
-/*nav li:hover { background: #708090; }*/
-.special li:hover{ color: #fff; background: #D2B48C; transform:skewX(10deg);-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);-ms-transform:skewX(10deg);-moz-transform:skewX(10deg) }
-#topnav_current { background: #D2B48C }/* 高亮选中颜色 */
+/*nav li:hover { background: #6C6C6C; }*/
+.special li:hover{ color: #fff; background: #7B7B7B; transform:skewX(10deg);-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);-ms-transform:skewX(10deg);-moz-transform:skewX(10deg) }
+
+#topnav_current { background: #7B7B7B }/* 高亮选中颜色 */
 
 .avatar { margin: 10px auto; width: 160px; height: 160px; border-radius: 100%; overflow: hidden; }
 .avatar a { display: block; padding-top: 100px; width: 160px; background: url(http://t.cn/RCzsdCq) no-repeat; background-size: 160px 160px; }
@@ -105,8 +106,8 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
   </style>
 </head>
-<body onLoad="get_info_function()" >
-<ul class="layui-nav">
+<body onLoad="get_info_function()" style="background-color:#F0F0F0" >
+<ul class="layui-nav" style="background-color:#55B5B">
 
 <li class="layui-nav-item">
     <a href="javascript:;"><img class="layui-nav-img" src="http://t.cn/RCzsdCq">漫卷云舒</a>
@@ -145,11 +146,11 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
   <div class="layui-col-sm8">
     <div>
     	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
-    		<ul class="special layui-tab-title layui-fluid" id="topnav">
-    			<li  class="layui-this layui-col-sm3">人员管理</li>
-                <li class="layui-col-sm3"><a style="color:white" onclick="total_task(task_num)">任务进度</a></li>
-    			<li class="layui-col-sm3">团队信息</li>
-    			<li class="layui-col-sm3">任务发布</li>
+    		<ul class="special layui-tab-title layui-fluid" id="topnav" >
+    			<li  class="layui-this " style="color:white">人员管理</li>
+                        <li class=""><a style="color:white" onclick="total_task(task_num)">任务进度</a></li>
+    			<li class="" style="color:white">团队信息</li>
+    			<li class="" style="color:white">任务发布</li>
     		</ul>
     		<div class="layui-tab-content bootstrap-frm" >
 
@@ -395,7 +396,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
   <div class="layui-col-sm4">
     <!--侧边栏-->
     <div id="float" class="div1">
-    	<ul style="margin-top:60px" class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
+    	<ul style="margin-top:60px;background-color:#55B5B" class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" >
             <li  class="layui-nav-item layui-nav-itemed">
                 <a  href="javascript:;">我拥有的团队</a>
 
@@ -410,9 +411,8 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
         </ul>
     </div>
   </div>
+
 </div>
-
-
 
 <script>
 layui.use('element', function(){
