@@ -1,9 +1,17 @@
-current_group_id=null;
 function change_team_info(){
+
+    if(current_group_id==null)
+    {
+      alert('请先选择团队再执行该操作');
+      return false;
+    }
+
+
+
     $('#change_teamname').attr("disabled",false);
     $('#change_belong').attr("disabled",false);
     $('#change_introduce').attr("disabled",false);
-    document.getElementById('team_change_button').innerHTML='<hr class="layui-bg-orange"><button class="layui-btn" type="button" onclick="submit_change_info()">提交</button>'
+    document.getElementById('team_change_button').innerHTML='<hr class="layui-bg-orange"><button class="layui-btn" type="button" onclick="submit_change_info()">提交</button>';
 
   }
 
@@ -64,6 +72,8 @@ function change_team_info(){
             $('#change_teamname').attr("disabled",true);
             $('#change_belong').attr("disabled",true);
             $('#change_introduce').attr("disabled",true);
+            document.getElementById('team_change_button').innerHTML='<hr class="layui-bg-orange"><button class="layui-btn" type="button" onclick="change_team_info()">修改</button>'
+            team_init();//修改信息后，为了同步侧边栏的团队名
         }
         else {
             alert(data.error);

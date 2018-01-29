@@ -7,7 +7,8 @@ $('#create_team').on('click', function(){
       area : ['800px' , '520px'],
       content: 'createteam_subframe.html',
       end: function(){
-	    location.reload();//在创建团队完毕后回到页面时刷新页面以能显示最新创建的团队。
+        team_init();
+	    //location.reload();//在创建团队完毕后回到页面时刷新页面以能显示最新创建的团队。
       }
     });
   });
