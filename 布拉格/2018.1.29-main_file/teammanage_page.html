@@ -273,6 +273,7 @@
 										</div>
 									</fieldset>
 								 </div>
+									<!--任务的显示-->
 								<div id="task_show"  style="display:none">
 									<div class="layui-form-item">
 										<label class="layui-form-label">任务名称</label>
@@ -284,10 +285,11 @@
 									</div>
 								<!---->
 								</div>
+								<!--任务的编辑-->
 								<div id="task_edit" style="display:none">
 								  <fieldset class="layui-elem-field" >
 									<legend>任务部分</legend>
-									<form id="task_release_form" class="layui-form" action="">
+									<form id="task_edit_form" class="layui-form" action="">
 										<div class="layui-form-item" style="position:relative;width:700px;">
 											<label class="layui-form-label">任务名称</label>
 											<div class="layui-input-block">
@@ -338,7 +340,8 @@
 										</div>
 										<div class="layui-form-item">
 											<div class="layui-input-block">
-											<button onclick="edit_form_sumit()" class="layui-btn">立即提交</button>
+											<button type="button" onclick="update_task()" class="layui-btn">立即提交</button>
+											<button type="button" onclick="delete_task()" class="layui-btn">删除任务</button>
 											</div>
 										</div>
 										<fieldset class="layui-elem-field" >
@@ -363,8 +366,8 @@
 								
 									</fieldset>
 								</div>
-							<button id="form_edit" onclick="edit_form_edit()" style="display:none;margin-left:20px" type="button" class="layui-btn" >编辑</button>
-							<button id="return" onclick="edit_form_return()" class="layui-btn" style="display:none;font-size:15px"><i class="layui-icon" style="font-size: 10px; color: white;">&#xe65c;</i></button>
+							<button id="form_edit" type="button" onclick="edit_form_edit()" style="display:none;margin-left:20px" class="layui-btn" >编辑</button>
+							<button id="return" type="button" onclick="edit_form_return()" class="layui-btn" style="display:none;font-size:15px"><i class="layui-icon" style="font-size: 10px; color: white;">&#xe65c;</i></button>
 							<div id="change_page"></div><!--分页功能-->
 
 
@@ -482,6 +485,7 @@ layui.use('element', function(){
   	
   	<script type="text/javascript" src="js/logout.js"></script>
 
+	<script type="text/javascript" src="js/subtask_edit.js"></script>
 	
  <div style="text-align:center;padding:20px">
         <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn.</a></p>

@@ -1,69 +1,33 @@
-//日志编辑 包括更新和删除
-var edit_task_i=0;
-var edit_subtask_num=0;//已有任务数
-var edit_sub_task_flag=0;//已有任务数+追加任务数
-
-//这里的script是用在任务发布的form上的
-layui.use(['layedit', 'laydate'], function(){
-  var form = layui.form
-  ,layer = layui.layer
-  ,layedit = layui.layedit
-  ,laydate = layui.laydate;
-
-  //日期
-  laydate.render({
-    elem: '#task_start_date'
-  });
-  laydate.render({
-    elem: '#task_end_date'
-  });
-});
-
-//编辑按钮被点击，触发编辑事件
-function edit_form_edit(task_i)
+//编辑界面任务部分的初始化
+function task_part_init()
 {
-	one_button_change("form_edit");
-	one_button_change("return");
-	one_button_change("form_undo");
-	one_button_change("form_delete");
-	change_display('task_show');
-	change_display('task_edit');
+	$('#task_edit_title').val(tasks[edit_task_i].name);
+	$('#task_start_date').val(tasks[edit_task_i].start_date);
+	$('#task_end_date').val(tasks[edit_task_i].end_date);
+	
 }
-//取消按钮被点击，返回预览
-function edit_form_undo()
-{
-	one_button_change("form_undo");
-	one_button_change("form_delete");
-	one_button_change("form_edit");
-	one_button_change("return");
-	change_display('task_show');
-	change_display('task_edit');
-}
+
+
+
 /*
-{
-    "state":"update_task",
-    "data":{
-        "task_id":,
-        "name":,
-        "introduction":,
-        "start_date":,
-        "end_date":,
-        "priority":,
-        "evaluation":,
-        "state":,//任务是否完成
-        "members":[],
-        "real_end_date":
-    }
-}*/
 //提交按钮被点击，提交对任务信息的修改并刷新
-function edit_form_sumit()
+function update_task()
 {
-			var temp={"state":"update_task","data":{"task_id":task_id[edit_task_i],"name":form_theme,"content":form_content}};
+			var temp={	"state":"update_task",
+						"data":{
+								"task_id":,
+								"name":,
+								"introduction":,
+								"start_date":,
+								"end_date":,
+								"priority":,
+								}
+					  };
 			var str=JSON.stringify(temp);
-			alert("提交修改请求的json："+str);
+			alert("提交任务更新请求的json："+str);
 			$(function(){
 				$.ajax({ 
-						url: "php/uploadtask.php",  
+						url: "php/task.php",  
 						type: "POST", 
 						data:{res:str}, 
 						dataType: "json", 
@@ -72,7 +36,7 @@ function edit_form_sumit()
 										 },   
 						success: function(data){
 										if(data.success=="true"){
-																alert("操作成功！");
+																	alert("操作成功！");
 															}else{
 																	alert(data.error);
 																 }
@@ -81,10 +45,9 @@ function edit_form_sumit()
 										$("#form_undo").click();
 										$("#return").click();
 						}); 
-}
-
+}*/
 //删除按钮被点击，提交删除请求并刷新
-function task_delete()
+function delete_task()
 {
 	var temp={"state":"delete_task","data":{"task_id":task_id[edit_task_i]}};
 	var str=JSON.stringify(temp);
@@ -115,113 +78,190 @@ function task_delete()
 	$("#return").click();
 }
 
-//更新对应的位序的子任务
-function update_subtask(subtask_i)
+/*
 {
-	
-}
-//删除对应位序的子任务
-function delete_subtask(subtask_i)
-{
-	alert("要删除的子任务是第"+edit_task_i+"个任务的第"+subtask_i+"个子任务");
-	//删除子任务
-	var temp={
-				"state":"delete_subtask",
-				"data":{
-						"subtask_id":tasks[edit_task_i].subtasks[subtask_i-1].subtask_id
-					   }
-			 };
-	var str=JSON.stringify(temp);
-	alert("删除子任务:请求为"+str);
-	$.ajax({ 
-			url: "php/task.php",  
-			type: "POST", 
-			data:{res:str}, 
-			dataType: "json", 
-			error: function(){   
-								alert('Error loading XML document');   
-							 },   
-			success: function(data){
-							if(data.success=="true"){
-													alert("删除子任务成功！");
-													get_tasks();//提交删除后进行刷新
-													subtasks_part_init()//重新加载子任务部分
-												}else{
-														alert(data.error);
-													 }
-									} 
-			});	 
-			
-			//$("#form_undo").click();
-			//$("#return").click(); 
-			 
-}
-//加载编辑任务页面的任务和子任务
-function edit_form_init()
-{	
-//任务部分
-	$('#task_edit_title').val(tasks[edit_task_i].name);
-	$('#task_start_date').val(tasks[edit_task_i].start_date);
-	$('#task_end_date').val(tasks[edit_task_i].end_date);
-	//子任务部分
-	subtasks_part_init();
-}
+    "state":"update_task",
+    "data":{
+        "task_id":,
+        "name":,
+        "introduction":,
+        "start_date":,
+        "end_date":,
+        "priority":,
+        "evaluation":,
+        "state":,//任务是否完成
+        "members":[],
+        "real_end_date":
+    }
+}*/
 
-//加载子任务部分
-function subtasks_part_init()
-{
-	document.getElementById('submissiondiv').innerHTML="";
-	edit_subtask_num=tasks[edit_task_i].subtasks.length;
-	edit_sub_task_flag=0;
-	get_tasks();//获取tasks相关信息
-	for(var i=1;i<=edit_subtask_num;i++)
+
+
+	//检查和获取优先级
+	function getpriority()
 	{
-		//alert("i="+i);
-		edit_add_subtask();
-		$('input[name="sub_task'+i+'"]').val(tasks[edit_task_i].subtasks[i-1].name);
-		$('input[name="pic'+i+'"]').val(tasks[edit_task_i].subtasks[i-1].members);
-	}
-}
+		var checks = document.getElementsByName("superior");
+                                 var priority = 0;
+                                  for (i = 0; i < checks.length; i++) {
+									   priority++;
+                                      if (checks[i].checked) {
+                                         return(priority);
+                                      }
+                                  }
+                                  if (priority == checks.length) {
+									  alert("请确认优先级");//感觉不用验证但保险起见还是放在这了
+                                      return "";
+									}
+	}       
+
+	//用于将发布任务页面的表单转换为json格式发送到后端
+    function update_task(){  
+			var json_info;
+            //表单验证部分
+/////////////////////////////////////////////////////////////////////////////////////////////
+        
+        //task_title
+            var task_title=document.forms["task_edit_form"]["task_edit_title"].value;
+            if(task_title.length<5||task_title.length>15)
+            {
+                alert("任务名需为5-15个字符");
+                return false; 
+            }
+            if(!isNaN(task_title))
+            {
+                alert("任务名不能为纯数字");
+                return false; 
+            }        
+            if( filterSqlStr(task_title))
+            {  
+                alert("任务名中包含了敏感字符"+sql_str()+",请重新输入！");  
+                return false;  
+            } 
+            
+            
+       //task_introduction
+			var task_introduction=layui.layedit.getContent(task_show_index);
+            if(task_introduction.length<5)
+            {
+                alert("任务简介至少需含5个字符");
+                return false; 
+            }
+            if(task_introduction.length>512)
+            {
+                alert("任务简介至多可含512个字符");
+                return false; 
+            }     
+            if( filterSqlStr(task_introduction))
+            {  
+                alert("任务名中包含了敏感字符"+sql_str()+",请重新输入！");  
+                return ;  
+            } 
+			
+				json_info={"state":"update_task","data":{
+														"name":task_title,
+														"introduction":task_introduction,
+														"task_id":tasks[edit_task_i].task_id
+														}
+					      };
+        
+			//time_order
+			var task_start_date=document.forms["task_edit_form"]["task_start_date"].value;
+			var task_end_date=document.forms["task_edit_form"]["task_end_date"].value;
+            var start_time=stringToDate(task_start_date);
+            var end_time=stringToDate(task_end_date);
+            if(end_time<=start_time)
+            {
+                alert('开始时间不应迟于或等于结束时间.');
+                return false; 
+            }
+       
+////////////////////////////////////////////////////////////////////////////////////////////
+
+			json_info.data.priority=getpriority();
+			json_info.data.start_date=task_start_date;
+			json_info.data.end_date=task_end_date;
+			var res=JSON.stringify(json_info);
+			alert("任务更新请求为"+res);
+			//ajax提交json数据
+			$.ajax({
+					type: "POST",
+					dataType: "json",
+					url: "php/task.php" ,
+					data: {res:res},
+					success: function (data) {
+					  if(data.success=="false"){
+						alert(data.error);
+					  }
+					  else {
+						  alert("任务修改成功");
+					  }
+					},
+					error : function() {
+					 alert('Error loading XML document');  
+					}
+				  });
+    }  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//用于重置富文本编辑器的内容
+	function onclick_reset(){  
+            layui.layedit.setContent(task_index,"");
+    }  
 
 
-//写入一项子任务及负责人输入框
-function edit_add_subtask() 
-{  
-   if(edit_sub_task_flag<9)
-   {
-	edit_sub_task_flag++;
-	var addelem=' <div class="layui-form-item layui-fluid" id="submisdiv'+edit_sub_task_flag+'">\
-		                <div class="layui-col-sm4">\
-		                  <label class="layui-form-label">子项'+edit_sub_task_flag+'</label>\
-		                  <div class="layui-input-block">\
-		                    <input name="sub_task'+edit_sub_task_flag+'" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off">\
-		                  </div>\
-		                </div>\
-		                <div class="layui-col-sm4">\
-		                  <label class="layui-form-label">执行者</label>\
-		                  <div class="layui-input-block">\
-		                   <input name="pic'+edit_sub_task_flag+'" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">\
-		                  </div>\
-		                </div>\
-		                <div class="layui-col-sm4">'
-						+	'<button onclick="update_subtask('+edit_sub_task_flag+')" class="layui-btn" style="margin-left:15px">编辑</button>'
-						+	'<button onclick="delete_subtask('+edit_sub_task_flag+')" class="layui-btn layui-btn-danger">删除</button>\
-						</div>\
-		          </div>';
 
-	 $("#submissiondiv").append(addelem);
-   }
-   else
-   {
-	alert("子项目数目已经达到上限");
-   }
-}
-//删除一项新增的子任务及负责人输入框（只有子任务数超过原有子任务数才生效）
-function edit_drop_subtask()
-{
-   if(edit_sub_task_flag>edit_subtask_num)
-   {
-		$("#submisdiv"+edit_sub_task_flag).remove();
-		edit_sub_task_flag--;
-   }
-}
+    
+
+//防sql注入模块
+//////////////////////////////////////////////////////////////////////////////////////////
+           // <!-- 过滤一些敏感字符函数 -->  
+            function filterSqlStr(value)
+            {  
+                
+                var sqlStr=sql_str().split(',');  
+                var flag=false;  
+                
+                for(var i=0;i<sqlStr.length;i++)
+                {  
+                    
+                    if(value.toLowerCase().indexOf(sqlStr[i])!=-1)
+                    {  
+                        flag=true;  
+                        break;  
+                    }  
+                }  
+                return flag;  
+            }  
+            
+            
+            function sql_str(){  
+                var str="and,delete,or,exec,insert,select,union,update,count,*,',join";  //因为富文本编辑器需要，删去了<和>。
+                return str;  
+            }  
+
+
+///////////////////////////////////////////////////////////////////////////////////////
+var stringToDate = function(dateStr,separator){ 
+                            if(!separator){ 
+                                separator="-"; 
+                            } 
+                            var dateArr = dateStr.split(separator); 
+                            var year = parseInt(dateArr[0]); 
+                            var month; 
+                            //处理月份为04这样的情况
+                            if(dateArr[1].indexOf("0") == 0){ 
+                                month = parseInt(dateArr[1].substring(1)); 
+                            }else{ 
+                                 month = parseInt(dateArr[1]); 
+                            } 
+                            var day = parseInt(dateArr[2]); 
+                            var date = new Date(year,month -1,day); 
+                            return date; 
+                        }  

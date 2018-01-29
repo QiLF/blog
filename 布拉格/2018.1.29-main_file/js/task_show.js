@@ -10,11 +10,11 @@
 	  task_show_index=layedit.build('task_edit_content'); //建立编辑器
 	});
 	
-  //进入个人页面加载任务链接
+  /****进入个人页面加载任务链接****/
   $(document).ready(function(){
 	/***********************************任务信息的获取部分******************************************/   
 	  get_tasks();	
-	//  alert("查询后的长度"+tasks.length);
+	// alert("查询后的长度"+tasks.length);
   });
   
   
@@ -76,11 +76,10 @@
 		});
   }
   
-  //获取个人博客信息
+  //获取个人任务信息
   function get_tasks()
   {
 	  var task_links=new Array();
-	  //异步刷新,清空全局数组
 	  tasks.splice(0,tasks.length);
 	  task_introduction.splice(0,task_introduction.length);
 	  task_name.splice(0,task_name.length);
@@ -93,13 +92,13 @@
 						  "order_by":"start_date"
 						}
 			  };
-	  str=JSON.stringify(res);
+	  var str=JSON.stringify(res);
 	  alert("向后端传入的json数据为"+str);
 	  $.ajax({ 
              url: "php/search_tasks.php",  
              type: "POST", 
              data:{res:str}, 
-             dataType: "json", 
+			 dataType: "json", 
              error: function(){   
                  alert('Error loading XML document');   
              },   
