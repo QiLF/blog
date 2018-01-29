@@ -27,6 +27,7 @@
             if(data.success == "true"){
                 alert('该团队已成功解散');
                 current_group_id=null;//见下
+                current_members=[];
                 team_init();//见下
                 fresh_team_info(null);//删除当前团队后，刷新侧边栏团队信息，当前团队的全局变量置null，用null去刷新内容
                 team_member_load(null);
