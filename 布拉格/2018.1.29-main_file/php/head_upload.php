@@ -80,7 +80,7 @@ else
 	    }
 	    else
 	    {
-            mysqli_query($con,"INSERT INTO avatar (username, avatarname) VALUES ('$searchname','$filename')");
+            mysqli_query($con,"INSERT INTO avatar (username, avatarname) VALUES ('$username','$searchname')");
         }   
 		echo json_encode(array("success"=>"true", "error"=>"", "res"=>$filename));//success:执行成功与否 error:执行不成功的原因 res:额外返回值(待定)
 		mysqli_close($con);
