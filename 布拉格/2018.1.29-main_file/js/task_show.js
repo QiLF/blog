@@ -9,17 +9,17 @@
 	  var layedit = layui.layedit;
 	  task_show_index=layedit.build('task_edit_content'); //建立编辑器
 	});
-	
+
   /****进入个人页面加载任务链接****/
   $(document).ready(function(){
-	/***********************************任务信息的获取部分******************************************/   
-	  get_tasks();	
+	/***********************************任务信息的获取部分******************************************/
+	  get_tasks();
 	// alert("查询后的长度"+tasks.length);
   });
-  
-  
-  
-  
+
+
+
+
   //展示task链接   !注意这里 i 是从0开始的   这里layui.use放在函数里面是为了使分页功能加载前task_links内容就已经确定
   //否则会出现只有点击页码按钮后链接内容才显示的问题
   //分页数等于count/limit
@@ -39,11 +39,11 @@
 
 								  );
 	  }
-	  	/**************************************layui分页部分**********************************************/	 
+	  	/**************************************layui分页部分**********************************************/
 	layui.use(['laypage', 'layer'], function(){
 		  var laypage = layui.laypage
 		  ,layer = layui.layer;
-		  
+
 		  //自定义分页样式
 		  laypage.render
 		({
@@ -56,7 +56,7 @@
 			,next: '<em>→</em>'
 			,theme: '#1E9FFF'
 		  });
-	  
+
 		  //调用分页
 		  laypage.render({
 			elem: 'change_page'
@@ -75,7 +75,7 @@
 		  });
 		});
   }
-  
+
   //获取个人任务信息
   function get_tasks()
   {
@@ -94,18 +94,18 @@
 			  };
 	  var str=JSON.stringify(res);
 	  alert("向后端传入的json数据为"+str);
-	  $.ajax({ 
-             url: "php/search_tasks.php",  
-             type: "POST", 
-             data:{res:str}, 
-			 dataType: "json", 
-             error: function(){   
-                 alert('Error loading XML document');   
-             },   
+	  $.ajax({
+             url: "php/search_tasks.php",
+             type: "POST",
+             data:{res:str},
+			 dataType: "json",
+             error: function(){
+                 alert('Error loading XML document');
+             },
              success: function(data){
 				if(data.success=="true"){
 					alert("查询任务成功！");
-					
+
 					for(var i=0;i<data.res.length;i++){
 						tasks.push(data.res[i]);
 						//task_introduction.push(tasks[i].introduction);
@@ -117,10 +117,10 @@
 				}else{
 					alert(data.error);
 				}
-			} 
+			}
 		});
   }
- 
+
   //一项任务的预览
   function task_view(task_i)
   {
@@ -136,6 +136,7 @@
 	document.getElementById("task_show_content").innerHTML=tasks[task_i].introduction;
 	document.getElementById("task_show_start_date").innerHTML=tasks[task_i].start_date;
 	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
+	document.getElementById("task_show_priority").innerHTML=tasks[task_i].priority;
 	//编辑相关，初始化编辑部分的博客内容
 	$("#task_edit_title").val(tasks[task_i].name);
 	edit_form_init();
@@ -144,7 +145,7 @@
 	//alert(task_name[task_i]);
 
   }
-  
+
   //改变一个按钮的隐藏和显示
   function one_button_change(id)
 {
@@ -163,8 +164,8 @@
 	  one_button_change("form_undo");
 	  one_button_change("form_sumit");
 	  one_button_change("form_delete");
-  }  
-  
+  }
+
   //返回按钮被点击，展示链接块，隐藏编辑块    (删除按钮也用了此函数)
   function edit_form_return()
   {

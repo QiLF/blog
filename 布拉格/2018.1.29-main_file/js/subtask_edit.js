@@ -59,13 +59,49 @@ function update_subtask(subtask_i)
 				"real_end_date":,//子任务实际的完成时间
 				"members":[],
 			 }
-		  
+
 	}*/
 	var name=$('input[name="sub_task'+subtask_i+'"]').val();
+  //confirm for name
+  if(name.length<5)
+  {
+      alert('子任务'+subtask_i+'的名字至少含5个字符');
+      return false;
+  }
+  if(!isNaN(name))
+  {
+      alert('子任务'+subtask_i+'的名字不能为纯数字');
+      return false;
+  }
+  if( filterSqlStr(name))
+  {
+      alert('子任务'+subtask_i+'的名字中包含了敏感字符'+sql_str()+',请重新输入！');
+      return false;
+  }
+
+
 	var members=new Array();
 	members.push($('input[name="pic'+subtask_i+'"]').val());
-	var subtask_id=tasks[edit_task_i].subtasks[subtask_i-1];
-	alert("members"+members);
+  //confirm for member, just consider one worker temporarily
+  if(members[0].length<5)
+  {
+      alert('输入的执行者'+subtask_i+'的昵称至少需含5个字符');
+      return false;
+  }
+  if(!isNaN(members[0]))
+  {
+      alert('输入的执行者'+subtask_i+'的昵称不能为纯数字');
+      return false;
+  }
+  if( filterSqlStr(members[0]))
+  {
+      alert('输入的执行者'+subtask_i+'的昵称中包含了敏感字符'+sql_str()+',请重新输入！');
+      return ;
+  }
+
+
+	var subtask_id=tasks[edit_task_i].subtasks[subtask_i-1].subtask_id;
+	alert("members："+members);
 	var temp={
 				"state":"update_subtask",
 				"data":{
@@ -76,14 +112,14 @@ function update_subtask(subtask_i)
 			 };
 	var str=JSON.stringify(temp);
 	alert("修改子任务:请求为"+str);
-	$.ajax({ 
-			url: "php/task.php",  
-			type: "POST", 
-			data:{res:str}, 
-			dataType: "json", 
-			error: function(){   
-								alert('Error loading XML document');   
-							 },   
+	$.ajax({
+			url: "php/task.php",
+			type: "POST",
+			data:{res:str},
+			dataType: "json",
+			error: function(){
+								alert('Error loading XML document');
+							 },
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
@@ -94,16 +130,54 @@ function update_subtask(subtask_i)
 												}else{
 														alert(data.error);
 													 }
-									} 
-			});	 
+									}
+			});
 
 }
 //插入子任务
 function insert_subtask(subtask_i)
 {
 	var name=$('input[name="sub_task'+subtask_i+'"]').val();
+
+  //confirm for name
+  if(name.length<5)
+  {
+      alert('子任务'+subtask_i+'的名字至少含5个字符');
+      return false;
+  }
+  if(!isNaN(name))
+  {
+      alert('子任务'+subtask_i+'的名字不能为纯数字');
+      return false;
+  }
+  if( filterSqlStr(name))
+  {
+      alert('子任务'+subtask_i+'的名字中包含了敏感字符'+sql_str()+',请重新输入！');
+      return false;
+  }
+
+
 	var members=new Array();
 	members.push($('input[name="pic'+subtask_i+'"]').val());
+
+  //confirm for member, just consider one worker temporarily
+  if(members[0].length<5)
+  {
+      alert('输入的执行者'+subtask_i+'的昵称至少需含5个字符');
+      return false;
+  }
+  if(!isNaN(members[0]))
+  {
+      alert('输入的执行者'+subtask_i+'的昵称不能为纯数字');
+      return false;
+  }
+  if( filterSqlStr(members[0]))
+  {
+      alert('输入的执行者'+subtask_i+'的昵称中包含了敏感字符'+sql_str()+',请重新输入！');
+      return ;
+  }
+
+
 	alert("members"+members);
 	var temp={
 				"state":"insert_subtask",
@@ -117,14 +191,14 @@ function insert_subtask(subtask_i)
 			 };
 	var str=JSON.stringify(temp);
 	alert("插入子任务:请求为"+str);
-	$.ajax({ 
-			url: "php/task.php",  
-			type: "POST", 
-			data:{res:str}, 
-			dataType: "json", 
-			error: function(){   
-								alert('Error loading XML document');   
-							 },   
+	$.ajax({
+			url: "php/task.php",
+			type: "POST",
+			data:{res:str},
+			dataType: "json",
+			error: function(){
+								alert('Error loading XML document');
+							 },
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
@@ -135,8 +209,8 @@ function insert_subtask(subtask_i)
 												}else{
 														alert(data.error);
 													 }
-									} 
-			});	 
+									}
+			});
 }
 
 
@@ -153,14 +227,14 @@ function delete_subtask(subtask_i)
 			 };
 	var str=JSON.stringify(temp);
 	alert("删除子任务:请求为"+str);
-	$.ajax({ 
-			url: "php/task.php",  
-			type: "POST", 
-			data:{res:str}, 
-			dataType: "json", 
-			error: function(){   
-								alert('Error loading XML document');   
-							 },   
+	$.ajax({
+			url: "php/task.php",
+			type: "POST",
+			data:{res:str},
+			dataType: "json",
+			error: function(){
+								alert('Error loading XML document');
+							 },
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
@@ -171,16 +245,16 @@ function delete_subtask(subtask_i)
 												}else{
 														alert(data.error);
 													 }
-									} 
-			});	 
-			
+									}
+			});
+
 			//$("#form_undo").click();
-			//$("#return").click(); 
-			 
+			//$("#return").click();
+
 }
 //加载编辑任务页面的任务和子任务
 function edit_form_init()
-{	
+{
 	//任务部分
 	task_part_init();
 	//子任务部分
@@ -211,8 +285,8 @@ function subtasks_part_init()
 
 
 //写入一项子任务及负责人输入框
-function edit_add_subtask() 
-{  
+function edit_add_subtask()
+{
    if(edit_sub_task_flag<9)
    {
 	edit_sub_task_flag++;
@@ -301,3 +375,42 @@ function renew_subtasks()
 	new_pic.splice(0,new_pic.length);
 	new_subtask_name.splice(0,new_subtask_name.length);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+//防sql注入模块
+//////////////////////////////////////////////////////////////////////////////////////////
+           // <!-- 过滤一些敏感字符函数 -->
+            function filterSqlStr(value)
+            {
+
+                var sqlStr=sql_str().split(',');
+                var flag=false;
+
+                for(var i=0;i<sqlStr.length;i++)
+                {
+
+                    if(value.toLowerCase().indexOf(sqlStr[i])!=-1)
+                    {
+                        flag=true;
+                        break;
+                    }
+                }
+                return flag;
+            }
+
+
+            function sql_str(){
+                var str="and,delete,or,exec,insert,select,union,update,count,*,',join";  //因为富文本编辑器需要，删去了<和>。
+                return str;
+            }

@@ -62,14 +62,14 @@ function edit_form_sumit()
 			var str=JSON.stringify(temp);
 			alert("提交修改请求的json："+str);
 			$(function(){
-				$.ajax({ 
-						url: "php/uploadtask.php",  
-						type: "POST", 
-						data:{res:str}, 
-						dataType: "json", 
-						error: function(){   
-											alert('Error loading XML document');   
-										 },   
+				$.ajax({
+						url: "php/task.php",  
+						type: "POST",
+						data:{res:str},
+						dataType: "json",
+						error: function(){
+											alert('Error loading XML document');
+										 },
 						success: function(data){
 										if(data.success=="true"){
 																alert("操作成功！");
@@ -80,7 +80,7 @@ function edit_form_sumit()
 										get_tasks();//提交修改后进行刷新
 										$("#form_undo").click();
 										$("#return").click();
-						}); 
+						});
 }
 
 //删除按钮被点击，提交删除请求并刷新
@@ -91,14 +91,14 @@ function task_delete()
 	alert("提交删除请求的json："+str);
 	/*
 	$(function(){
-				$.ajax({ 
-						url: "php/uploadtask.php",  
-						type: "POST", 
-						data:{res:str}, 
-						dataType: "json", 
-						error: function(){   
-											alert('Error loading XML document');   
-										 },   
+				$.ajax({
+						url: "php/uploadtask.php",
+						type: "POST",
+						data:{res:str},
+						dataType: "json",
+						error: function(){
+											alert('Error loading XML document');
+										 },
 						success: function(data){
 										if(data.success=="true"){
 																alert("操作成功！");
@@ -118,7 +118,7 @@ function task_delete()
 //更新对应的位序的子任务
 function update_subtask(subtask_i)
 {
-	
+
 }
 //删除对应位序的子任务
 function delete_subtask(subtask_i)
@@ -133,14 +133,14 @@ function delete_subtask(subtask_i)
 			 };
 	var str=JSON.stringify(temp);
 	alert("删除子任务:请求为"+str);
-	$.ajax({ 
-			url: "php/task.php",  
-			type: "POST", 
-			data:{res:str}, 
-			dataType: "json", 
-			error: function(){   
-								alert('Error loading XML document');   
-							 },   
+	$.ajax({
+			url: "php/task.php",
+			type: "POST",
+			data:{res:str},
+			dataType: "json",
+			error: function(){
+								alert('Error loading XML document');
+							 },
 			success: function(data){
 							if(data.success=="true"){
 													alert("删除子任务成功！");
@@ -149,16 +149,16 @@ function delete_subtask(subtask_i)
 												}else{
 														alert(data.error);
 													 }
-									} 
-			});	 
-			
+									}
+			});
+
 			//$("#form_undo").click();
-			//$("#return").click(); 
-			 
+			//$("#return").click();
+
 }
 //加载编辑任务页面的任务和子任务
 function edit_form_init()
-{	
+{
 //任务部分
 	$('#task_edit_title').val(tasks[edit_task_i].name);
 	$('#task_start_date').val(tasks[edit_task_i].start_date);
@@ -185,8 +185,8 @@ function subtasks_part_init()
 
 
 //写入一项子任务及负责人输入框
-function edit_add_subtask() 
-{  
+function edit_add_subtask()
+{
    if(edit_sub_task_flag<9)
    {
 	edit_sub_task_flag++;
