@@ -10,7 +10,7 @@ $('#calendar').on('click', function(){
       shade: 0.6,
       skin: '',
       shadeClose: true, //点击遮罩关闭层
-      area : ['802px' , '802px'],
+      area : ['500px' , '520px'],
       content: 'checkcalendar_subframe.html'
     });
   });

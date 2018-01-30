@@ -4,7 +4,7 @@ $('#create_team').on('click', function(){
       title: '创建团队',
       maxmin: true,
       shadeClose: true, //点击遮罩关闭层
-      area : ['800px' , '520px'],
+      area : ['500px' , '520px'],
       content: 'createteam_subframe.html',
       end: function(){
         team_init();
