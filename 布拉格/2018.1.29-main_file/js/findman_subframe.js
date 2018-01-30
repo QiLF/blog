@@ -7,7 +7,7 @@ $('#detail').on('click', function(){
       title: '个人资料',
       maxmin: true,
       shadeClose: true, //点击遮罩关闭层
-      area : ['800px' , '520px'],
+      area : ['500px' , '520px'],
       content: 'findman_subframe.html'
     });
   });
