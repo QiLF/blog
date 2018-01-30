@@ -8,6 +8,9 @@ var sub_task_num=new Array();
 */
 function task_progress()
 {
+	sub_task_num.splice(0,sub_task_num.length);
+	document.getElementById("tab_title").innerHTML="";
+	document.getElementById("task_part").innerHTML="";
 	//获取任务数，子任务数
 	task_num=tasks.length;
 	for(var i=0;i<task_num;i++)

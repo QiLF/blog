@@ -33,7 +33,7 @@
 								 +		"<a class='layui-text' onclick='task_view("+i+")'>"
 								 +			"<i class='layui-icon' style='font-size: 18px; color: #1E9FFF;'>&#xe64c;</i>"
 								 +      		tasks[i].name
-								 +			"<span style='float:right'>发布日期:"+tasks[i].start_date+"</span>"
+								 +			"<span style='float:right'>开始日期:"+tasks[i].start_date+"</span>"
 								 +		"</a>"
 								 +"</div>"
 

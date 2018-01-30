@@ -28,8 +28,8 @@ function delete_task()
 						{
 										if(data.success=="true")
 										{
-												alert("删除任务操作成功！");
 												get_tasks();//提交删除后进行刷新
+												alert("删除任务操作成功！");
 												$("#form_undo").click();
 												$("#return").click();
 										}
@@ -154,10 +154,11 @@ function getpriority()
 								}
 								else
 								{
-									alert("任务修改成功");
+									memorize_new_subtask(-1);//记住全部追加子项
 									get_tasks();//提交修改后进行刷新
-									//$("#form_undo").click();
-									//$("#return").click();
+									alert("任务修改成功");
+									subtasks_part_init()//重新加载子任务部分
+									renew_subtasks();
 								}
 							},
 							error : function()
