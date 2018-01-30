@@ -152,8 +152,8 @@
     <div>
     	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
     		<ul class="special layui-tab-title layui-fluid" id="topnav" >
-    			<li  class="layui-this " style="color:white">人员管理</li>
-                        <li class=""><a style="color:white" onclick="total_task(task_num)">任务进度</a></li>
+    			<li class="layui-this " style="color:white">人员管理</li>
+                <li class="" style="color:white"><a style="color:white">任务进度</a></li>
     			<li class="" style="color:white">团队信息</li>
     			<li class="" style="color:white">任务管理</li>
     		</ul>
@@ -260,8 +260,8 @@
 					  <legend>任务管理</legend>
 					  <div style="margin-top:10px">
 					    <button id="create_task_button" type="button" class="layui-btn layui-btn-sm"><i class="layui-icon">&#xe654;</i>发布任务</button>
-						<button id="form_undo"  type="button" onclick="edit_form_undo()" style="display:none" class="layui-btn layui-btn-normal">取消编辑</button>
-						<button id="form_delete" type="button" onclick="task_delete()" style="display:none" class="layui-btn layui-btn-primary" ><!--<i class="layui-icon" style="font-size: 20px; color: #1E9FFF;">&#xe640;</i>-->删除任务</button>							   
+						<button id="form_undo"  type="button" onclick="edit_form_undo()" style="display:none" class="layui-btn layui-btn-normal">返回</button>
+						<button id="form_delete" type="button" onclick="delete_task()" style="display:none" class="layui-btn layui-btn-primary" >删除任务</button>							   
 					  </div>
 					</fieldset>
 
@@ -287,15 +287,11 @@
 										<div class="layui-col-sm1"></div>
 										<div class="layui-col-sm5">
 											<label class="layui-form-label">开始日期</label>
-											<div class="layui-form-item layui-form-text">
-												<div name="task_show_start_date" id="task_show_start_date" class="layui-text"></div>
-											</div>
+											<div name="task_show_start_date" id="task_show_start_date" class="layui-text"></div>
 										</div>
 										<div class="layui-col-sm5">
 											<label class="layui-form-label">截止日期</label>
-											<div class="layui-form-item layui-form-text">
-												<div name="task_show_end_date" id="task_show_end_date" class="layui-text"></div>
-											</div>
+											<div name="task_show_end_date" id="task_show_end_date" class="layui-text"></div>
 										</div>
 										<div class="layui-col-sm1"></div>
 									</div>
@@ -317,7 +313,7 @@
 								  <fieldset class="layui-elem-field" >
 									<legend>任务部分</legend>
 									<form id="task_edit_form" class="layui-form" action="">
-										<div class="layui-form-item" style="position:relative;width:700px;">
+										<div class="layui-form-item" style="position:relative;">
 											<label class="layui-form-label">任务名称</label>
 											<div class="layui-input-block">
 												<input id="task_edit_title" name="task_edit_title" class="layui-input" type="text" placeholder="请输入任务名称" autocomplete="off" lay-verify="title">
@@ -368,7 +364,6 @@
 										<div class="layui-form-item">
 											<div class="layui-input-block">
 											<button type="button" onclick="update_task()" class="layui-btn">立即提交</button>
-											<button type="button" onclick="delete_task()" class="layui-btn">删除任务</button>
 											</div>
 										</div>
 										<fieldset class="layui-elem-field" >

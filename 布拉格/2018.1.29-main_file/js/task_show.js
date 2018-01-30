@@ -33,7 +33,7 @@
 								 +		"<a class='layui-text' onclick='task_view("+i+")'>"
 								 +			"<i class='layui-icon' style='font-size: 18px; color: #1E9FFF;'>&#xe64c;</i>"
 								 +      		tasks[i].name
-								 +			"<span style='float:right'>编辑日期:"+tasks[i].start_date+"</span>"
+								 +			"<span style='float:right'>发布日期:"+tasks[i].start_date+"</span>"
 								 +		"</a>"
 								 +"</div>"
 
@@ -114,6 +114,8 @@
 					}
 /**********************************导入task链接************************************************/
 					show_task_link(tasks,task_links);
+/***************************更新任务进度************************************/
+					task_progress();
 				}else{
 					alert(data.error);
 				}
@@ -121,7 +123,7 @@
 		});
   }
 
-  //一项任务的预览
+ //一项任务的预览
   function task_view(task_i)
   {
 	edit_task_i=task_i;
@@ -136,7 +138,7 @@
 	document.getElementById("task_show_content").innerHTML=tasks[task_i].introduction;
 	document.getElementById("task_show_start_date").innerHTML=tasks[task_i].start_date;
 	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
-	document.getElementById("task_show_priority").innerHTML=tasks[task_i].priority;
+	priority_show(task_i);
 	//编辑相关，初始化编辑部分的博客内容
 	$("#task_edit_title").val(tasks[task_i].name);
 	edit_form_init();
@@ -144,6 +146,14 @@
 	//document.getElementById('task_edit_title').value=task_name[task_i];
 	//alert(task_name[task_i]);
 
+  }
+  
+  //显示优先级
+  function priority_show(task_i)
+  {
+	 var priority=new Array("极高","高","中","低","极低");
+	 var temp=tasks[task_i].priority;
+	 document.getElementById("task_show_priority").innerHTML=priority[temp-1];
   }
 
   //改变一个按钮的隐藏和显示

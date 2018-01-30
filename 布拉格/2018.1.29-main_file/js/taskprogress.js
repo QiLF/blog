@@ -1,145 +1,27 @@
-var task_progress=
-{
-	"task":[{
-				"task_name":"任务一",
-				"task_collaborator":["Danny","Jenny","LiMing","HaiMianBaoBao","PaiDaXing"],
-				"task_description":"这是第一个任务",
-				"sub_task":[{
-								"sub_task_name":"子项1-1",
-								"sub_task_description":"子项1-1的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-22",
-								"sub_task_pic":"Danny",
-								"sub_task_situation":false
-							},{
-								"sub_task_name":"子项1-2",
-								"sub_task_description":"子项1-2的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"Jenny",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项1-3",
-								"sub_task_description":"子项1-3的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"LiMing",
-								"sub_task_situation":false
-							},{
-								"sub_task_name":"子项1-4",
-								"sub_task_description":"子项1-4的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"HaiMianBaoBao",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项1-5",
-								"sub_task_description":"子项1-5的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"PaiDaXing",
-								"sub_task_situation":false
-							}]
-			},{
-				"task_name":"任务二",
-				"task_collaborator":["Danny","Jenny","LiMing","HaiMianBaoBao","PaiDaXing"],
-				"task_description":"这是第二个任务",
-				"sub_task":[{
-								"sub_task_name":"子项2-1",
-								"sub_task_description":"子项2-1的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-22",
-								"sub_task_pic":"Danny",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项2-2",
-								"sub_task_description":"子项2-2的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"Jenny",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项2-3",
-								"sub_task_description":"子项2-3的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"LiMing",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项2-4",
-								"sub_task_description":"子项2-4的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"HaiMianBaoBao",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项2-5",
-								"sub_task_description":"子项2-5的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"PaiDaXing",
-								"sub_task_situation":false
-							}]
-			},{
-				"task_name":"任务三",
-				"task_collaborator":["Danny","Jenny","LiMing","HaiMianBaoBao","PaiDaXing"],
-				"task_description":"这是第三个任务",
-				"sub_task":[{
-								"sub_task_name":"子项3-1",
-								"sub_task_description":"子项3-1的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-22",
-								"sub_task_pic":"Danny",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项3-2",
-								"sub_task_description":"子项3-2的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"Jenny",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项3-3",
-								"sub_task_description":"子项3-3的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"LiMing",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项3-4",
-								"sub_task_description":"子项3-4的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"HaiMianBaoBao",
-								"sub_task_situation":true
-							},{
-								"sub_task_name":"子项3-5",
-								"sub_task_description":"子项3-5的描述",
-								"sub_task_start_time":"2018-1-21",
-								"sub_task_end_time":"2018-1-21",
-								"sub_task_pic":"PaiDaXing",
-								"sub_task_situation":false
-							}]
-			}]
-};
-
-var task_num=task_progress.task.length;
+var task_num;
 var sub_task_num=new Array();
-for(var i=0;i<task_num;i++)
-{
-	sub_task_num[i]=task_progress.task[i].sub_task.length;
-}
+
 /*
 函数说明：初始化任务选项卡模块
 参数：
 返回：无
 */
-$(document).ready(function(){
-	 
- //请求本地json文件数据
- //$.getJSON('taskprogress.json');
-   init_tab(task_num);
-});
+function task_progress()
+{
+	//获取任务数，子任务数
+	task_num=tasks.length;
+	for(var i=0;i<task_num;i++)
+	{
+		if(tasks[i].subtasks!=undefined){
+		sub_task_num[i]=tasks[i].subtasks.length;
+		}else{
+		sub_task_num[i]=0;
+		}
+	}
+	init_tab(task_num);
+	total_task(task_num);
+}
+
 
 
 /*
@@ -151,7 +33,6 @@ function init_tab(task_num)
 {
 	for(var i=1;i<=task_num;i++)
 	{
-		//alert(i);
 		add_tab_item(i);
 	}
 }
@@ -172,7 +53,6 @@ function add_tab_item(task_label)
 	{
 		$("#task_part").append("<div class='layui-tab-item ' id='task"+task_label+"'></div>");
 	}
-	//$("#task_part").append("<div class='layui-tab-item ' id='task"+task_label+"'></div>");
 	add_tab_title(task_label);
 	add_tab_item_content(task_label);
 }
@@ -187,11 +67,11 @@ function add_tab_title(task_label)
 {
 	if(task_label===1)
 	{
-		$("#tab_title").append("<li class='layui-this'>"+task_progress.task[task_label-1].task_name+"</li>");
+		$("#tab_title").append("<li class='layui-this'>任务"+task_label+"</li>");
 	}
 	else
 	{
-		$("#tab_title").append("<li>"+task_progress.task[task_label-1].task_name+"</li>");
+		$("#tab_title").append("<li>任务"+task_label+"</li>");
 	}
 }
 
@@ -208,14 +88,16 @@ function add_tab_item_content(task_label)
 	var task_description_id="task"+task_label+"_description";
 	$("#task"+task_label).append(
 								 "<div style='position:relative;float:none'>"
+								+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>" 
 								+	"<a onclick="+"change_display('"+task_description_id+"');>"
-								+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务简介</span>"
+								+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
 								+	"</a>"
 								+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
-								+		"<div class='layui-timeline-title' >"+task_progress.task[task_label-1].task_description+"</div>"  
+								+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"  
+								+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"  
 								+		"<div class='layui-timeline-title' >"
 								+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
-								+			"参与成员："+task_progress.task[task_label-1].task_collaborator
+								+			"参与成员："+tasks[task_label-1].members
 								+		"</div>"								
 								+ 	"</div>"
 								+"</div>"
@@ -259,17 +141,24 @@ function add_one_sub_task(task_label,sub_task_label)
 	var sub_task_content_id="sub_task"+task_label+"-"+sub_task_label+"_content";
 	var face_id="face"+task_label+"-"+sub_task_label;
 	var task_list_id="task_list"+task_label;
+	var real_end_date;
+	if(tasks[task_label-1].subtasks[sub_task_label-1].real_end_date==undefined){
+		real_end_date="尚未完成";
+	}else{
+		real_end_date=tasks[task_label-1].subtasks[sub_task_label-1].real_end_date;
+	}
 	$("#"+task_list_id).append(
 										"<li class='layui-timeline-item'>"
 											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"	
 											+"<div class='layui-timeline-content layui-text' >"
-											+	"<span class='layui-timeline-title' id='"+sub_task_id+"'>"+task_progress.task[task_label-1].sub_task[sub_task_label-1].sub_task_name+"</span>"
-											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"			
+											+	"<span class='layui-timeline-title' id='"+sub_task_id+"'>子项"+sub_task_label+"</span>"
+											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px;margin-right:20px; color: #1E9FFF;float:right'>&#xe60c;</i>"			
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
-											+		"<div class='layui-timeline-title' >内容简介："+task_progress.task[task_label-1].sub_task[sub_task_label-1].sub_task_description+ "</div>"
-											+		"<div class='layui-timeline-title' >开始时间："+task_progress.task[task_label-1].sub_task[sub_task_label-1].sub_task_start_time+ "</div>"
-											+		"<div class='layui-timeline-title' >完成时间："+task_progress.task[task_label-1].sub_task[sub_task_label-1].sub_task_end_time+ "</div>"
-											+		"<div class='layui-timeline-title'>负责人："+task_progress.task[task_label-1].sub_task[sub_task_label-1].sub_task_pic+"</div>"
+											+		"<div class='layui-timeline-title' >子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name+"</div>"
+											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
+											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
+											+		"<div class='layui-timeline-title' >完成日期："+real_end_date+ "</div>"
+											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
 											+	"</div>"
 											+"</div>"
 										+"</li>"
@@ -356,7 +245,7 @@ function total_sub_task(task_label)
 	var percent=0;
        for(var i=0;i<sub_task_num[task_label-1];i++)
 	   {
-		  var is_finished=task_progress.task[task_label-1].sub_task[i].sub_task_situation;
+		  var is_finished=tasks[task_label-1].subtasks[i].state;
 	      change_one_face('face'+task_label+'-'+(i+1),is_finished);
 		  if(is_finished==true)sub_finish_num++;
 	   }
