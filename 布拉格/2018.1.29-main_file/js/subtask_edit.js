@@ -1,7 +1,10 @@
-//任务管理中对子任务的操作  编辑部分的按钮功能和日期功能也在这里
+//日志编辑 包括更新和删除
 var edit_task_i=0;
-var edit_subtask_num=0;//已有子任务数
-var edit_sub_task_flag=0;//已有子任务数+追加子任务数
+var edit_subtask_num=0;//已有任务数
+var edit_sub_task_flag=0;//已有任务数+追加任务数
+var new_subtask_name=new Array();//追加子任务名
+var new_pic=new Array();//追加子任务负责人
+
 
 //这里的script是用在任务编辑的form上的
 layui.use(['layedit', 'laydate'], function(){
@@ -83,9 +86,11 @@ function update_subtask(subtask_i)
 							 },   
 			success: function(data){
 							if(data.success=="true"){
+													memorize_new_subtask(subtask_i);
 													get_tasks();//提交删除后进行刷新
 													alert("修改子任务成功！");
 													subtasks_part_init()//重新加载子任务部分
+													renew_subtasks();
 												}else{
 														alert(data.error);
 													 }
@@ -122,9 +127,11 @@ function insert_subtask(subtask_i)
 							 },   
 			success: function(data){
 							if(data.success=="true"){
+													memorize_new_subtask(subtask_i);
 													get_tasks();//提交删除后进行刷新
 													alert("插入子任务成功！");
 													subtasks_part_init()//重新加载子任务部分
+													renew_subtasks();
 												}else{
 														alert(data.error);
 													 }
@@ -156,9 +163,11 @@ function delete_subtask(subtask_i)
 							 },   
 			success: function(data){
 							if(data.success=="true"){
+													memorize_new_subtask(subtask_i);
 													get_tasks();//提交删除后进行刷新
 													alert("删除子任务成功！");
 													subtasks_part_init()//重新加载子任务部分
+													renew_subtasks();
 												}else{
 														alert(data.error);
 													 }
@@ -181,6 +190,7 @@ function edit_form_init()
 //加载子任务部分
 function subtasks_part_init()
 {
+	//清空
 	document.getElementById('submissiondiv').innerHTML="";
 	//edit_subtask_num=tasks[edit_task_i].subtasks.length;      需要处理某任务无子任务的情形
 	if(tasks[edit_task_i].subtasks!=undefined){  //判断后端返回数据是否含有属性subtasks
@@ -260,4 +270,34 @@ function edit_drop_subtask()
 		$("#submisdiv"+edit_sub_task_flag).remove();
 		edit_sub_task_flag--;
    }
+}
+
+//保留用户追加但未提交的子任务内容
+function memorize_new_subtask(skip_i)
+{
+	for(var i=edit_subtask_num+1;i<=edit_sub_task_flag;i++)
+	{
+		if(i==skip_i){
+			continue;
+		}//跳过被追加的子项,无需记忆
+		var name=$('input[name="sub_task'+i+'"]').val();
+		var pic=$('input[name="pic'+i+'"]').val();
+		new_subtask_name.push(name);
+		new_pic.push(pic);
+	}
+	//alert(new_subtask_name);
+	//alert(new_pic);
+}
+//用于编辑页面的子任务部分刷新后将未提交的子任务内容还原
+function renew_subtasks()
+{
+	var num=new_subtask_name.length;
+	for(var i=0;i<num;i++)
+	{
+		edit_add_subtask();
+		$('input[name="sub_task'+edit_sub_task_flag+'"]').val(new_subtask_name[i]);
+		$('input[name="pic'+edit_sub_task_flag+'"]').val(new_pic[i]);
+	}
+	new_pic.splice(0,new_pic.length);
+	new_subtask_name.splice(0,new_subtask_name.length);
 }

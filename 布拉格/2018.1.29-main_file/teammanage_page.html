@@ -254,7 +254,7 @@
 						   <button class="layui-btn" type="button" onclick="change_team_info()">修改</button>
 					</div>
     			</div>
-    			<div class="layui-tab-item">
+				<div class="layui-tab-item">
 					<br/>
 					<fieldset class="layui-elem-field layui-field-title" style="position:relative;right:40px">
 					  <legend>任务管理</legend>
@@ -282,6 +282,33 @@
 									<div class="layui-form-item layui-form-text">
 										<label class="layui-form-label">任务简介</label>
 										<div name="task_show_content" id="task_show_content" class="layui-text"></div>
+									</div>
+									 <div class="layui-row">
+										<div class="layui-col-sm1"></div>
+										<div class="layui-col-sm5">
+											<label class="layui-form-label">开始日期</label>
+											<div class="layui-form-item layui-form-text">
+												<div name="task_show_start_date" id="task_show_start_date" class="layui-text"></div>
+											</div>
+										</div>
+										<div class="layui-col-sm5">
+											<label class="layui-form-label">截止日期</label>
+											<div class="layui-form-item layui-form-text">
+												<div name="task_show_end_date" id="task_show_end_date" class="layui-text"></div>
+											</div>
+										</div>
+										<div class="layui-col-sm1"></div>
+									</div>
+									<div class="layui-form-item layui-form-text">
+										<label class="layui-form-label">优先级</label>
+										<div name="task_show_priority" id="task_show_priority" class="layui-text"></div>
+									</div>
+									<div class="layui-field-box">
+										<div>
+											<div id="task_show_subtasks">
+											 <!--子任务数目待定,通过jQuery添加-->
+											</div>
+										</div>
 									</div>
 								<!---->
 								</div>

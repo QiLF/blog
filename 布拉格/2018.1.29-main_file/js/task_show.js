@@ -2,9 +2,9 @@
 //功能：实现显示团队的task及查看task内容;对团队页面的任务模块元素的显示和隐藏
 	var task_show_index;
 	var tasks=new Array();
-	var task_introduction=new Array();//为保险起见只把名字及内容拎出来作全局变量
-	var task_name=new Array();
-	var task_id=new Array();//把task_id也拎出来
+	//var task_introduction=new Array();//为保险起见只把名字及内容拎出来作全局变量
+	//var task_name=new Array();
+	//var task_id=new Array();//把task_id也拎出来
 	layui.use('layedit', function(){
 	  var layedit = layui.layedit;
 	  task_show_index=layedit.build('task_edit_content'); //建立编辑器
@@ -81,9 +81,9 @@
   {
 	  var task_links=new Array();
 	  tasks.splice(0,tasks.length);
-	  task_introduction.splice(0,task_introduction.length);
-	  task_name.splice(0,task_name.length);
-	  task_id.splice(0,task_id.length);
+	  //task_introduction.splice(0,task_introduction.length);
+	  //task_name.splice(0,task_name.length);
+	  //task_id.splice(0,task_id.length);
 	  var res={
 				"state":"get_result",
 				 "data":{
@@ -108,9 +108,9 @@
 					
 					for(var i=0;i<data.res.length;i++){
 						tasks.push(data.res[i]);
-						task_introduction.push(tasks[i].introduction);
-						task_name.push(tasks[i].name);
-						task_id.push(tasks[i].task_id);
+						//task_introduction.push(tasks[i].introduction);
+						//task_name.push(tasks[i].name);
+						//task_id.push(tasks[i].task_id);
 					}
 /**********************************导入task链接************************************************/
 					show_task_link(tasks,task_links);
@@ -132,12 +132,14 @@
 	one_button_change("form_edit");
 	one_button_change("return");
 	one_button_change("create_task_button");
-	document.getElementById("task_show_title").innerHTML=task_name[task_i];
-	document.getElementById("task_show_content").innerHTML=task_introduction[task_i];
+	document.getElementById("task_show_title").innerHTML=tasks[task_i].name;
+	document.getElementById("task_show_content").innerHTML=tasks[task_i].introduction;
+	document.getElementById("task_show_start_date").innerHTML=tasks[task_i].start_date;
+	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
 	//编辑相关，初始化编辑部分的博客内容
-	$("#task_edit_title").val(task_name[task_i]);
+	$("#task_edit_title").val(tasks[task_i].name);
 	edit_form_init();
-	layui.layedit.setContent(task_show_index,task_introduction[task_i]);			//!!!这里有一个问题，但不影响功能，此语句能正常执行但其后的语句无法执行，显示错误在layedit.js里
+	layui.layedit.setContent(task_show_index,tasks[task_i].introduction);			//!!!这里有一个问题，但不影响功能，此语句能正常执行但其后的语句无法执行，显示错误在layedit.js里
 	//document.getElementById('task_edit_title').value=task_name[task_i];
 	//alert(task_name[task_i]);
 

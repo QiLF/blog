@@ -49,7 +49,7 @@ function update_task()
 //删除按钮被点击，提交删除请求并刷新
 function delete_task()
 {
-	var temp={"state":"delete_task","data":{"task_id":task_id[edit_task_i]}};
+	var temp={"state":"delete_task","data":{"task_id":tasks[edit_task_i].task_id}};
 	var str=JSON.stringify(temp);
 	alert("提交删除请求的json："+str);
 	/*
