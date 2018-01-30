@@ -264,7 +264,7 @@
 					</fieldset>
 
 								<div id="links_block">
-									<fieldset class="layui-elem-field" style="margin-top: 30px;">
+									<fieldset class="layui-elem-field" style="margin-top: 30px;position:relative;right:40px">
 										<legend>我的任务</legend>
 										<div id="links">
 									<!--任务链接-->
@@ -273,29 +273,29 @@
 								 </div>
 									<!--任务的显示-->
 								<div id="task_show"  style="display:none">
-									<div class="layui-form-item">
-										<label class="layui-form-label">任务名称</label>
-										<div name="task_show_title" id="task_show_title" class="layui-text" style="text-align:center"></div>
+									<div style="padding:20px">
+										<span>任务名称：</span>
+										<span name="task_show_title" id="task_show_title" class="layui-text" style="text-align:center"></span>
 									</div>
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">任务简介</label>
-										<div name="task_show_content" id="task_show_content" class="layui-text"></div>
+									<div style="padding:20px">
+										<span>任务简介：</span>
+										<p name="task_show_content" id="task_show_content" class="layui-text" style="text-indent:2em"></p>
 									</div>
-									 <div class="layui-row">
+									 <div class="layui-row" style="padding:20px">
 										<div class="layui-col-sm1"></div>
 										<div class="layui-col-sm5">
-											<label class="layui-form-label">开始日期</label>
-											<div name="task_show_start_date" id="task_show_start_date" class="layui-text"></div>
+											<span>开始日期：</span>
+											<span name="task_show_start_date" id="task_show_start_date" class="layui-text"></span>
 										</div>
 										<div class="layui-col-sm5">
-											<label class="layui-form-label">截止日期</label>
-											<div name="task_show_end_date" id="task_show_end_date" class="layui-text"></div>
+											<span>截止日期：</span>
+											<span name="task_show_end_date" id="task_show_end_date" class="layui-text"></span>
 										</div>
 										<div class="layui-col-sm1"></div>
 									</div>
-									<div class="layui-form-item layui-form-text">
-										<label class="layui-form-label">优先级</label>
-										<div name="task_show_priority" id="task_show_priority" class="layui-text"></div>
+									<div style="padding:20px">
+										<span>优先级别：</span>
+										<span name="task_show_priority" id="task_show_priority" class="layui-text"></span>
 									</div>
 									<div class="layui-field-box">
 										<div>
@@ -308,10 +308,10 @@
 								</div>
 								<!--任务的编辑-->
 								<div id="task_edit" style="display:none">
-								  <fieldset class="layui-elem-field" >
+								  <fieldset class="layui-elem-field" style="position:relative;right:40px">
 									<legend>任务部分</legend>
 									<form id="task_edit_form" class="layui-form" action="">
-										<div class="layui-form-item" style="position:relative;">
+										<div class="layui-form-item" style="margin-right:40px">
 											<label class="layui-form-label">任务名称</label>
 											<div class="layui-input-block">
 												<input id="task_edit_title" name="task_edit_title" class="layui-input" type="text" placeholder="请输入任务名称" autocomplete="off" lay-verify="title">
@@ -320,7 +320,7 @@
 
 			
 										<!--富文本编辑器-->
-										<div class="layui-form-item" style="position:relative;width:700px;float:left">
+										<div class="layui-form-item" style="margin-right:40px">
 											<label class="layui-form-label">任务介绍</label>
 											<div class="layui-input-block">
 												<textarea class="layui-textarea" name="task_edit_content" id="task_edit_content" style="display: none;"></textarea>
@@ -364,7 +364,7 @@
 											<button type="button" onclick="update_task()" class="layui-btn">立即提交</button>
 											</div>
 										</div>
-										<fieldset class="layui-elem-field" >
+										<fieldset class="layui-elem-field" style="margin-left:40px;margin-right:40px;margin-bottom:40px">
 											<legend>子任务部分</legend>
 											<div class="layui-field-box">
 
