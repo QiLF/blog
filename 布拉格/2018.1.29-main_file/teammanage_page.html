@@ -166,19 +166,17 @@
     				</fieldset>
      				<table class="layui-table" lay-size="sm" style="position:relative;right:40px">
     					<colgroup>
-    						<col width="60">
+    						<col width="100">
     						<col width="100">
     						<col width="150">
-    						<col width="100">
-    						<col width="50">
+    						<col width="80">
     					</colgroup>
     					<thead>
     						<tr>
-    							<th>昵称</th>
-    							<th>加入时间</th>
-    							<th>签名</th>
+    							<th>用户名</th>
+    							<th>详细信息</th>
     							<th>负责任务</th>
-    							<th>操作</th>
+    							<th>管理</th>
     						</tr>
     					</thead>
     					<tbody id="manageman"><!--里面的每一个<tr>对应一个成员的信息和操作-->
@@ -490,6 +488,8 @@ layui.use('element', function(){
     <script type="text/javascript" src="js/change_team.js"></script>
 
   	<script type="text/javascript" src="js/taskprogress.js"></script>
+  	
+  	<script type="text/javascript" src="js/check_teammate_info.js">//成员信息加载</script>
 
   	<script type="text/javascript" src="js/manageman.js">//团队管理js</script>
 

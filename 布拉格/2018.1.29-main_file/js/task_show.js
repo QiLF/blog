@@ -11,11 +11,11 @@
 	});
 
   /****进入个人页面加载任务链接****/
-  $(document).ready(function(){
+  //$(document).ready(function(){
 	/***********************************任务信息的获取部分******************************************/
-	  get_tasks();
+	//  get_tasks();
 	// alert("查询后的长度"+tasks.length);
-  });
+  //});
 
 
 
@@ -77,7 +77,7 @@
   }
 
   //获取个人任务信息
-  function get_tasks()
+  function get_tasks(value)
   {
 	  var task_links=new Array();
 	  tasks.splice(0,tasks.length);
@@ -87,7 +87,7 @@
 	  var res={
 				"state":"get_result",
 				 "data":{
-						  "builder":getCookie("username"),
+						  "group_id":value,
 						  "order":"DESC",
 						  "order_by":"start_date"
 						}
@@ -147,7 +147,7 @@
 	//alert(task_name[task_i]);
 
   }
-  
+
   //显示优先级
   function priority_show(task_i)
   {

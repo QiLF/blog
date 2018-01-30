@@ -28,6 +28,9 @@
             alert("数据请求异常");
           }
         });
+
+        get_tasks(current_group_id);
+        //选择团队后调用检索任务的函数，以当前团队的id为关键
       }
       //用以删除团队后拿null来刷新团队信息内容
       else

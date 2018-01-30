@@ -11,6 +11,10 @@ $('#create_task_button').on('click', function(){
         shadeClose: true, //点击遮罩关闭层
         area : ['1000px' , '600px'],
         content: 'task_create_subframe.html',
+        end:function()
+        {
+          get_tasks(current_group_id);
+        }
       });
     }
     else

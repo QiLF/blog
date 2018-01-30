@@ -8,14 +8,16 @@
 		{
 			var flag_j=0;
 			var temp_elem="";
+			var temp_name=null;
 			current_members=[];
 			while(flag_j<value.res.length)
 			{
-			  temp_elem+='<tr><td>'+value.res[flag_j].username+"</td><td>2018.1.1</td><td>座右铭。。。。。</td><td>负责的任务</td><td><a onclick=delete_member('"+value.res[flag_j].username+"')>踢出团队</a></td></tr>";
+			  temp_elem+='<tr><td>'+value.res[flag_j].username+"</td><td><a onclick=check_teammate_info('"+value.res[flag_j].username+"')>查看详细资料</a></td><td>负责的任务</td><td><a>催催催</a><a style="+'float:right'+" onclick=delete_member('"+value.res[flag_j].username+"')>踢出团队</a></td></tr>";
 				current_members[flag_j]=value.res[flag_j].username;
 				flag_j++;
 			}
 			document.getElementById("manageman").innerHTML=temp_elem;
+			document.getElementById('current_team_name').innerHTML=value.res[0].name;
 		}
 		//删除团队后，处于未选择团队状态，用null来刷新成员管理内容
 		else
