@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+  <!--here two script is for 弹出子框~-->
+  <script src="js/jquery-3.2.1.js"></script>
+  <script src="layer/layer.js"></script>
+  <script type="text/javascript" src="js/cookiemanage.js"></script>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="blog.ico">
+  <title>布拉格个人信息</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css"  >
+  <link rel="stylesheet" href="layui/css/styles.css"  >
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+
+#box{ position:relative;right:50px;width:250px;}.div1{width:250px;position:absolute;right:50px;}.div2{position:fixed;_position:absolute;top:0;z-index:250;right:35px;}
+
+
+
+
+
+@font-face {
+  font-family: 'title_big';   /*字体名称*/
+  src: url('layui/font/title_big.ttf');       /*字体源文件*/
+}
+@font-face {
+  font-family: 'title_eng';   /*字体名称*/
+  src: url('layui/font/title_eng.otf');       /*字体源文件*/
+}
+@font-face {
+  font-family: 'BuffaloScript';   /*字体名称*/
+  src: url('layui/font/BuffaloScript.otf');       /*字体源文件*/
+}
+@font-face {
+  font-family: 'h1_font';   /*字体名称*/
+  src: url('layui/font/h1.ttf');       /*字体源文件*/
+}
+ #title_blog {
+   font: 25px "title_big";
+   margin-top:17px;
+   display: block;
+   color:#F8F8FF;
+   text-align: center;
+   float:right;
+   }
+#title_blog_eng {
+   font: 25px "BuffaloScript";
+   margin-top:17px;
+   display: block;
+   color: #F8F8FF;
+   text-align: center;
+   float:right;
+   }
+ .bootstrap-frm {
+   margin-left:250px;
+
+   margin-right:250px;
+   
+   margin-top:50px;
+   
+   margin-bottom:200px;
+   
+   background: #FFF;
+    padding-left: 80px;
+   text-shadow: 1px 1px 1px #FFF;
+   border:1px solid #DDD;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   }
+.special { background: #CD853F; height: 35px; line-height: 35px;
+ margin-left:100px;margin-top:60px;
+padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #3333333, endColorstr = #3333333);
+}/* 兼容IE6 透明 */
+.special li { display: inline-block; font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding: 0 22px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s;cursor:pointer; }
+.special li a{display:block}
+/*nav li:hover { background: #708090; }*/
+.special li:hover{ color: #fff; background: #D2B48C; transform:skewX(10deg);-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);-ms-transform:skewX(10deg);-moz-transform:skewX(10deg) }
+#topnav_current { background: #D2B48C }/* 高亮选中颜色 */
+
+.avatar { margin: 10px auto; width: 160px; height: 160px; border-radius: 100%; overflow: hidden; }
+.avatar a { display: block; padding-top: 100px; width: 160px; background: url(http://t.cn/RCzsdCq) no-repeat; background-size: 160px 160px; }
+.avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 160px; height: 55px; text-align: center; line-height: 20px; color: #fff; background: rgba(0, 0, 0, .5); -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
+.avatar a:hover span { display: block; margin-top: 0; }
+
+
+#head_portrait{width:120px;height:120px;margin-left:100px;margin-top:80px;border-radius:50%}
+
+.mainpage_header { margin: 10px;float:right;}
+.mainpage_header h1{font-size: 30px; font-family: "h1_font";}
+
+#footer {
+	margin: 10px 0 10px 0;
+	padding: 5px 0;
+	text-align: center;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	}
+#footer a {
+	padding: 3px 5px;
+	}
+
+  </style>
+</head>
+<body onLoad="get_info_function()"  style="background-color:#F0F0F0">
+	<ul class="layui-nav">
+
+	<li class="layui-nav-item"  style="background-color:#55b5b">
+		<a href="javascript:;"><p id="user_nick_head"><!--此处信息动态加载--></p></a>
+		<dl class="layui-nav-child">
+		  <dd><a href="infochange.html">修改信息</a></dd>
+		  <dd><a id="keyset" href="javascript:;">安全管理</a></dd>
+		  <dd><a href="javascript:logout();">退出</a></dd>
+		</dl>
+	  </li>
+
+	  <li class="layui-nav-item">
+		<a href="personal_page.html">个人中心<span class="layui-badge-dot"></span></a>
+	  </li>
+
+	  <li class="layui-nav-item"><a href="teammanage_page.html">我的团队</a></li>
+
+	  <div id="title_blog">布拉格</div>
+	  <div id="title_blog_eng">BLOG</div>
+	</ul>
+
+
+	<div class="mainContent">
+	  <div class="ulist">
+		<section> <a id="big_headimg_show" href="#"><!--此处信息动态加载--></a>
+		  <ul>
+			<h2><a href="#">定义不一样的自己</a></h2>
+			<p>于千万人之中，我遇见了我所遇见的人...</p>
+		  </ul>
+		</section>
+	  </div>
+	</div >
+
+
+	<div class="mainContent layui-fluid" style="min-height:800px">
+
+    <div class="layui-col-sm12">
+    	<div class="bootstrap-frm" style="position:relative;top:30px">
+    		  <br/><br/>
+    			<fieldset class="layui-elem-field layui-field-title" style="margin-top:20px;position:relative;right:40px">
+    				<legend>头像修改</legend>
+    			</fieldset>
+                    <div class="layui-upload">
+                    
+                    <div class="layui-upload-list">
+                        <img style="width:120px;height:120px" class="layui-upload-img" id="demo1" name="file">
+                        <p id="failText"></p>
+                    </div>
+                    <button type="button" class="layui-btn" id="test1">上传头像</button>
+                    
+                    </div>
+
+
+    			<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;position:relative;right:40px">
+    				<legend>个人信息完善</legend>
+    			</fieldset>
+
+    			<form id="personinfo_form" class="layui-form">
+    				<div class="layui-form-item" style="position:relative;right:80px" >
+    					<label class="layui-form-label">昵称</label>
+    					<div class="layui-input-block">
+    						<input name="nickname" class="layui-input" type="text" placeholder="请输入昵称" autocomplete="off">
+    					</div>
+    				</div>
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<label class="layui-form-label">邮箱</label>
+    					<div class="layui-input-block">
+    						<input name="email" class="layui-input" type="text" placeholder="请输入邮箱" autocomplete="off" >
+    					</div>
+    				</div>
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<label class="layui-form-label">地址</label>
+    					<div class="layui-input-inline">
+    						<select id="provid" name="provid" lay-filter="provid">
+    							<option value="" >请选择省</option>
+    						</select>
+    					</div>
+    					<div class="layui-input-inline">
+    						<select name="cityid" id="cityid" lay-filter="cityid">
+    							<option value="" >请选择市</option>
+    						</select>
+    					</div>
+    					<div class="layui-input-inline" style="margin-left:15px">
+    						<select name="areaid" id="areaid" lay-filter="areaid">
+    							<option value="">请选择县/区</option>
+    						</select>
+    					</div>
+    				</div>
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<div class="layui-inline">
+    						<label class="layui-form-label">手机</label>
+    						<div class="layui-input-inline">
+    							<input name="phone" class="layui-input" type="text" autocomplete="off">
+    						</div>
+    					</div>
+            </div>
+
+            <div class="layui-form-item" style="position:relative;right:80px">
+    					<div class="layui-inline">
+    						<label class="layui-form-label">扣扣</label>
+    						<div class="layui-input-inline">
+    							<input name="QQ" class="layui-input" type="text" autocomplete="off">
+    						</div>
+    					</div>
+    				</div>
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<div class="layui-inline">
+    						<label class="layui-form-label">生日</label>
+    						<div class="layui-input-inline">
+    							<input name="birthdate" class="layui-input" id="birthdate" type="text" autocomplete="off">
+    						</div>
+    					</div>
+    				</div>
+
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+              <div class="layui-inline">
+      					<label class="layui-form-label">年级</label>
+      					<div class="layui-input-inline">
+      						<select name="grade" lay-filter="grade">
+      							<option value="" selected="">请选择所在年级</option>
+      							<option value="大一">大一</option>
+      							<option value="大二">大二</option>
+      							<option value="大三">大三</option>
+      							<option value="大四">大四</option>
+      							<option value="研一">研一</option>
+      							<option value="研二">研二</option>
+      						</select>
+      					</div>
+              </div>
+    				</div>
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<div class="layui-inline">
+    						<label class="layui-form-label">学院</label>
+    						<div class="layui-input-inline">
+    							<select name="college">
+    								<option value="">请选择所在学院</option>
+    								<optgroup label="少院">
+    									<option value="少年班学院">少年班学院</option>
+    								</optgroup>
+    								<optgroup label="理学">
+    									<option value="物理学院">物理学院</option>
+    									<option value="化学与材料科学学院">化学与材料科学学院</option>
+    									<option value="数学科学学院">数学科学学院</option>
+    									<option value="生命科学学院">生命科学学院</option>
+    									<option value="地球和空间科学学院">地球和空间科学学院</option>
+    									<option value="管理学院">管理学院</option>
+    									<option value="人文与社会科学学院">人文与社会科学学院</option>
+    									<option value="核科学技术学院">核科学技术学院</option>
+    								</optgroup>
+    								<optgroup label="工学">
+    									<option value="计算机科学技术学院">计算机科学技术学院</option>
+    									<option value="信息科学技术学院">信息科学技术学院</option>
+    									<option value="工程科学学院">工程科学学院</option>
+    									<option value="信息科学技术学院">信息科学技术学院</option>
+    								</optgroup>
+    							</select>
+    						</div>
+    					</div>
+    				</div>
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<label class="layui-form-label">公开</label>
+    					<div class="layui-input-block">
+    						<input name="open" type="checkbox" checked="" lay-filter="switchTest" lay-skin="switch" lay-text="ON|OFF">
+    					</div>
+    				</div>
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<label class="layui-form-label">性别</label>
+    					<div class="layui-input-block">
+    						<input name="sex" title="男" type="radio" checked="" value="男">
+    						<input name="sex" title="女" type="radio" value="女">
+    					</div>
+    				</div>
+
+
+    				<div class="layui-form-item layui-form-text" style="position:relative;right:80px">
+    					<label class="layui-form-label">个人介绍</label>
+    					<div class="layui-input-block">
+    						<textarea name="intro" class="layui-textarea" placeholder="介绍一下你自己吧"></textarea>
+    					</div>
+    				</div>
+
+
+    				<div class="layui-form-item" style="position:relative;right:80px">
+    					<div class="layui-input-block">
+    						<button class="layui-btn" onclick="personinfo_change()" type="button">立即提交</button>
+    						<button class="layui-btn layui-btn-primary" type="reset">重置</button>
+    					</div>
+    				</div>
+
+
+    		  </form>
+    	  </div>
+    </div>
+
+</div>
+
+
+
+
+<script src="layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+
+
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0) //用于演示
+        ,content: '内容'+ (Math.random()*1000|0)
+        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+      })
+    }
+    ,tabDelete: function(othis){
+      //删除指定Tab项
+      element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+      othis.addClass('layui-btn-disabled');
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', '22'); //切换到：用户管理
+    }
+  };
+
+  $('.site-demo-active').on('click', function(){
+    var othis = $(this), type = othis.data('type');
+    active[type] ? active[type].call(this, othis) : '';
+  });
+
+  //Hash地址的定位
+  var layid = location.hash.replace(/^#test=/, '');
+  element.tabChange('test', layid);
+
+  element.on('tab(test)', function(elem){
+    location.hash = 'test='+ $(this).attr('lay-id');
+  });
+
+});
+</script>
+<script type="text/javascript" src="js/logout.js"></script>
+
+<script type="text/javascript" src="js/person_info_load.js"></script>
+	
+<script>window.onload=team_person_page_user_info();</script>
+
+<script type="text/javascript" src="js/head_upload.js">//头像上传</script>
+
+
+<script type="text/javascript" src="js/gofollow.js">//侧边栏滚动跟随</script>
+
+<!--城市三级联动-->
+<!--<script src="assets/jquery-1.12.4.js"></script>-->
+<script type="text/javascript" src="js_for_citychoose/data.js"></script>
+<script type="text/javascript" src="js_for_citychoose/province.js"></script>
+
+
+<script type="text/javascript">
+        var defaults = {
+            s1: 'provid',
+            s2: 'cityid',
+            s3: 'areaid',
+            v1: null,
+            v2: null,
+            v3: null
+        };
+</script>
+
+
+<script type="text/javascript" src="js/changekey_subframe.js"></script>
+<script type="text/javascript" src="js/infochange.js"></script><!--include ajax part and form data confirm function.-->
+
+
+
+  <div style="text-align:center;padding:20px">
+        <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn.</a></p>
+  </div>
+
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="blog.ico">
+  <script src="js/jquery-3.2.1.js"></script>
+  <script src="layui/layui.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="layui/css/layui.css"  >
+  <script type="text/javascript" src="js/add_and_drop.js">/*动态增减子项目*/</script>
+  <script type="text/javascript" src="js/cookiemanage.js">/*cookie管理*/</script>
+  <script type="text/javascript" src="js/task_release.js">/*任务发布*/</script>
+</head>
+
+
+<fieldset class="layui-elem-field layui-field-title">
+					  <legend>编辑你的任务</legend>
+					</fieldset>
+					<fieldset class="layui-elem-field">
+						<div class="layui-field-box">
+							<br/> <br/>  <br/>
+							<form id="task_release_form" class="layui-form" action="" >
+								<div class="layui-form-item">
+									<label class="layui-form-label">任务名称</label>
+									<div class="layui-input-block">
+										<input name="task_title" class="layui-input" type="text" placeholder="请输入任务名称" autocomplete="off">
+									</div>
+								</div>
+								<!--
+								<div class="layui-form-item" style="position:relative;right:50px;">
+									<label class="layui-form-label">任务简介</label>
+									<div class="layui-input-block">
+									  <input name="shortcut" class="layui-input" type="text" placeholder="请输入简介" autocomplete="off" lay-verify="required">
+									</div>
+								</div>
+								-->
+
+								<!--富文本编辑器-->
+								<div class="layui-form-item">
+									<label class="layui-form-label">任务介绍</label>
+									<div class="layui-input-block">
+										<textarea  class="layui-textarea" name="task_introduction" id="task_introduction" style="display: none;"></textarea>
+									</div>
+								</div>
+								<!--富文本编辑器结束-->
+								<div class="layui-form-item layui-fluid" style="margin-left:100px">
+									 <div class="layui-row">
+										  <div class="layui-col-sm1"></div>
+										  <div class="layui-col-sm5">
+											<div>
+											   <label class="layui-form-label">开始日期</label>
+											   <div class="layui-input-block">
+												<input id="start_date" name="start_date" class="layui-input" type="text" autocomplete="off">
+											   </div>
+											 </div>
+										  </div>
+										  <div class="layui-col-sm5">
+											<div>
+											   <label class="layui-form-label">截止日期</label>
+											   <div class="layui-input-block">
+												<input id="end_date" name="end_date" class="layui-input" type="text" autocomplete="off">
+											   </div>
+											 </div>
+										  </div>
+										  <div class="layui-col-sm1"></div>
+									</div>
+								</div>
+								<fieldset class="layui-elem-field" style="margin-left:110px">
+									<div class="layui-field-box">
+
+										<div id="submissiondiv">
+											<div class="layui-form-item">
+												<button type="button" class="layui-btn layui-btn-sm" onclick="javascript:add_file();"><i class="layui-icon">&#xe654;</i></button>
+												<button type="button" class="layui-btn layui-btn-primary layui-btn-sm" onclick="javascript:drop_file();"><i class="layui-icon">&#x1006;</i></button>
+											</div>
+
+
+											<div class="layui-form-item layui-fluid" id="submisdiv1">
+
+												<div class="layui-col-sm1"></div>
+
+												<div class="layui-col-sm5">
+													<label class="layui-form-label">子项1</label>
+														<div class="layui-input-block">
+															<input name="sub_task1" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off" >
+														</div>
+												</div>
+
+												<div class="layui-col-sm5">
+													<label class="layui-form-label">执行者</label>
+													<div class="layui-input-block">
+														<input name="pic1" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">
+													</div>
+												</div>
+
+												<div class="layui-col-sm1"></div>
+											</div>
+
+											<div class="layui-form-item layui-fluid" id="submisdiv2">
+
+												<div class="layui-col-sm1"></div>
+
+												<div class="layui-col-sm5">
+													<label class="layui-form-label">子项2</label>
+													<div class="layui-input-block">
+														<input name="sub_task2" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off">
+													</div>
+												</div>
+
+												<div class="layui-col-sm5">
+													<label class="layui-form-label">执行者</label>
+													<div class="layui-input-block">
+														<input name="pic2" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">
+													</div>
+												</div>
+
+												<div class="layui-col-sm1"></div>
+											</div>
+
+											<div class="layui-form-item layui-fluid" id="submisdiv3">
+
+												<div class="layui-col-sm1"></div>
+
+												<div class="layui-col-sm5">
+													<label class="layui-form-label">子项3</label>
+													<div class="layui-input-block">
+														<input name="sub_task3" class="layui-input" type="text" placeholder="请输入子项目" autocomplete="off">
+													</div>
+												</div>
+
+												<div class="layui-col-sm5">
+													<label class="layui-form-label">执行者</label>
+													<div class="layui-input-block">
+														<input name="pic3" class="layui-input" type="text" placeholder="请输入执行者" autocomplete="off">
+													</div>
+												</div>
+
+												<div class="layui-col-sm1"></div>
+											</div>
+
+										</div>
+
+									</div>
+								</fieldset>
+
+								<div class="layui-form-item">
+									<label class="layui-form-label">优先级</label>
+									<div class="layui-input-block">
+									<input name="superior" title="极高" type="radio" checked="" value="极高">
+									<input name="superior" title="高" type="radio" value="高">
+									<input name="superior" title="中" type="radio" value="中">
+									<input name="superior" title="低" type="radio" value="低">
+									<input name="superior" title="极低" type="radio" value="极低">
+									</div>
+								</div>
+								<div class="layui-form-item">
+									<div class="layui-input-block">
+									<button onclick="onclick_sumit()" type="button" class="layui-btn" >立即提交</button>
+									<button onclick="onclick_reset()" class="layui-btn layui-btn-primary" type="reset">重置</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</fieldset>
+                </div>
+
+</html>
