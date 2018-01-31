@@ -31,6 +31,7 @@
                 team_init();//见下
                 fresh_team_info(null);//删除当前团队后，刷新侧边栏团队信息，当前团队的全局变量置null，用null去刷新内容
                 team_member_load(null);
+                get_tasks('i guess no id like this');//use a id that not exist to fresh task info.
             }
             else {
                 alert(data.error);

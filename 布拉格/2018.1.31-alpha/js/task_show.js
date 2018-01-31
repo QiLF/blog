@@ -121,6 +121,7 @@
 					if(data.error=="start_index exceeds number of rows")
 					{
 						document.getElementById('links').innerHTML="<div class='layui-text'>还没有任务呢,快去发布吧！</div>";
+						task_progress();
 					}
 					alert(data.error);
 				}

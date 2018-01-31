@@ -22,14 +22,13 @@
               document.getElementById("change_teamname").value=data.res[0].name;
               document.getElementById("change_introduce").value=data.res[0].introduction;
               team_member_load(data);//加载团队成员以便显示和管理.
+              get_tasks(value);
             }
           },
           error : function() {
             alert("数据请求异常");
           }
         });
-
-        get_tasks(current_group_id);
         //选择团队后调用检索任务的函数，以当前团队的id为关键
       }
       //用以删除团队后拿null来刷新团队信息内容

@@ -123,7 +123,7 @@ function update_subtask(subtask_i)
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
-													get_tasks();//提交删除后进行刷新
+													get_tasks(current_group_id);//提交修改后进行刷新
 													alert("修改子任务成功！");
 													subtasks_part_init()//重新加载子任务部分
 													renew_subtasks();
@@ -202,7 +202,7 @@ function insert_subtask(subtask_i)
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
-													get_tasks();//提交删除后进行刷新
+													get_tasks(current_group_id);//提交插入后进行刷新
 													alert("插入子任务成功！");
 													subtasks_part_init()//重新加载子任务部分
 													renew_subtasks();
@@ -238,7 +238,7 @@ function delete_subtask(subtask_i)
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
-													get_tasks();//提交删除后进行刷新
+													get_tasks(current_group_id);//提交删除后进行刷新
 													alert("删除子任务成功！");
 													subtasks_part_init()//重新加载子任务部分
 													renew_subtasks();

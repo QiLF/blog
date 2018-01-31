@@ -15,7 +15,15 @@
 	          //deal with data from back_end
 	          if(data.success == "false"){
 	            //alert the reason for false
-	            alert(data.error);
+							if(data.error=="start_index exceeds number of rows")
+							{
+								document.getElementById("team_own").innerHTML=null;
+								alert('亲爱的用户，你还没有加入任何团队，试试去创建属于自己的团队吧！');
+							}
+							else
+							{
+								alert(data.error);
+							}
 	          }
 	          else {
 	            //alert('所属团队信息加载成功');
