@@ -117,6 +117,11 @@
 /***************************更新任务进度************************************/
 					task_progress();
 				}else{
+					//如果查询任务记录为空
+					if(data.error=="start_index exceeds number of rows")
+					{
+						document.getElementById('links').innerHTML="<div class='layui-text'>还没有任务呢,快去发布吧！</div>";
+					}
 					alert(data.error);
 				}
 			}

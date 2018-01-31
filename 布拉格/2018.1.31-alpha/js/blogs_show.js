@@ -115,6 +115,11 @@
 /**********************************导入blog链接************************************************/
 					show_blog_link(blogs,blog_links);
 				}else{
+					//如果查询blogs记录为空
+					if(data.error=="start_index exceeds number of rows")
+					{
+						document.getElementById('links_block').innerHTML="<div class='layui-text'>还没有博客记录,快去发表吧！</div>";
+					}
 					alert(data.error);
 				}
 			} 

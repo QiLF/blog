@@ -59,6 +59,11 @@ var history_sub_task_num=new Array();
 						}
 						total_task_h(history_task_num);
 				}else{
+					//如果查询任务记录为空
+					if(data.error=="start_index exceeds number of rows")
+					{
+						document.getElementById('task_h_part').innerHTML="<div class='layui-text'>无历史记录</div>";
+					}
 					alert(data.error);
 				}
 			}

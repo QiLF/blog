@@ -69,6 +69,8 @@
 																alert("日志发布成功！");
 																get_blogs();//刷新博客预览展示部分
 																layui.element.tabChange('blog_tabs','blog_tabitem1');//跳转到博客预览
+																document.getElementById('log_title').value="";//清空发布模块的博客标题
+																layui.layedit.setContent(log_index,"");//清空发布模块的博客内容
 															}else{
 																	alert(data.error);
 																 }
