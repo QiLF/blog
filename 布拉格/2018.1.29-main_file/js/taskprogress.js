@@ -214,7 +214,7 @@ function change_one_face(id,finished)
 {
   //alert(id);
        var target=document.getElementById(id);
-	   if(finished==true)
+	   if(finished==1)
 	   {
 	   target.innerHTML="&#xe60c;";
 	   target.style="font-size: 20px; color: #1E9FFF;float:right;";
@@ -250,7 +250,7 @@ function total_sub_task(task_label)
 	   {
 		  var is_finished=tasks[task_label-1].subtasks[i].state;
 	      change_one_face('face'+task_label+'-'+(i+1),is_finished);
-		  if(is_finished==true)sub_finish_num++;
+		  if(is_finished==1)sub_finish_num++;
 	   }
 	   percent=sub_finish_num/sub_task_num[task_label-1];
 	change_one_bar("task_bar"+task_label,(percent*100)+"%");
