@@ -21,7 +21,7 @@ function team_person_page_user_info(){
           else {
             //alert('信息加载成功');
             document.getElementById('user_nick_head').innerHTML='<img class="layui-nav-img" src="'+data.res["fig"][0].avatarname+'">'+data.res["info"][0].nickname+'</a>'
-            document.getElementById('nick_declare').innerHTML='<a href="#">'+data.res["info"][0].nickname+'的团队空间</a>';
+            document.getElementById('nick_declare').innerHTML='<a href="#">'+data.res["info"][0].nickname+'</a>';
             document.getElementById('big_headimg_show').innerHTML='<img src="'+data.res["fig"][0].avatarname+'">';
           }
         },

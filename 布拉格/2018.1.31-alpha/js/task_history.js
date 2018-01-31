@@ -2,13 +2,13 @@ var history_tasks=new Array();
 //历史任务数及每个历史任务的子项数
 var history_task_num=0;
 var history_sub_task_num=new Array();
-
+/*
  $(document).ready(function(){
 	 get_history_tasks();
  });
-
+*/
  //获取个人历史任务信息
-  function get_history_tasks()
+  function get_history_tasks(value)
   {
 	  history_tasks.splice(0,history_tasks.length);	//清空个人历史任务数组
 	  history_task_num=0;
@@ -18,6 +18,7 @@ var history_sub_task_num=new Array();
 	  var res={
 				"state":"get_result",
 				 "data":{
+              "group_id":value,
 						  "member":getCookie("username"),
 						  "state":"1",
 						  "order":"DESC",
@@ -63,8 +64,8 @@ var history_sub_task_num=new Array();
 			}
 		});
   }
-  
-  
+
+
 /**********************************************************任务历史所用函数************************************************************************/
 /*
 函数说明：初始化选项卡的完成历史模块
@@ -103,7 +104,7 @@ function add_task_h(task_label)
 
 /*
 函数说明：添加历史任务的名称
-参数：历史任务编号             
+参数：历史任务编号
 返回：无
 */
 function add_task_h_title(task_label)
@@ -126,27 +127,27 @@ function add_task_h_title(task_label)
 */
 function add_task_h_content(task_label)
 {
-	
+
 	var task_description_id="task_h"+task_label+"_description";
 	$("#task_h"+task_label).append(
 								 "<div style='position:relative;float:none'>"
-								+	"<div class='layui-text' >任务名称:"+history_tasks[task_label-1].name+"</div>" 
+								+	"<div class='layui-text' >任务名称:"+history_tasks[task_label-1].name+"</div>"
 								+	"<a onclick="+"change_display('"+task_description_id+"');>"
 								+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
 								+	"</a>"
 								+	"<div class=' layui-text' id='task_h"+task_label+"_description' style='display:none;'>"
-								+		"<div class='layui-timeline-title' >任务简介:"+history_tasks[task_label-1].introduction+"</div>" 
-								+		"<div class='layui-timeline-title' >开始日期:"+history_tasks[task_label-1].start_date+"  截止日期:"+history_tasks[task_label-1].end_date+"</div>"  								
+								+		"<div class='layui-timeline-title' >任务简介:"+history_tasks[task_label-1].introduction+"</div>"
+								+		"<div class='layui-timeline-title' >开始日期:"+history_tasks[task_label-1].start_date+"  截止日期:"+history_tasks[task_label-1].end_date+"</div>"
 								+		"<div class='layui-timeline-title' >"
 								+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
 								+			"参与成员："+history_tasks[task_label-1].members
-								+		"</div>"								
+								+		"</div>"
 								+ 	"</div>"
 								+"</div>"
 								);
-								
+
 	add_progress_bar("task_h",task_label);
-	
+
 	$("#task_h"+task_label).append(
 								 "<div class='layui-field-box' style='position:relative;'>"
 										+"<p style='float:left;'>历史回顾</p>     <p style='float:right;'>完成情况</p>"
@@ -185,10 +186,10 @@ function add_one_sub_task_h(task_label,sub_task_label)
 	var task_list_id="task_list_h"+task_label;
 	$("#"+task_list_id).append(
 										"<li class='layui-timeline-item'>"
-											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"	
+											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
 											+"<div class='layui-timeline-content layui-text' >"
 											+	"<span class='layui-timeline-title' id='"+sub_task_id+"'>子项"+sub_task_label+"</span>"
-											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"			
+											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
 											+		"<div class='layui-timeline-title' >子项名称："+history_tasks[task_label-1].subtasks[sub_task_label-1].name+ "</div>"
 											+		"<div class='layui-timeline-title' >开始时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
@@ -199,12 +200,12 @@ function add_one_sub_task_h(task_label,sub_task_label)
 											+"</div>"
 										+"</li>"
 	 						   );
-}		
+}
 
 
 /*
 函数说明：某个历史任务下所有子项完成情况及进度条的初始化
-参数：任务编号         
+参数：任务编号
 返回：无
 */
 function total_sub_task_h(task_label)
@@ -220,7 +221,7 @@ function total_sub_task_h(task_label)
 	   percent=sub_finish_num/history_sub_task_num[task_label-1];
 	   change_one_bar("task_h_bar"+task_label,(percent*100)+"%");
 }
-						   
+
 /*
 函数说明：对所有历史任务完成情况的初始化
 参数：历史任务数目
