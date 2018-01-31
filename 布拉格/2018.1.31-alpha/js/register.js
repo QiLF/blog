@@ -48,13 +48,14 @@
              data:{res:str}, 
              dataType: "json", 
              error: function(){   
-                 alert('Error loading XML document');   
+                 //alert('Error loading XML document');   
              },   
              success: function(data){
 				if(data.success=="true"){
+					alert("注册成功,快去登陆吧！");
 					window.location.href="index.html";
 				}else{
-					alert(data.error);
+					//alert(data.error);
 				}
              } });
 	}); 

@@ -76,11 +76,11 @@ function change_team_info(){
             team_init();//修改信息后，为了同步侧边栏的团队名
         }
         else {
-            alert(data.error);
+            //alert(data.error);
         }
         },
         error : function() {
-        alert("数据请求异常");
+       // alert("数据请求异常");
         }
     });
   }

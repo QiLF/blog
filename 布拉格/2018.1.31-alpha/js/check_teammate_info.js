@@ -13,7 +13,7 @@
         //deal with data from back_end
         if(data.success=="false"){
             //alert the reason for false
-            alert(data.error);
+            //alert(data.error);
         }
         else {
             //alert('信息获取成功！')
@@ -21,7 +21,7 @@
         }
         },
         error : function() {
-        alert("数据请求异常");
+        //alert("数据请求异常");
         }
     });
   }

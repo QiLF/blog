@@ -93,18 +93,18 @@
 						}
 			  };
 	  str=JSON.stringify(res);
-	  alert("向后端传入的json数据为"+str);
+	  //alert("向后端传入的json数据为"+str);
 	  $.ajax({ 
              url: "php/blog_search.php",  
              type: "POST", 
              data:{res:str}, 
              dataType: "json", 
              error: function(){   
-                 alert('Error loading XML document');   
+                 //alert('Error loading XML document');   
              },   
              success: function(data){
 				if(data.success=="true"){
-					alert("查询blogs成功！");
+					//alert("查询blogs成功！");
 					
 					for(var i=0;i<data.res.length;i++){
 						blogs.push(data.res[i]);
@@ -120,7 +120,7 @@
 					{
 						document.getElementById('links_block').innerHTML="<div class='layui-text'>还没有博客记录,快去发表吧！</div>";
 					}
-					alert(data.error);
+					//alert(data.error);
 				}
 			} 
 		});
@@ -130,7 +130,7 @@
   function blog_view(blog_i)
   {
 	edit_blog_i=blog_i;//改变全局变量（用于确定删除的博客）
-	alert("edit_blog_i="+edit_blog_i);
+	//alert("edit_blog_i="+edit_blog_i);
 	change_display("links_block");
 	change_display("blog_show");
 	change_display("change_page");

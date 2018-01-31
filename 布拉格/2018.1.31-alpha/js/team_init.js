@@ -22,7 +22,7 @@
 							}
 							else
 							{
-								alert(data.error);
+								//alert(data.error);
 							}
 	          }
 	          else {
@@ -40,7 +40,7 @@
 						}
 	        },
 	        error : function() {
-	          alert("数据请求异常");
+	          //alert("数据请求异常");
 	        }
 	      });
 		}

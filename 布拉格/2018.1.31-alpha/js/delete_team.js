@@ -34,11 +34,11 @@
                 get_tasks('i guess no id like this');//use a id that not exist to fresh task info.
             }
             else {
-                alert(data.error);
+                //alert(data.error);
             }
             },
             error : function() {
-            alert("数据请求异常");
+           // alert("数据请求异常");
             }
         });
     }

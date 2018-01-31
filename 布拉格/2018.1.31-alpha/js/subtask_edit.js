@@ -101,7 +101,7 @@ function update_subtask(subtask_i)
 
 
 	var subtask_id=tasks[edit_task_i].subtasks[subtask_i-1].subtask_id;
-	alert("members："+members);
+	//alert("members："+members);
 	var temp={
 				"state":"update_subtask",
 				"data":{
@@ -111,14 +111,14 @@ function update_subtask(subtask_i)
 					   }
 			 };
 	var str=JSON.stringify(temp);
-	alert("修改子任务:请求为"+str);
+	//alert("修改子任务:请求为"+str);
 	$.ajax({
 			url: "php/task.php",
 			type: "POST",
 			data:{res:str},
 			dataType: "json",
 			error: function(){
-								alert('Error loading XML document');
+								//alert('Error loading XML document');
 							 },
 			success: function(data){
 							if(data.success=="true"){
@@ -126,7 +126,7 @@ function update_subtask(subtask_i)
 													get_tasks(current_group_id);//提交修改后进行刷新
 													alert("修改子任务成功！");
 												}else{
-														alert(data.error);
+														//alert(data.error);
 													 }
 									}
 			});
@@ -176,7 +176,7 @@ function insert_subtask(subtask_i)
   }
 
 
-	alert("members"+members);
+	//alert("members"+members);
 	var temp={
 				"state":"insert_subtask",
 				"data":{
@@ -188,22 +188,22 @@ function insert_subtask(subtask_i)
 					   }
 			 };
 	var str=JSON.stringify(temp);
-	alert("插入子任务:请求为"+str);
+	//alert("插入子任务:请求为"+str);
 	$.ajax({
 			url: "php/task.php",
 			type: "POST",
 			data:{res:str},
 			dataType: "json",
 			error: function(){
-								alert('Error loading XML document');
+								//alert('Error loading XML document');
 							 },
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
 													get_tasks(current_group_id);//提交插入后进行刷新
-													alert("插入子任务成功！");
+													alert("追加子任务成功！");
 												}else{
-														alert(data.error);
+														//alert(data.error);
 													 }
 									}
 			});
@@ -213,7 +213,7 @@ function insert_subtask(subtask_i)
 //删除对应位序的子任务
 function delete_subtask(subtask_i)
 {
-	alert("要删除的子任务是第"+(edit_task_i+1)+"个任务的第"+subtask_i+"个子任务");
+	//alert("要删除的子任务是第"+(edit_task_i+1)+"个任务的第"+subtask_i+"个子任务");
 	//删除子任务
 	var temp={
 				"state":"delete_subtask",
@@ -222,14 +222,14 @@ function delete_subtask(subtask_i)
 					   }
 			 };
 	var str=JSON.stringify(temp);
-	alert("删除子任务:请求为"+str);
+	//alert("删除子任务:请求为"+str);
 	$.ajax({
 			url: "php/task.php",
 			type: "POST",
 			data:{res:str},
 			dataType: "json",
 			error: function(){
-								alert('Error loading XML document');
+								//alert('Error loading XML document');
 							 },
 			success: function(data){
 							if(data.success=="true"){
@@ -237,7 +237,7 @@ function delete_subtask(subtask_i)
 													get_tasks(current_group_id);//提交删除后进行刷新
 													alert("删除子任务成功！");
 												}else{
-														alert(data.error);
+														//alert(data.error);
 													 }
 									}
 			});

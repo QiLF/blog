@@ -73,7 +73,7 @@ function edit_form_sumit()
 //表单验证部分结束                
 			var temp={"state":"update_blog","data":{"blog_id":blog_id[edit_blog_i],"name":form_theme,"content":form_content}};
 			var str=JSON.stringify(temp);
-			alert("提交修改请求的json："+str);
+			//alert("提交修改请求的json："+str);
 			$(function(){
 				$.ajax({ 
 						url: "php/uploadblog.php",  
@@ -81,13 +81,13 @@ function edit_form_sumit()
 						data:{res:str}, 
 						dataType: "json", 
 						error: function(){   
-											alert('Error loading XML document');   
+											//alert('Error loading XML document');   
 										 },   
 						success: function(data){
 										if(data.success=="true"){
 																alert("操作成功！");
 															}else{
-																	alert(data.error);
+																	//alert(data.error);
 																 }
 												} });
 										get_blogs();//提交修改后进行刷新
@@ -101,7 +101,7 @@ function blog_delete()
 {
 	var temp={"state":"delete_blog","data":{"blog_id":blog_id[edit_blog_i]}};
 	var str=JSON.stringify(temp);
-	alert("提交删除请求的json："+str);
+	//alert("提交删除请求的json："+str);
 	$(function(){
 				$.ajax({ 
 						url: "php/uploadblog.php",  
@@ -109,13 +109,13 @@ function blog_delete()
 						data:{res:str}, 
 						dataType: "json", 
 						error: function(){   
-											alert('Error loading XML document');   
+											//alert('Error loading XML document');   
 										 },   
 						success: function(data){
 										if(data.success=="true"){
 																alert("操作成功！");
 															}else{
-																	alert(data.error);
+																//	alert(data.error);
 																 }
 												} });
 										get_blogs();//提交删除后进行刷新

@@ -15,7 +15,7 @@
             //deal with data from back_end
             if(data.success == "false"){
               //alert the reason for false
-              alert(data.error);
+              //alert(data.error);
             }
             else {
               //alert('特定团队信息加载成功');
@@ -26,7 +26,7 @@
             }
           },
           error : function() {
-            alert("数据请求异常");
+            //alert("数据请求异常");
           }
         });
         //选择团队后调用检索任务的函数，以当前团队的id为关键

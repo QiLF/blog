@@ -25,7 +25,7 @@ function changekey_check()
 		}
 		var temp={"data":{"old_password":old_password,"new_password":new_password,"confirm_password":confirm_password}};
 		var str = JSON.stringify(temp);
-		alert(str);
+		//alert(str);
 		$(function(){
         $.ajax({ 
              url: "php/changekey.php",  
@@ -33,13 +33,13 @@ function changekey_check()
              data:{res:str}, 
              dataType: "json", 
              error: function(){   
-                 alert('Error loading XML document');   
+                 //alert('Error loading XML document');   
              },   
              success: function(data){
 				if(data.success=="true"){
 					alert("修改密码成功！");
 				}else{
-					alert(data.error);
+					//alert(data.error);
 				}
 			} 
 		});

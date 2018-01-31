@@ -49,7 +49,7 @@
 	  
     var temp_data=$('#login-form').serializeObject();
     var final_object={"data":temp_data};
-    alert(JSON.stringify(final_object));
+    //alert(JSON.stringify(final_object));
     var res=JSON.stringify(final_object);
     
     //ajax part
@@ -62,7 +62,7 @@
           //deal with data from back_end
           if(data.success=="false"){
             //alert the reason for false
-            alert(data.error);
+            //alert(data.error);
           }
           else {
             //login successfully and go to personal page
@@ -72,7 +72,7 @@
           }
         },
         error : function() {
-          alert("数据请求异常");
+          //alert("数据请求异常");
         }
       });
     

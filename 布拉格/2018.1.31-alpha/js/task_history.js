@@ -26,18 +26,18 @@ var history_sub_task_num=new Array();
 						}
 			  };
 	  var str=JSON.stringify(res);
-	  alert("向后端传入的json数据为"+str);
+	  //alert("向后端传入的json数据为"+str);
 	  $.ajax({
              url: "php/search_tasks.php",
              type: "POST",
              data:{res:str},
 			 dataType: "json",
              error: function(){
-                 alert('Error loading XML document');
+                 //alert('Error loading XML document');
              },
              success: function(data){
 				if(data.success=="true"){
-					alert("查询历史任务成功！");
+					//alert("查询历史任务成功！");
 					for(var i=0;i<data.res.length;i++){
 						history_tasks.push(data.res[i]);
 					}
@@ -64,7 +64,7 @@ var history_sub_task_num=new Array();
 					{
 						document.getElementById('task_h_part').innerHTML="<div class='layui-text'>无历史记录</div>";
 					}
-					alert(data.error);
+					//alert(data.error);
 				}
 			}
 		});

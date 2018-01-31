@@ -19,7 +19,7 @@ layui.use('upload', function(){
         return layer.msg('上传成功');
       }
       else{
-        alert(data.error);
+        //alert(data.error);
       }
     }
     ,error: function(){

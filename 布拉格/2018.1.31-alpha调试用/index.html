@@ -1,0 +1,233 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <link rel="shortcut icon" href="blog.ico">
+    <title>布拉格博客首页</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="layui/css/layui.css"  media="all">
+    <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  
+    <!---->
+    <meta charset="UTF-8" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> 
+
+    <meta name="keywords" content="carousel, jquery, responsive, fluid, elastic, resize, thumbnail, slider" />
+
+    <meta name="author" content="Codrops" />
+
+    <link rel="shortcut icon" href="../favicon.ico"> 
+
+    <link rel="stylesheet" type="text/css" href="imageshow/css/demo.css" />
+
+    <link rel="stylesheet" type="text/css" href="imageshow/css/elastislide.css" />
+
+    <link rel="stylesheet" type="text/css" href="imageshow/css/custom.css" />
+
+    <script src="imageshow/js/modernizr.custom.17475.js"></script>
+    <!---->
+  
+  
+    <!--登录模块-->
+    <script type="text/javascript" charset="utf-8" src="js/cookiemanage.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
+	<script type="text/javascript" charset="utf-8" src="js/login.js"></script>
+    <style>
+    @font-face {
+       font-family: 'title_big';   /*字体名称*/
+       src: url('layui/font/title_big.ttf');       /*字体源文件*/
+     }
+    .figure{
+       height:700px;
+       background: url("imageshow/images/布拉格img.jpg") no-repeat;
+       overflow: hidden;
+       background-size:100%;
+     }
+    #title_index {
+       font-family:华文宋体;
+       margin-top:17px;
+       display: block;
+       color:#F8F8FF;
+       float:left;
+     }
+    </style>
+</head>
+<body>
+
+    
+    <div class="mainContent figure">
+        <h1 id="title_index" style="padding:15px">———USTC布拉格———
+        
+        <a style="float:;padding:10px;font-size:55%;color:#E0E0E0" href="">联系我们</a>
+        <a style="float:;padding:10px;font-size:55%;color:#E0E0E0" href="">找回密码</a>
+        <a style="float:;padding:10px;font-size:55%;color:#E0E0E0" href="register.html">注册</a>
+        
+        </h1>
+        <div style="background:rgba(0,0,0,0.5);float:right;padding:20px;position:relative;right:60px;top:180px">
+        
+            <fieldset class="layui-elem-field layui-field-title">
+                <legend style="color:white">登录</legend>
+            </fieldset>
+        
+            <br/><br/>
+            <form  id="login-form" name="login-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:white">账号</label>
+                        <div class="layui-input-inline">
+                            <input  placeholder="请输入用户名" name="username" 
+        onblur="oBlur_check_user()" onFocus="oFocus_userName()" style="background-color:transparent;color:white"   autocomplete="off"  class="layui-input" type="text"/>
+                            <span id="reminder_userName" style="color:yellow;font-weight:500"></span>
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label" style="color:white">密码</label>
+                        <div class="layui-input-inline">
+                            <input  name="password" 
+    autocomplete="off" onblur="oBlur_check_password()" onFocus="oFocus_password()" style="background-color:transparent;color:white"  placeholder="请输入密码"  class="layui-input" type="password"/>
+                            <span id="reminder_password" style="color:yellow;font-weight:500"></span>
+                        </div>
+                    </div>
+                    <div style="text-align:center" class="layui-form-item">
+                            <input title="记住密码" type="checkbox">
+                            <span style="color:white">记住密码</span>
+                    </div>
+                    <br/>
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <button style="background-color:transparent;color:white" onclick="validateForm()" type="button" class="layui-btn layui-btn-primary" style="color:white">登录</button>
+                            <button style="background-color:transparent;color:white" type="reset" class="layui-btn layui-btn-primary" style="color:white">重置</button>
+                        </div>
+                    </div>
+                    
+             </form>
+        </div>
+    </div>
+    
+    
+    
+    <div class="layui-fluid">
+    
+    
+        
+        <div class="layui-col-sm4" style="padding:100px">
+            <fieldset class="layui-elem-field">
+                <legend>布拉格团队</legend>
+                <div class="layui-field-box">
+                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;布拉格团队博客是针对软件开发团队量身打造的团队博客系统，旨在进一步方便项目开发的各项工作，从而充分提高项目开发的效率，为程序猿们带来便利。布拉格团队博客设有团队博客界面和个人博客界面，具有创建团队、邀请成员、成员管理、团队项目发布、项目进度管理、日志发布等团队管理功能以及个人团队、任务、日志管理功能。布拉格，是您的贴心团队管家。  
+                 </p>
+                </div>
+            </fieldset>
+        </div>
+        
+         
+        <div class="layui-col-sm4" style="padding:100px">
+            <fieldset class="layui-elem-field">
+                <legend>关于我们</legend>
+                <div class="layui-field-box">
+                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;布拉格团队博客是由USTC软件工程课程小组——布拉格团队倾力打造的，针对程序猿的软件开发团队管理系统。我们的团队和系统名称都取为“布拉格”，不仅是因为“布拉格”和“BLOG”谐音，更体现了我们的开发理念：团队项目开发，应该如同置身布拉格，进行一场浪漫之旅一般美好和轻松。我们的特色在于，充分考虑项目开发者的需要，将个人管理、团队管理和资料管理充分融合。
+                 </p>
+                </div>
+                </fieldset>
+        </div>
+        
+        
+        <div class="layui-col-sm4" style="padding:100px">
+        
+            <fieldset class="layui-elem-field">
+                <legend>致用户</legend>
+                <div class="layui-field-box">
+                 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;亲爱的用户，欢迎您使用我们的布拉格团队博客，您的信任就是对我们最大的鼓励。在使用中如果有任何意见和建议，欢迎您及时联系我们，我们将及时为您解决问题，您的建议将是我们进步的动力。布拉格团队刚刚组建不久，还不够成熟，正在不断完善和成长，将和您一道，体会团队项目开发中的酸甜苦辣，也将和您一道，进行一段浪漫的布拉格之旅。   
+                 </p>
+                </div>
+            </fieldset>
+        </div>
+   
+   </div>
+   
+   
+   <div class="mainContent" style="padding:100px">
+        <fieldset class="layui-elem-field layui-field-title">
+                 <legend  ><i style="color:gray;font-size:30px;font-family:YouYuan;font-weight:bold;">开发团队介绍</i></legend>
+        </fieldset>
+        
+        <!---->
+        <div class="container demo-1">
+
+	
+
+
+
+            <div class="main">
+
+                <header class="clearfix">	
+
+					<h1>布拉格<span>————让团队开发，变成一场浪漫的旅行。</span></h1>
+
+
+				</header>
+
+
+
+				<!-- Elastislide Carousel -->
+
+				<ul id="carousel" class="elastislide-list">
+
+					<li><a href="#"><img src="imageshow/images/small/1.jpg" alt="image01" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/2.jpg" alt="image02" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/3.jpg" alt="image03" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/4.jpg" alt="image04" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/5.jpg" alt="image05" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/6.jpg" alt="image06" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/7.jpg" alt="image07" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/8.jpg" alt="image08" /></a></li>
+
+					<li><a href="#"><img src="imageshow/images/small/9.jpg" alt="image09" /></a></li>
+
+					
+				</ul>
+
+				<!-- End Elastislide Carousel -->
+
+			</div>
+
+		</div>
+        
+        <!---->
+
+   
+   </div>
+   
+   
+   <footer style="text-align:center;padding:20px">
+        <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn</a>.</p>
+   </footer>
+   
+   
+   
+   <!---->
+   <!--<script src="http://www.jq22.com/jquery/1.8.3/jquery.min.js"></script>-->
+
+   <script type="text/javascript" src="imageshow/js/jquerypp.custom.js"></script>
+
+   <script type="text/javascript" src="imageshow/js/jquery.elastislide.js"></script>
+
+   <script type="text/javascript">
+
+			$( '#carousel' ).elastislide();
+
+   </script>
+   
+   <!---->
+   
+</body>
+</html>

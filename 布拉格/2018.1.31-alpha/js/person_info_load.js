@@ -16,7 +16,7 @@ function team_person_page_user_info(){
           //deal with data from back_end
           if(data.success=="false"){
             //alert the reason for false
-            alert(data.error);
+            //alert(data.error);
           }
           else {
             //alert('信息加载成功');
@@ -26,7 +26,7 @@ function team_person_page_user_info(){
           }
         },
         error : function() {
-          alert("数据请求异常");
+          //alert("数据请求异常");
         }
       });
     return true;

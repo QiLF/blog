@@ -54,7 +54,7 @@
 			var temp={"state":"insert_blog","data":{"writer":userName,"subtask_id":"PB14210144","name":form_theme,"content":form_content}};
 			//var temp={"data":{"username":userName,"first_password":first_pwd,"second_password":second_pwd,"check_agree":check_agree}};
 			var str=JSON.stringify(temp);
-			alert(str);
+			//alert(str);
 			$(function(){
 				$.ajax({ 
 						url: "php/uploadblog.php",  
@@ -62,7 +62,7 @@
 						data:{res:str}, 
 						dataType: "json", 
 						error: function(){   
-											alert('Error loading XML document');   
+											//alert('Error loading XML document');   
 										 },   
 						success: function(data){
 										if(data.success=="true"){
@@ -72,7 +72,7 @@
 																document.getElementById('log_title').value="";//清空发布模块的博客标题
 																layui.layedit.setContent(log_index,"");//清空发布模块的博客内容
 															}else{
-																	alert(data.error);
+																	//alert(data.error);
 																 }
 												} });
 						}); 

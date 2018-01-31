@@ -35,11 +35,11 @@
                 fresh_team_info(current_group_id);
             }
             else {
-                alert(data.error);
+                //alert(data.error);
             }
             },
             error : function() {
-            alert("数据请求异常");
+            //alert("数据请求异常");
             }
         });
     }

@@ -93,18 +93,18 @@
 						}
 			  };
 	  var str=JSON.stringify(res);
-	  alert("向后端传入的json数据为"+str);
+	 // alert("向后端传入的json数据为"+str);
 	  $.ajax({
              url: "php/search_tasks.php",
              type: "POST",
              data:{res:str},
 			 dataType: "json",
              error: function(){
-                 alert('Error loading XML document');
+                 //alert('Error loading XML document');
              },
              success: function(data){
 				if(data.success=="true"){
-					alert("查询任务成功！");
+					//alert("查询任务成功！");
 
 					for(var i=0;i<data.res.length;i++){
 						tasks.push(data.res[i]);
@@ -124,7 +124,7 @@
 						document.getElementById('links').innerHTML="<div class='layui-text'>还没有任务呢,快去发布吧！</div>";
 						task_progress();
 					}
-					alert(data.error);
+					//alert(data.error);
 				}
 			}
 		});
@@ -134,7 +134,7 @@
   function task_view(task_i)
   {
 	edit_task_i=task_i;
-	alert("edit_task_i="+edit_task_i);
+	//alert("edit_task_i="+edit_task_i);
 	change_display("links_block");
 	change_display("task_show");
 	change_display("change_page");

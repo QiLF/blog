@@ -54,11 +54,11 @@
                 fresh_team_info(current_group_id);//成功添加成员后刷新当前团队的信息
             }
             else {
-                alert(data.error);
+               // alert(data.error);
             }
             },
             error : function() {
-            alert("数据请求异常");
+            //alert("数据请求异常");
             }
         });
     }

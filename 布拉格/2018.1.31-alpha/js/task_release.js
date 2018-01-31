@@ -154,7 +154,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
             json_info.data.group_id=window.parent.current_group_id; //获取当前选中的团队id
       			json_info.data.builder=getCookie("username");
       			json_info.data.priority=getpriority();
-      			alert(json_info.data.priority);
+      			//alert(json_info.data.priority);
       			json_info.data.start_date=task_start_date;
       			json_info.data.end_date=task_end_date;
             for(var i=0;i<json_info.data.subtasks.length;i++)
@@ -163,7 +163,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
               json_info.data.subtasks[i].end_date=task_end_date;
             }
       			var res=JSON.stringify(json_info);
-      			alert(res);
+      			//alert(res);
       			//ajax提交json数据
       			$.ajax({
       					type: "POST",
@@ -172,14 +172,14 @@ layui.use(['form', 'layedit', 'laydate'], function(){
       					data: {res:res},
       					success: function (data) {
       					  if(data.success=="false"){
-      						alert(data.error);
+      						//alert(data.error);
       					  }
       					  else {
       						  alert("任务发布成功");
       					  }
       					},
       					error : function() {
-      					 alert('Error loading XML document');
+      					 //alert('Error loading XML document');
       					}
       			});
     }

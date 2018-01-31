@@ -39,7 +39,7 @@
         var temp_data={"state":"create_group","data":{"name":name,"introduction":introduction}};
         var res=JSON.stringify(temp_data);
         //for debug,output the json object
-        alert(res);
+        //alert(res);
         //ajax connect part
         $.ajax({
             type: "POST",
@@ -53,11 +53,11 @@
                 //window.reload();
             }
             else {
-                alert(data.error);
+                //alert(data.error);
             }
             },
             error : function() {
-            alert("数据请求异常");
+           // alert("数据请求异常");
             }
         });
     }

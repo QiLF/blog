@@ -13,7 +13,7 @@ function delete_task()
 {
 	var temp={"state":"delete_task","data":{"task_id":tasks[edit_task_i].task_id}};
 	var str=JSON.stringify(temp);
-	alert("提交删除请求的json："+str);
+	//alert("提交删除请求的json："+str);
 
 				$.ajax({
 						url: "php/task.php",
@@ -22,7 +22,7 @@ function delete_task()
 						dataType: "json",
 						error: function()
 						{
-										alert('Error loading XML document');
+										//alert('Error loading XML document');
 						},
 						success: function(data)
 						{
@@ -36,7 +36,7 @@ function delete_task()
 										}
 										else
 										{
-												alert(data.error);
+												//alert(data.error);
 										}
 						}
 				});
@@ -140,7 +140,7 @@ function getpriority()
 					json_info.data.start_date=task_start_date;
 					json_info.data.end_date=task_end_date;
 					var res=JSON.stringify(json_info);
-					alert("任务更新请求为"+res);
+					//alert("任务更新请求为"+res);
 					//ajax提交json数据
 					$.ajax({
 							type: "POST",
@@ -151,7 +151,7 @@ function getpriority()
 							{
 								if(data.success=="false")
 								{
-									alert(data.error);
+									//alert(data.error);
 								}
 								else
 								{
@@ -162,7 +162,7 @@ function getpriority()
 							},
 							error : function()
 							{
-								alert('Error loading XML document');
+								//alert('Error loading XML document');
 							}
 					});
 		}

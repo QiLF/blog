@@ -2,7 +2,7 @@ function finish_subtask_func(value)
 {
   if(value==null)
   {
-    alert("子项目id为空！")
+    //alert("子项目id为空！")
     return false;
   }
   var now_date=new Date();
@@ -22,7 +22,7 @@ function finish_subtask_func(value)
         //deal with data from back_end
         if(data.success=="false"){
           //alert the reason for false
-          alert(data.error);
+          //alert(data.error);
         }
         else {
           alert("子项进度提交成功！");
@@ -30,7 +30,7 @@ function finish_subtask_func(value)
         }
       },
       error : function() {
-        alert("数据请求异常");
+        //alert("数据请求异常");
       }
   });
 }
