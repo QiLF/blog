@@ -1,0 +1,406 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+  <!--弹框插件-->
+    <script src="js_for_citychoose/jquery-1.12.4.js"></script>
+    <script src="layer/layer.js"></script>
+    <script src="layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/cookiemanage.js"></script>
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="blog.ico">
+  <title>布拉格个人空间</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="layui/css/layui.css"  >
+  <link rel="stylesheet" href="layui/css/styles.css"  >
+  <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
+  <style>
+
+#box{ position:relative;right:50px;width:250px;}.div1{width:250px;position:absolute;right:50px;}.div2{position:fixed;_position:absolute;top:0;z-index:250;right:35px;}
+
+
+@font-face {
+  font-family: 'title_big';   /*字体名称*/
+  src: url('layui/font/title_big.ttf');       /*字体源文件*/
+}
+@font-face {
+  font-family: 'title_eng';   /*字体名称*/
+  src: url('layui/font/title_eng.otf');       /*字体源文件*/
+}
+@font-face {
+  font-family: 'BuffaloScript';   /*字体名称*/
+  src: url('layui/font/BuffaloScript.otf');       /*字体源文件*/
+}
+@font-face {
+  font-family: 'h1_font';   /*字体名称*/
+  src: url('layui/font/h1.ttf');       /*字体源文件*/
+}
+ #title_blog {
+   font: 25px "title_big";
+   margin-top:17px;
+   display: block;
+   color:#F8F8FF;
+   text-align: center;
+   float:right;
+   }
+#title_blog_eng {
+   font: 25px "BuffaloScript";
+   margin-top:17px;
+   display: block;
+   color: #F8F8FF;
+   text-align: center;
+   float:right;
+   }
+ .bootstrap-frm {
+   margin-left:100px;
+
+   margin-top:30px;
+   
+   margin-bottom:100px;
+
+   background: #FFF;
+    padding-left: 80px;
+   text-shadow: 1px 1px 1px #FFF;
+   border:1px solid #DDD;
+   border-radius: 5px;
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   }
+.special { background: #6c6c6c; height: 35px; line-height: 35px;
+ margin-left:100px;margin-top:60px;
+padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #3333333, endColorstr = #3333333);
+}/* 兼容IE6 透明 */
+.special li { display: inline-block; font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding-left: 31px; padding-right: 26px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s;cursor:pointer; }
+.special li a{display:block}
+/*nav li:hover { background: #7b7b7b; }*/
+.special li:hover{ color: #fff; background: #D2B48C; transform:skewX(10deg);-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);-ms-transform:skewX(10deg);-moz-transform:skewX(10deg) }
+#topnav_current { background: #7b7b7b }/* 高亮选中颜色 */
+
+.avatar { margin: 10px auto; width: 160px; height: 160px; border-radius: 100%; overflow: hidden; }
+.avatar a { display: block; padding-top: 100px; width: 160px; background: url(http://t.cn/RCzsdCq) no-repeat; background-size: 160px 160px; }
+.avatar a span { display: block; margin-top: 63px; padding-top: 8px; width: 160px; height: 55px; text-align: center; line-height: 20px; color: #fff; background: rgba(0, 0, 0, .5); -webkit-transition: margin-top .2s ease-in-out; -moz-transition: margin-top .2s ease-in-out; -o-transition: margin-top .2s ease-in-out; transition: margin-top .2s ease-in-out; }
+.avatar a:hover span { display: block; margin-top: 0; }
+
+
+#head_portrait{width:120px;height:120px;margin-left:100px;margin-top:80px;border-radius:50%}
+
+.mainpage_header { margin: 10px;float:right;}
+.mainpage_header h1{font-size: 30px; font-family: "h1_font";}
+
+#footer {
+	margin: 10px 0 10px 0;
+	padding: 5px 0;
+	text-align: center;
+	border-top: 1px solid gray;
+	border-bottom: 1px solid gray;
+	}
+#footer a {
+	padding: 3px 5px;
+	}
+
+  </style>
+</head>
+<body onLoad="get_info_function()" style="background-color:#F0F0F0">
+    <div>
+      <ul class="layui-nav"  style="background-color:#55B5B">
+          <li class="layui-nav-item">
+            <a href="javascript:;"><p id="user_nick_head"><!--此处信息动态加载--></p></a>
+            <dl class="layui-nav-child">
+              <dd><a href="infochange.html">修改信息</a></dd>
+              <dd><a id="keyset" href="javascript:;">安全管理</a></dd>
+              <dd><a href="javascript:logout();">退出</a></dd>
+            </dl>
+          </li>
+
+          <li class="layui-nav-item layui-this">
+            <a href="personal_page.html">个人中心</a>
+          </li>
+
+          <li class="layui-nav-item"><a href="teammanage_page.html">我的团队</a></li>
+          <li class="layui-nav-item"><a id="calendar">日历</a></li>
+          <div id="title_blog">布拉格</div>
+          <div id="title_blog_eng">BLOG</div>
+      </ul>
+    </div>
+
+    <div class="mainContent">
+      <div class="ulist">
+        <section> <a id="big_headimg_show" href="#"><!--此处信息动态加载--></a>
+          <ul>
+            <h2 id="nick_declare"><!--此处信息动态加载--></h2>
+            <p>于千万人之中，我遇见了我所遇见的人...</p>
+          </ul>
+        </section>
+      </div>
+    </div>
+
+
+
+
+    <div class="mainContent layui-fluid" style="min-height:800px">
+      <div class="layui-row">
+      	<div class="layui-col-sm8">
+      		<div>
+
+      			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+
+      				<ul class="special layui-tab-title layui-fluid" id="topnav">
+      					<li  class="layui-this " style="color:white">任务提醒</li>
+      					<li class=""><a style="color:white">当前任务</a></li>
+      					<li class=""><a style="color:white">完成历史</a></li>
+      					<li class="" style="color:white">团队交流</li>
+      					<li class="" style="color:white">日志TIPS</li>
+      				</ul>
+
+      				<div class="layui-tab-content bootstrap-frm" >
+      				
+      				
+      				
+				<!--任务提醒部分-->
+      					<div class="layui-tab-item layui-show">
+      					<!--内容不一样是要有，因为你可以监听tab事件（阅读下文档就是了）-->
+      					111111
+      					</div>	
+				<!--当前任务部分-->
+						<div class="layui-tab-item" style="position:relative; margin-right:45px">
+							 <div>
+								<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+								
+									<ul class="layui-tab-title" id="task_title_part" style="margin-bottom:10px">
+										<!--任务进度的任务标题部分，通过jquery添加-->
+									</ul>
+									
+									<div class="layui-tab-content" style="height:auto"  id="task_part">
+									
+										<!--任务进度的任务内容部分，通过jquery添加-->
+
+									</div>
+								</div> 
+                             </div>     
+                         </div>	
+                <!--完成历史部分-->	
+						<div class="layui-tab-item" style="position:relative; margin-right:45px">
+							 <div>
+								<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+								
+									<ul class="layui-tab-title" id="task_h_title_part" style="margin-bottom:10px">
+										<!--完成的任务标题部分，通过jquery添加-->
+									</ul>
+									
+									<div class="layui-tab-content" style="height:auto"  id="task_h_part">
+									
+										<!--完成的任务内容部分，通过jquery添加-->
+
+									</div>
+								</div> 
+                             </div>     
+                         </div>	
+				<!--团队交流部分-->
+      					<div class="layui-tab-item">
+      						<div class="layui-tab"style="position:relative;right:40px">
+      							<ul class="layui-tab-title">
+      								<li class="layui-this">消息</li>
+      								<li>私信队友</li>
+      								<li>公告栏</li>
+      							</ul>
+      							<div class="layui-tab-content">
+      								<div class="layui-tab-item layui-show">内容1</div>
+      								<div class="layui-tab-item">内容2</div>
+      								<div class="layui-tab-item">内容3</div>
+      							</div>
+      						</div>
+      					</div>
+
+      			<!--日志TIPS部分-->
+      					<div class="layui-tab-item">
+      						<div class="layui-tab" lay-filter="blog_tabs" style="position:relative;right:40px">
+      							<ul class="layui-tab-title">
+      								<li class="layui-this" lay-id="blog_tabitem1"><a onclick="get_blogs()" style="color:black">日志预览</a></li>
+      								<li lay-id="blog_tabitem2">日志发布</li>
+      								<li lay-id="blog_tabitem3">日志管理</li>
+      							</ul>
+      							<div class="layui-tab-content">
+							<!--日志预览部分-->
+      								<div class="layui-tab-item layui-show">
+										<fieldset class="layui-elem-field" style="margin-top: 30px;">
+										  <legend>我的日志</legend>
+										  <div id="links_block">
+											 <!--日志链接-->
+										  </div>
+										  <div id="blog_show"  style="display:none">
+											<div class="layui-form-item">
+													<label class="layui-form-label">主题</label>
+													<div name="log_show_title" id="log_show_title" class="layui-text" style="text-align:center"></div>
+											</div>
+											<div class="layui-form-item layui-form-text">
+													<label class="layui-form-label">内容</label>
+													<div name="log_show_content" id="log_show_content" class="layui-text"></div>
+											</div>
+										  <!---->
+										  </div>
+										  <div id="blog_edit" style="display:none">
+										  		<form id="log_edit_form" class="layui-form" action="" style="position:relative;right:30px">
+													<div class="layui-form-item">
+														<label class="layui-form-label">主题</label>
+														<div class="layui-input-block">
+															<input value="" name="log_edit_title" id="log_edit_title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
+														</div>
+													
+													</div>
+													<div class="layui-form-item layui-form-text">
+														<label class="layui-form-label">内容</label>
+														<div class="layui-input-block">
+														   <textarea name="log_edit_content" id="log_edit_content" placeholder="请输入内容" class="layui-textarea"></textarea>
+														</div>	
+													</div>
+											
+													<div class="layui-form-item">
+														<div class="layui-input-block">
+														   <button id="form_undo" onclick="edit_form_undo()" type="button" class="layui-btn layui-btn-normal">取消</button>
+														   <button id="form_sumit" onclick="edit_form_sumit()" type="button" class="layui-btn layui-btn-danger">提交</button>
+														   <button id="form_delete" onclick="blog_delete()" type="button" class="layui-btn layui-btn-primary" ><!--<i class="layui-icon" style="font-size: 20px; color: #1E9FFF;">&#xe640;</i>-->删除</button>
+														</div>
+													</div>
+												</form>
+										  </div>
+										</fieldset>
+										<button id="form_edit" onclick="edit_form_edit()" style="display:none;margin-left:20px" type="button" class="layui-btn" >编辑</button>
+										<button id="return" onclick="edit_form_return()" class="layui-btn" style="display:none;font-size:15px"><i class="layui-icon" style="font-size: 10px; color: white;">&#xe65c;</i></button>
+										<div id="change_page"></div><!--分页功能-->
+      								</div>
+      								<div class="layui-tab-item">
+							<!--日志发布部分-->
+      									<form id="log_release_form" class="layui-form" action="" style="position:relative;right:30px">
+      										<div class="layui-form-item">
+      											<label class="layui-form-label">主题</label>
+      											<div class="layui-input-block">
+      												<input name="log_title" id="log_title" lay-verify="title" autocomplete="off" placeholder="请输入标题" class="layui-input" type="text">
+      											</div>
+      										</div>
+      										<div class="layui-form-item layui-form-text">
+      											<label class="layui-form-label">内容</label>
+      											<div class="layui-input-block">
+      											   <textarea placeholder="请输入内容" class="layui-textarea" name="log_content" id="log_content" style="display: none;"></textarea>
+      											</div>
+      										</div>
+      										<div class="layui-form-item">
+      											<div class="layui-input-block">
+      											   <button onclick="onclick_sumit()" class="layui-btn" type="button" lay-filter="demo1">发布</button>
+      											   <button onclick="onclick_reset()" type="reset" class="layui-btn layui-btn-primary">重置</button>
+      											</div>
+      										</div>
+      									</form>
+      								</div>
+      								<div class="layui-tab-item">内容3</div>
+      							</div>
+      						</div>
+      					</div>
+
+
+      					
+      					
+      					
+					</div>
+
+                </div>
+            </div>
+        </div>
+
+      	<div class="layui-col-sm4">
+            <div id="float" class="div1">
+                <ul style="margin-top:60px ;background-color:#55B5B" class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
+                    <li  class="layui-nav-item layui-nav-itemed">
+                        <a  href="javascript:;">我所在的团队</a>
+                        
+                        <dl id="team_own" class="layui-nav-child"><!--此处内容动态填充--></dl>
+                    </li>
+                </ul>
+            </div>
+      	</div>
+      </div>
+    </div>
+
+
+
+    <script>
+      layui.use('element', function(){
+        var $ = layui.jquery
+        ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+
+        //触发事件
+        var active = {
+          tabAdd: function(){
+            //新增一个Tab项
+            element.tabAdd('demo', {
+              title: '新选项'+ (Math.random()*1000|0) //用于演示
+              ,content: '内容'+ (Math.random()*1000|0)
+              ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+            })
+          }
+          ,tabDelete: function(othis){
+            //删除指定Tab项
+            element.tabDelete('demo', '44'); //删除：“商品管理”
+
+
+            othis.addClass('layui-btn-disabled');
+          }
+          ,tabChange: function(){
+            //切换到指定Tab项
+            element.tabChange('demo', '22'); //切换到：用户管理
+          }
+        };
+
+        $('.site-demo-active').on('click', function(){
+          var othis = $(this), type = othis.data('type');
+          active[type] ? active[type].call(this, othis) : '';
+        });
+
+        //Hash地址的定位
+        var layid = location.hash.replace(/^#test=/, '');
+        element.tabChange('test', layid);
+
+        element.on('tab(test)', function(elem){
+          location.hash = 'test='+ $(this).attr('lay-id');
+        });
+
+      });
+    </script>
+    
+    <script type="text/javascript" src="js/person_info_load.js"></script>
+	
+	<script>window.onload=team_person_page_user_info();</script>
+
+    <script type="text/javascript" src="js/gofollow.js"></script>
+
+    <script type="text/javascript" src="js/changekey_subframe.js"></script>
+
+    <script type="text/javascript" src="js/usecalendar.js"></script>
+
+    <script type="text/javascript" src="js/logout.js"></script>
+
+    <script type="text/javascript" src="js/taskAndHistory.js"></script>
+
+    <script type="text/javascript" src="js/team_init.js">//侧边栏团队信息加载</script>
+	
+	<script type="text/javascript" src="js/log_release.js"></script>
+
+    <script>window.onload=team_init();//同上,调用引入的团队信息加载函数</script>
+ 
+	<script type="text/javascript" src="js/blogs_show.js"></script>
+	
+	<script type="text/javascript" src="js/blog_edit.js"></script>
+	
+    <script type="text/javascript" src="js/personal_tasks.js"></script>
+	
+	<script type="text/javascript" src="js/task_history.js"></script>
+	
+	<script type="text/javascript" src="js/subtask_finish_func.js"></script>
+
+   <div style="text-align:center;padding:20px">
+        <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn.</a></p>
+   </div>
+
+</body>
+</html>
