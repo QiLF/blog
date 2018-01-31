@@ -108,14 +108,15 @@
 
 					for(var i=0;i<data.res.length;i++){
 						tasks.push(data.res[i]);
-						//task_introduction.push(tasks[i].introduction);
-						//task_name.push(tasks[i].name);
-						//task_id.push(tasks[i].task_id);
 					}
 /**********************************导入task链接************************************************/
 					show_task_link(tasks,task_links);
 /***************************更新任务进度************************************/
 					task_progress();
+					
+/********************************处理刷新问题******************************************/	
+					subtasks_part_init();//重新加载子任务部分
+					renew_subtasks();
 				}else{
 					//如果查询任务记录为空
 					if(data.error=="start_index exceeds number of rows")
@@ -145,7 +146,7 @@
 	document.getElementById("task_show_start_date").innerHTML=tasks[task_i].start_date;
 	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
 	priority_show(task_i);
-	//编辑相关，初始化编辑部分的博客内容
+	//编辑相关，初始化编辑部分的任务内容
 	$("#task_edit_title").val(tasks[task_i].name);
 	edit_form_init();
 	layui.layedit.setContent(task_show_index,tasks[task_i].introduction);			//!!!这里有一个问题，但不影响功能，此语句能正常执行但其后的语句无法执行，显示错误在layedit.js里

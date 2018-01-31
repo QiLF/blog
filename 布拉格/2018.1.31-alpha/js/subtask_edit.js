@@ -125,8 +125,6 @@ function update_subtask(subtask_i)
 													memorize_new_subtask(subtask_i);
 													get_tasks(current_group_id);//提交修改后进行刷新
 													alert("修改子任务成功！");
-													subtasks_part_init()//重新加载子任务部分
-													renew_subtasks();
 												}else{
 														alert(data.error);
 													 }
@@ -204,8 +202,6 @@ function insert_subtask(subtask_i)
 													memorize_new_subtask(subtask_i);
 													get_tasks(current_group_id);//提交插入后进行刷新
 													alert("插入子任务成功！");
-													subtasks_part_init()//重新加载子任务部分
-													renew_subtasks();
 												}else{
 														alert(data.error);
 													 }
@@ -240,8 +236,6 @@ function delete_subtask(subtask_i)
 													memorize_new_subtask(subtask_i);
 													get_tasks(current_group_id);//提交删除后进行刷新
 													alert("删除子任务成功！");
-													subtasks_part_init()//重新加载子任务部分
-													renew_subtasks();
 												}else{
 														alert(data.error);
 													 }
@@ -266,7 +260,6 @@ function subtasks_part_init()
 {
 	//清空
 	document.getElementById('submissiondiv').innerHTML="";
-	//edit_subtask_num=tasks[edit_task_i].subtasks.length;      需要处理某任务无子任务的情形
 	if(tasks[edit_task_i].subtasks!=undefined){  //判断后端返回数据是否含有属性subtasks
 		edit_subtask_num=tasks[edit_task_i].subtasks.length;
 	}else{
