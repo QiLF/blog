@@ -152,7 +152,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
                     <div class="layui-upload">
                     
                     <div class="layui-upload-list">
-                        <img style="width:120px;height:120px" class="layui-upload-img" id="demo1" name="file">
+                        <img style="width:120px;height:120px" class="layui-upload-img" id="demo1">
                         <p id="failText"></p>
                     </div>
                     <button type="button" class="layui-btn" id="test1">上传头像</button>
@@ -168,14 +168,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     				<div class="layui-form-item" style="position:relative;right:80px" >
     					<label class="layui-form-label">昵称</label>
     					<div class="layui-input-block">
-    						<input name="nickname" class="layui-input" type="text" placeholder="请输入昵称" autocomplete="off">
+    						<input id="nickname" name="nickname" class="layui-input" type="text" placeholder="请输入昵称" autocomplete="off">
     					</div>
     				</div>
 
     				<div class="layui-form-item" style="position:relative;right:80px">
     					<label class="layui-form-label">邮箱</label>
     					<div class="layui-input-block">
-    						<input name="email" class="layui-input" type="text" placeholder="请输入邮箱" autocomplete="off" >
+    						<input id="email" name="email" class="layui-input" type="text" placeholder="请输入邮箱" autocomplete="off" >
     					</div>
     				</div>
 
@@ -203,7 +203,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     					<div class="layui-inline">
     						<label class="layui-form-label">手机</label>
     						<div class="layui-input-inline">
-    							<input name="phone" class="layui-input" type="text" autocomplete="off">
+    							<input id="phone" name="phone" class="layui-input" type="text" autocomplete="off">
     						</div>
     					</div>
             </div>
@@ -212,7 +212,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     					<div class="layui-inline">
     						<label class="layui-form-label">扣扣</label>
     						<div class="layui-input-inline">
-    							<input name="QQ" class="layui-input" type="text" autocomplete="off">
+    							<input id="QQ" name="QQ" class="layui-input" type="text" autocomplete="off">
     						</div>
     					</div>
     				</div>
@@ -222,7 +222,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     					<div class="layui-inline">
     						<label class="layui-form-label">生日</label>
     						<div class="layui-input-inline">
-    							<input name="birthdate" class="layui-input" id="birthdate" type="text" autocomplete="off">
+    							<input id="birthdate" name="birthdate" class="layui-input" id="birthdate" type="text" autocomplete="off">
     						</div>
     					</div>
     				</div>
@@ -233,7 +233,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
               <div class="layui-inline">
       					<label class="layui-form-label">年级</label>
       					<div class="layui-input-inline">
-      						<select name="grade" lay-filter="grade">
+      						<select id="grade" name="grade" lay-filter="grade">
       							<option value="" selected="">请选择所在年级</option>
       							<option value="大一">大一</option>
       							<option value="大二">大二</option>
@@ -251,7 +251,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     					<div class="layui-inline">
     						<label class="layui-form-label">学院</label>
     						<div class="layui-input-inline">
-    							<select name="college">
+    							<select id="college" name="college">
     								<option value="">请选择所在学院</option>
     								<optgroup label="少院">
     									<option value="少年班学院">少年班学院</option>
@@ -281,7 +281,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     				<div class="layui-form-item" style="position:relative;right:80px">
     					<label class="layui-form-label">公开</label>
     					<div class="layui-input-block">
-    						<input name="open" type="checkbox" checked="" lay-filter="switchTest" lay-skin="switch" lay-text="ON|OFF">
+    						<input id="open" name="open" type="checkbox" checked="" lay-filter="switchTest" lay-skin="switch" lay-text="ON|OFF">
     					</div>
     				</div>
 
@@ -289,8 +289,8 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     				<div class="layui-form-item" style="position:relative;right:80px">
     					<label class="layui-form-label">性别</label>
     					<div class="layui-input-block">
-    						<input name="sex" title="男" type="radio" checked="" value="男">
-    						<input name="sex" title="女" type="radio" value="女">
+    						<input id="sex1" name="sex" title="男" type="radio" checked="" value="男">
+    						<input id="sex2" name="sex" title="女" type="radio" value="女">
     					</div>
     				</div>
 
@@ -298,7 +298,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     				<div class="layui-form-item layui-form-text" style="position:relative;right:80px">
     					<label class="layui-form-label">个人介绍</label>
     					<div class="layui-input-block">
-    						<textarea name="intro" class="layui-textarea" placeholder="介绍一下你自己吧"></textarea>
+    						<textarea id="intro" name="intro" class="layui-textarea" placeholder="介绍一下你自己吧"></textarea>
     					</div>
     				</div>
 
@@ -367,16 +367,21 @@ layui.use('element', function(){
 
 });
 </script>
+
+
+
 <script type="text/javascript" src="js/logout.js"></script>
 
 <script type="text/javascript" src="js/person_info_load.js"></script>
 	
 <script>window.onload=team_person_page_user_info();</script>
 
+<script type="text/javascript" src="js/load_old_info.js"></script>
+
+<script>window.ready=get_old_info();</script>
+
 <script type="text/javascript" src="js/head_upload.js">//头像上传</script>
 
-
-<script type="text/javascript" src="js/gofollow.js">//侧边栏滚动跟随</script>
 
 <!--城市三级联动-->
 <!--<script src="assets/jquery-1.12.4.js"></script>-->
