@@ -67,7 +67,7 @@
 		}
 		//Database Select
 		mysqli_select_db($link,"class");
-
+		mysqli_query($con,"set names utf8");
 		$sql_select="SELECT username FROM users WHERE username ='$username'";
 		$res_select=mysqli_query($link,$sql_select);
 		$num=mysqli_num_rows($res_select);
@@ -90,6 +90,11 @@
 				$res_user_insert=mysqli_query($link,$sql_user_insert);
 				$sql_userinfo_insert="INSERT INTO userinfo(username) VALUES ('$username')";
 				$res_userinfo_insert=mysqli_query($link,$sql_userinfo_insert);
+				
+				//insert into avatar a default avatarname
+				$head_sample="img/sample.jpeg";
+				mysqli_query($link,"INSERT INTO avatar (username, avatarname) VALUES ('$username','$head_sample')");
+				//end
 				
 				if($res_user_insert && $res_userinfo_insert){  
 					echo json_encode(array("success"=>"true", "error"=>"", "res"=>""));

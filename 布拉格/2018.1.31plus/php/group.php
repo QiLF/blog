@@ -67,6 +67,7 @@
 				return;
 			}
 			mysqli_select_db($con,"class");
+			mysqli_query($con,"set names utf8");
 			//创建队伍
 			if($opt == "create_group"){
 				$group_id = time().rand(0,1000);

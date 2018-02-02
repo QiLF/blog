@@ -63,6 +63,7 @@
 				return;
 			}
 			mysqli_select_db($con,"class");
+			mysqli_query($con,"set names utf8");
 			//按条件模糊查找团队，返回符合条件的团队及其对应的信息
 			if($opt == "fsearch_group"){
 				$count = 0;

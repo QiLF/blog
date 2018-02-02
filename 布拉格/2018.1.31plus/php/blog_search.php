@@ -61,6 +61,8 @@ else{
 		return;
 	}
 	mysqli_select_db($con,"class");
+	mysqli_query($con,"set names utf8");
+	
 	$count=0;		//	条件计数
 	$sql="";
 	if($data["content"] != ""){

@@ -30,6 +30,7 @@ if (!$con)
 	//die('Could not connect: ' . mysql_error());
 }
 mysqli_select_db($con,"class");
+mysqli_query($con,"set names utf8");
 $sql="select username from avatar where username='$username'";
 $result=mysqli_query($con,$sql);//执行sql语句
 if($_FILES["file"]["error"])

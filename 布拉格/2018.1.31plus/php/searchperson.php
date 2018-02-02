@@ -82,7 +82,7 @@
 	}
 	//Database Select
 	mysqli_select_db($link,"class");
-	
+	mysqli_query($con,"set names utf8");
 	//CHOOSE STATE
 	if($state=="exact"){
 

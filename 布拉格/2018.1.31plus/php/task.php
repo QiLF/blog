@@ -22,7 +22,7 @@
             return;
 		}
         mysqli_select_db($con,"class");  
-        mysqli_query($con,"set names gbk"); 
+        mysqli_query($con,"set names utf8"); 
         
         $state = $data["state"];
         $data = $data["data"];

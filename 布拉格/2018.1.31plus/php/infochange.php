@@ -66,7 +66,7 @@
 	}
 	//Database Select
 	mysqli_select_db($link,"class");
-	
+	mysqli_query($con,"set names utf8");
 	$sql_select="SELECT username FROM users WHERE username ='$username'";
 	$res_select=mysqli_query($link,$sql_select);
 	$num=mysqli_num_rows($res_select);

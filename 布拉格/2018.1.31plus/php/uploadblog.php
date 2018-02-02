@@ -60,6 +60,7 @@ if (!$con)
 }
 
 mysqli_select_db($con,"class");
+mysqli_query($con,"set names utf8");
 //插入博客,即新建,生成一个blog_id,初步考虑为username+time+rand()
 if($opt == "insert_blog"){
 	$id = $username .time().rand(0,100);
