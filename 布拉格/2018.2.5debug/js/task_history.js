@@ -10,6 +10,11 @@ var history_sub_task_num=new Array();
  //获取个人历史任务信息
   function get_history_tasks(value)
   {
+	   if(current_group_id==null){
+		  alert("请先选择团队");
+		  layui.element.tabChange('main-tab','task-reminder');
+		  return;
+	  }
 	  history_tasks.splice(0,history_tasks.length);	//清空个人历史任务数组
 	  history_task_num=0;
 	  history_sub_task_num.splice(0,history_sub_task_num.length);//清空子项数量数组
@@ -22,7 +27,7 @@ var history_sub_task_num=new Array();
 						  "member":getCookie("username"),
 						  "state":"1",
 						  "order":"DESC",
-						  "order_by":"start_date"
+						  "order_by":"real_end_time"
 						}
 			  };
 	  var str=JSON.stringify(res);
@@ -58,6 +63,11 @@ var history_sub_task_num=new Array();
 						document.getElementById('task_h_part').innerHTML=="还没有任务完成记录，快去帮团队做任务吧！"
 						}
 						total_task_h(history_task_num);
+						
+						//切换到历史任务一
+							if(task_num>0){
+											layui.element.tabChange('history-tab', tasks[0].task_id);
+										  }	
 				}else{
 					//如果查询任务记录为空
 					if(data.error=="start_index exceeds number of rows")
@@ -81,89 +91,58 @@ function init_task_h_part(history_task_num)
 {
 	for(var i=1;i<=history_task_num;i++)
 	{
-		add_task_h(i);
+		add_one_history_task(i);
 	}
 	total_task_h(history_task_num);
 }
 
 
-/*
-函数说明：添加选项卡任务历史模块的一个历史任务及对应内容
-参数：历史任务编号
-返回：无
-*/
-function add_task_h(task_label)
-{
-	if(task_label===1)
-	{
-		$("#task_h_part").append("<div class='layui-tab-item layui-show ' id='task_h"+task_label+"'></div>");
-	}
-	else
-	{
-		$("#task_h_part").append("<div class='layui-tab-item ' id='task_h"+task_label+"'></div>");
-	}
-	add_task_h_title(task_label);
-	add_task_h_content(task_label);
-}
-
 
 /*
-函数说明：添加历史任务的名称
-参数：历史任务编号
+函数说明：添加一个选项卡标题及内容
+参数：任务数目
 返回：无
 */
-function add_task_h_title(task_label)
+function add_one_history_task(task_label)
 {
-	if(task_label===1)
-	{
-		$("#task_h_title_part").append("<li class='layui-this'>任务"+task_label+"</li>");
-	}
-	else
-	{
-		$("#task_h_title_part").append("<li>任务"+task_label+"</li>");
-	}
-}
-
-
-/*
-函数说明：添加一个历史任务的内容
-参数：历史任务编号
-返回：无
-*/
-function add_task_h_content(task_label)
-{
-
+	var priority=new Array("极高","高","中","低","极低");
+	var other_content_id="task_h"+task_label;
 	var task_description_id="task_h"+task_label+"_description";
-	$("#task_h"+task_label).append(
-								 "<div style='position:relative;float:none'>"
-								+	"<div class='layui-text' >任务名称:"+history_tasks[task_label-1].name+"</div>"
-								+	"<a onclick="+"change_display('"+task_description_id+"');>"
-								+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
-								+	"</a>"
-								+	"<div class=' layui-text' id='task_h"+task_label+"_description' style='display:none;'>"
-								+		"<div class='layui-timeline-title' >任务简介:"+history_tasks[task_label-1].introduction+"</div>"
-								+		"<div class='layui-timeline-title' >开始日期:"+history_tasks[task_label-1].start_date+"  截止日期:"+history_tasks[task_label-1].end_date+"</div>"
-								+		"<div class='layui-timeline-title' >"
-								+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
-								+			"参与成员："+history_tasks[task_label-1].members
-								+		"</div>"
-								+ 	"</div>"
-								+"</div>"
-								);
-
+	var content= "<div style='position:relative;float:none'>"
+				+	"<div class='layui-text' >任务名称:"+history_tasks[task_label-1].name+"</div>"
+				+	"<a onclick="+"change_display('"+task_description_id+"');>"
+				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
+				+	"</a>"
+				+	"<div class=' layui-text' id='task_h"+task_label+"_description' style='display:none;'>"
+				+		"<div class='layui-timeline-title' >任务简介:"+history_tasks[task_label-1].introduction+"</div>"
+				+		"<div class='layui-timeline-title' >开始日期:"+history_tasks[task_label-1].start_date+"  截止日期:"+history_tasks[task_label-1].end_date+"</div>"
+				+		"<div class='layui-timeline-title' >优先级:"+priority[history_tasks[task_label-1].priority-1]+"</div>"  
+				+		"<div class='layui-timeline-title' >"
+				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
+				+			"参与成员："+history_tasks[task_label-1].members
+				+		"</div>"
+				+ 	"</div>"
+				+  "<div id='"+other_content_id+"'</div>"
+				+"</div>";
+	layui.element.tabAdd('history-tab', 
+						 {
+								title: '历史任务'+task_label
+								,content: content //支持传入html
+								,id: history_tasks[task_label-1].task_id//lay-id属性
+						 }); 
 	add_progress_bar("task_h",task_label);
-
-	$("#task_h"+task_label).append(
-								 "<div class='layui-field-box' style='position:relative;'>"
+	$("#"+other_content_id).append(
+									"<div class='layui-field-box' style='position:relative;'>"
 										+"<p style='float:left;'>历史回顾</p>     <p style='float:right;'>完成情况</p>"
 										+"<br/>"
-								+"</div>"
-								);
-	add_total_sub_task_h(task_label,history_sub_task_num[task_label-1]);
+									+"</div>"
+									);
+	add_total_sub_task_h(task_label,history_sub_task_num[task_label-1]);				 
 }
+
 /*
-函数说明：向选项卡的任务历史模块中一个历史任务的中添加所有子项及子项内容
-参数：历史任务编号，历史任务下的子项数量
+函数说明：向一个历史任务的内容中添加所有子项及子项内容
+参数：任务编号，子项数量
 返回：无
 */
 
@@ -199,7 +178,7 @@ function add_one_sub_task_h(task_label,sub_task_label)
 											+		"<div class='layui-timeline-title' >子项名称："+history_tasks[task_label-1].subtasks[sub_task_label-1].name+ "</div>"
 											+		"<div class='layui-timeline-title' >开始时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
-											+		"<div class='layui-timeline-title' >完成时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_date+ "</div>"
+											+		"<div class='layui-timeline-title' >完成时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time+ "</div>"
 											+		"<div class='layui-timeline-title'>负责人："+history_tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
 											+	"</div>"
 											+"</div>"

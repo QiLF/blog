@@ -144,14 +144,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
       	<div class="layui-col-sm8">
       		<div>
 
-      			<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+      			<div class="layui-tab layui-tab-brief" lay-filter="main-tab">
 
       				<ul class="special layui-tab-title layui-fluid" id="topnav">
-      					<li  class="layui-this " style="color:white">任务提醒</li>
-      					<li class=""><a style="color:white">当前任务</a></li>
-      					<li class=""><a style="color:white">完成历史</a></li>
-      					<li class="" style="color:white">团队交流</li>
-      					<li class="" style="color:white">日志TIPS</li>
+      					<li  class="layui-this " style="color:white" lay-id="task_reminder">任务提醒</li>
+      					<li class="" lay-id="current_task"><a onclick="get_personal_tasks(current_group_id)" style="color:white" >当前任务</a></li>
+      					<li class="" lay-id="complete_history"><a onclick="get_history_tasks(current_group_id)" style="color:white" >完成历史</a></li>
+      					<li class="" style="color:white" lay-id="group_communication">团队交流</li>
+      					<li class="" style="color:white" lay-id="personal_blogs">日志TIPS</li>
       				</ul>
 
       				<div class="layui-tab-content bootstrap-frm" >

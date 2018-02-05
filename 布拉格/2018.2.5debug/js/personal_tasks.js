@@ -6,6 +6,11 @@
  //获取个人任务信息
   function get_personal_tasks(value)
   {
+	  if(current_group_id==null){
+		  alert("请先选择团队");
+		  layui.element.tabChange('main-tab','task-reminder');
+		  return;
+	  }
 	  tasks.splice(0,tasks.length);	//清空个人任务数组
 	  task_num=0;
 	  sub_task_num.splice(0,sub_task_num.length);//清空子项数量数组
@@ -17,8 +22,8 @@
               "group_id":value,
 						  "member":getCookie("username"),
 						  "state":"2",
-						  "order":"DESC",
-						  "order_by":"start_date"
+						  "order":"ASC",
+						  "order_by":"priority"
 						}
 			  };
 	  var str=JSON.stringify(res);
@@ -53,7 +58,11 @@
 						document.getElementById('task_part').innerHTML=="目前还没任务，快去发布任务吧！"
 						}
 						total_task(task_num);
-				}else{
+						//切换到任务一
+							if(task_num>0){
+											layui.element.tabChange('task-tab', tasks[0].task_id);
+										  }	
+					}else{
 					//如果查询任务记录为空
 					if(data.error=="start_index exceeds number of rows")
 					{
@@ -75,85 +84,53 @@ function init_task_part(task_num)
 {
 	for(var i=1;i<=task_num;i++)
 	{
-		add_task(i);
+		//add_task(i);
+		add_one_task(i);
 	}
 }
 
-
 /*
-函数说明：添加一个当前任务及对应内容
-参数：任务编号
+函数说明：添加一个选项卡标题及内容
+参数：任务数目
 返回：无
 */
-function add_task(task_label)
+function add_one_task(task_label)
 {
-		if(task_label===1)
-	{
-		$("#task_part").append("<div class='layui-tab-item layui-show ' id='task"+task_label+"'></div>");
-	}
-	else
-	{
-		$("#task_part").append("<div class='layui-tab-item ' id='task"+task_label+"'></div>");
-	}
-	add_task_title(task_label);
-	add_task_content(task_label);
-}
-
-
-/*
-函数说明：添加当前任务的名称
-参数：任务编号
-返回：无
-*/
-function add_task_title(task_label)
-{
-	if(task_label===1)
-	{
-		$("#task_title_part").append("<li class='layui-this'>任务"+task_label+"</li>");
-	}
-	else
-	{
-		$("#task_title_part").append("<li>任务"+task_label+"</li>");
-	}
-}
-
-
-/*
-函数说明：添加一个当前任务的内容
-参数：任务编号
-返回：无
-*/
-function add_task_content(task_label)
-{
-
+	var priority=new Array("极高","高","中","低","极低");
+	var other_content_id="task"+task_label;
 	var task_description_id="task"+task_label+"_description";
-	$("#task"+task_label).append(
-								 "<div style='position:relative;float:none'>"
-								+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>"
-								+	"<a onclick="+"change_display('"+task_description_id+"');>"
-								+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
-								+	"</a>"
-								+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
-								+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"
-								+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"
-								+		"<div class='layui-timeline-title' >"
-								+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
-								+			"参与成员："+tasks[task_label-1].members
-								+		"</div>"
-								+ 	"</div>"
-								+"</div>"
-								);
-
+	var content= "<div style='position:relative;float:none'>"
+				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>" 
+				+	"<a onclick="+"change_display('"+task_description_id+"');>"
+				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
+				+	"</a>"
+				+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
+				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"  
+				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"  
+				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"  
+				+		"<div class='layui-timeline-title' >"
+				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
+				+			"参与成员："+tasks[task_label-1].members
+				+		"</div>"
+				+ 	"</div>"
+			    +  "<div id='"+other_content_id+"'</div>"
+				+"</div>";
+	layui.element.tabAdd('task-tab', 
+						 {
+								title: '任务'+task_label
+								,content: content //支持传入html
+								,id: tasks[task_label-1].task_id//lay-id属性
+						 }); 
 	add_progress_bar("task",task_label);
-
-	$("#task"+task_label).append(
-								 "<div class='layui-field-box' style='position:relative;'>"
-										+"<p style='float:left;'>任务进展</p>     <p style='margin-right:40px;float:right;'>完成情况</p>"
+	$("#"+other_content_id).append(
+									"<div class='layui-field-box' style='position:relative;'>"
+										+"<p style='float:left;'>任务进展</p>     <p style='float:right;'>完成情况</p>"
 										+"<br/>"
-								+"</div>"
-								);
-	add_total_sub_task(task_label,sub_task_num[task_label-1]);
+									+"</div>"
+									);
+	add_total_sub_task(task_label,sub_task_num[task_label-1]);						 
 }
+
 /*
 函数说明：向一个当前任务的内容中添加所有子项及子项内容
 参数：任务编号，子项数量

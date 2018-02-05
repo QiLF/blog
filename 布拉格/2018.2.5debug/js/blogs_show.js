@@ -32,7 +32,7 @@
 								 +		"<a class='layui-text' onclick='blog_view("+i+")'>"
 								 +			"<i class='layui-icon' style='font-size: 18px; color: #1E9FFF;'>&#xe64c;</i>"
 								 +      		blogs[i].name
-								 +			"<span style='float:right'>编辑日期:"+blogs[i].modify_date+"</span>"
+								 +			"<span style='float:right'>编辑日期:"+blogs[i].modify_date.slice(0,19)+"</span>"
 								 +		"</a>"
 								 +"</div>"
 

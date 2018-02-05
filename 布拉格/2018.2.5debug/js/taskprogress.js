@@ -23,8 +23,10 @@ function task_progress()
 	}
 	init_tab(task_num);
 	total_task(task_num);
+	if(task_num>0){
+		layui.element.tabChange('taskprogress-tab', tasks[0].task_id);
+	}
 }
-
 
 
 /*
@@ -36,86 +38,67 @@ function init_tab(task_num)
 {
 	for(var i=1;i<=task_num;i++)
 	{
-		add_tab_item(i);
+		add_one_task(i);
 	}
 }
-
-
 /*
-函数说明：添加选项卡的一个标题及对应内容
-参数：任务编号
+函数说明：添加一个选项卡标题及内容
+参数：任务数目
 返回：无
 */
-function add_tab_item(task_label)
+function add_one_task(task_label)
 {
-		if(task_label===1)
-	{
-		$("#task_part").append("<div class='layui-tab-item layui-show ' id='task"+task_label+"'></div>");
-	}
-	else
-	{
-		$("#task_part").append("<div class='layui-tab-item ' id='task"+task_label+"'></div>");
-	}
-	add_tab_title(task_label);
-	add_tab_item_content(task_label);
-}
-
-
-/*
-函数说明：添加选项卡的标题
-参数：任务编号             
-返回：无
-*/
-function add_tab_title(task_label)
-{
-	if(task_label===1)
-	{
-		$("#tab_title").append("<li class='layui-this'>任务"+task_label+"</li>");
-	}
-	else
-	{
-		$("#tab_title").append("<li>任务"+task_label+"</li>");
-	}
-}
-
-
-/*
-函数说明：添加选项卡的内容
-参数：任务编号
-返回：无
-*/
-function add_tab_item_content(task_label)
-{
-	
-	var tab_item_id="task"+task_label;
+	var priority=new Array("极高","高","中","低","极低");
+	var other_content_id="task"+task_label;
 	var task_description_id="task"+task_label+"_description";
-	$("#task"+task_label).append(
-								 "<div style='position:relative;float:none'>"
-								+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>" 
-								+	"<a onclick="+"change_display('"+task_description_id+"');>"
-								+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
-								+	"</a>"
-								+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
-								+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"  
-								+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"  
-								+		"<div class='layui-timeline-title' >"
-								+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
-								+			"参与成员："+tasks[task_label-1].members
-								+		"</div>"								
-								+ 	"</div>"
-								+"</div>"
-								);
-								
+	var content= "<div style='position:relative;float:none'>"
+				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>" 
+				+	"<a onclick="+"change_display('"+task_description_id+"');>"
+				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
+				+	"</a>"
+				+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
+				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"  
+				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>" 
+				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"  
+				+		"<div class='layui-timeline-title' >"
+				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
+				+			"参与成员："+tasks[task_label-1].members
+				+		"</div>"
+				+ 	"</div>"
+			    +  "<div id='"+other_content_id+"'</div>"
+				+"</div>";
+	layui.element.tabAdd('taskprogress-tab', 
+						 {
+								title: '任务'+task_label
+								,content: content //支持传入html
+								,id: tasks[task_label-1].task_id//lay-id属性
+						 }); 
 	add_progress_bar(task_label,"100%");
-	
-	$("#task"+task_label).append(
-								 "<div class='layui-field-box' style='position:relative;'>"
+	$("#"+other_content_id).append(
+									"<div class='layui-field-box' style='position:relative;'>"
 										+"<p style='float:left;'>任务进展</p>     <p style='float:right;'>完成情况</p>"
 										+"<br/>"
-								+"</div>"
-								);
-	add_total_sub_task(task_label,sub_task_num[task_label-1]);
+									+"</div>"
+									);
+	add_total_sub_task(task_label,sub_task_num[task_label-1]);						 
 }
+
+/*
+函数说明：向任务选项卡的内容中添加进度条
+参数：任务编号
+返回：无
+*/
+function add_progress_bar(task_label,percent)
+{
+	var task_bar_id="task_bar"+task_label;
+	$("#task"+task_label).append(
+					"<!--进度条-->"
+					+	"<div  style='margin-top:10px;margin-bottom:10px;position:relative;clear:left;' class='layui-progress layui-progress-big' id='" + task_bar_id + "' lay-filter='"+task_bar_id+"'  lay-showPercent='true'>"
+					+	"	<div   class='layui-progress-bar layui-bg-red' lay-percent='100%'></div>"
+					+	"</div>"
+					);
+}
+
 /*
 函数说明：向任务选项卡的内容中添加所有子项及其内容
 参数：任务编号，子项数量
@@ -167,27 +150,6 @@ function add_one_sub_task(task_label,sub_task_label)
 										+"</li>"
 	 						   );
 }		
-
-
-
-/*
-函数说明：向任务选项卡的内容中添加进度条
-参数：任务编号
-返回：无
-*/
-function add_progress_bar(task_label,percent)
-{
-	var task_bar_id="task_bar"+task_label;
-	$("#task"+task_label).append(
-								"<!--进度条-->"
-											+	"<div  style='margin-top:10px;margin-bottom:10px;position:relative;clear:left;' class='layui-progress layui-progress-big' id='" + task_bar_id + "' lay-filter='"+task_bar_id+"'  lay-showPercent='true'>"
-											+	"	<div   class='layui-progress-bar layui-bg-red' lay-percent='100%'></div>"
-											+	"</div>"
-								);
-}
-
-
-
 
 /*
 函数说明：隐藏和显示内容，目前用于把timeline变成下拉列表
@@ -257,8 +219,7 @@ function total_sub_task(task_label)
 }
 
 					   
-							   
-							   
+							  						   
 /*
 函数说明：对所有任务的初始化
 参数：任务数目
