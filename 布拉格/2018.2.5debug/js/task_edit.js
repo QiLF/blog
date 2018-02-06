@@ -4,7 +4,8 @@ function task_part_init()
 	$('#task_edit_title').val(tasks[edit_task_i].name);
 	$('#task_start_date').val(tasks[edit_task_i].start_date);
 	$('#task_end_date').val(tasks[edit_task_i].end_date);
-
+	$('#superior1').attr("checked",false);//2.6 edit
+	$('input[id="superior'+tasks[edit_task_i].priority+'"]').attr("checked",true);//2.6 edit
 }
 
 
