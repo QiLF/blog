@@ -100,13 +100,13 @@
 					</fieldset>
                 </div>
 				<script> 
-				layui.use(['form', 'layedit', 'laydate'], function(){
-				var form = layui.form
-				,layer = layui.layer
-				,layedit = layui.layedit
-				,laydate = layui.laydate;
 				window.onload= function()
 				{
+					layui.use(['form', 'layedit', 'laydate'], function(){
+					var form = layui.form
+					,layer = layui.layer
+					,layedit = layui.layedit
+					,laydate = layui.laydate;
 					var init_member_elem='';
 					for(var temp_j=0;temp_j<window.parent.current_members.length;temp_j++)
 					{
@@ -131,11 +131,8 @@
 						<div class="layui-col-sm1"></div>'
 					}
 					form.render();
+					});
 				}
-				
-				
-				
-				});
 				</script>
 
 </html>

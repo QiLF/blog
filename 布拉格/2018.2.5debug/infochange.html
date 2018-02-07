@@ -166,14 +166,14 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
     			<form id="personinfo_form" class="layui-form">
     				<div class="layui-form-item" style="position:relative;right:80px" >
-    					<label class="layui-form-label">昵称</label>
+    					<label class="layui-form-label"><span style="color:red">*</span>昵称</label>
     					<div class="layui-input-block">
     						<input id="nickname" name="nickname" class="layui-input" type="text" placeholder="请输入昵称" autocomplete="off">
     					</div>
     				</div>
 
     				<div class="layui-form-item" style="position:relative;right:80px">
-    					<label class="layui-form-label">邮箱</label>
+    					<label class="layui-form-label"><span style="color:red">*</span>邮箱</label>
     					<div class="layui-input-block">
     						<input id="email" name="email" class="layui-input" type="text" placeholder="请输入邮箱" autocomplete="off" >
     					</div>
@@ -201,9 +201,9 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
     				<div class="layui-form-item" style="position:relative;right:80px">
     					<div class="layui-inline">
-    						<label class="layui-form-label">手机</label>
+    						<label class="layui-form-label"><span style="color:red">*</span>手机</label>
     						<div class="layui-input-inline">
-    							<input id="phone" name="phone" class="layui-input" type="text" autocomplete="off">
+    							<input id="phone" name="phone" class="layui-input" type="text" placeholder="手机号需为11位数字" autocomplete="off">
     						</div>
     					</div>
             </div>
@@ -212,7 +212,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     					<div class="layui-inline">
     						<label class="layui-form-label">扣扣</label>
     						<div class="layui-input-inline">
-    							<input id="QQ" name="QQ" class="layui-input" type="text" autocomplete="off">
+    							<input id="QQ" name="QQ" class="layui-input" type="text" placeholder="QQ号需为5-10位数字" autocomplete="off">
     						</div>
     					</div>
     				</div>
@@ -298,7 +298,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
     				<div class="layui-form-item layui-form-text" style="position:relative;right:80px">
     					<label class="layui-form-label">个人介绍</label>
     					<div class="layui-input-block">
-    						<textarea id="intro" name="intro" class="layui-textarea" placeholder="介绍一下你自己吧"></textarea>
+    						<textarea id="intro" name="intro" class="layui-textarea" placeholder="45字以内。。。"></textarea>
     					</div>
     				</div>
 

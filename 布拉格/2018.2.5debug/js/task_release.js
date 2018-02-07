@@ -70,7 +70,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
 
        //task_introduction
-			      var task_introduction=layui.layedit.getContent(task_index);
+			var task_introduction=layui.layedit.getContent(task_index);
             if(task_introduction.length<5)
             {
                 alert("任务简介至少需含5个字符");
@@ -133,7 +133,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                     alert('输入的执行者'+blog_i+'的用户名不得为空');
                     return false;
                 }
-                if(form_worker.length<5form_worker.length>32)
+                if(form_worker.length<5||form_worker.length>32)
                 {
                     alert('输入的执行者'+blog_i+'的用户名需为5-32个字符');
                     return false;

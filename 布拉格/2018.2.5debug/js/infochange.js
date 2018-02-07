@@ -44,9 +44,9 @@
 
         //form data confirm part
         //check nickname,必填项
-		if(final_object.data.nickname==""||final_object.data.nickname==null)
+		if(!final_object.data.nickname)
         {
-            alert("昵称不得为空！");
+            alert("必填项昵称不得为空！");
             return false;
         }
         if(final_object.data.nickname.length<3||final_object.data.nickname.length>15)
@@ -64,31 +64,35 @@
             alert("昵称中包含了敏感字符"+sql_str()+",请重新输入！");
             return ;
         }
-        //check email,非必填项
-		if(final_object.data.email!=""||final_object.data.email!=null)
+        //check email,必填项
+		if(!final_object.data.email)
 		{
-			if(final_object.data.email.length>45)
-			{
-				alert("电子邮箱长度应在45以内！");
-				return false;
-			}
-			if(!checkemail(final_object.data.email))
-			{
-				alert("电子邮箱格式不正确！");
-				return false;
-			}
+			alert("必填项邮箱不得为空！");
+			return false;
 		}
-        //check phone,非必填项
-		if(final_object.data.phone!=""||final_object.data.phone!=null)
+		if(final_object.data.email.length>45)
 		{
-			if(isNaN(final_object.data.phone)||final_object.data.phone.length!=11)
-			{
-				alert("手机号码必须为11位数字！");
-				return false;
-			}
+			alert("电子邮箱长度应在45以内！");
+			return false;
+		}
+		if(!checkemail(final_object.data.email))
+		{
+			alert("电子邮箱格式不正确！");
+			return false;
+		}
+        //check phone,必填项
+		if(!final_object.data.phone)
+		{
+			alert("必填项手机号码不得为空！");
+			return false;
+		}
+		if(isNaN(final_object.data.phone)||final_object.data.phone.length!=11)
+		{
+			alert("手机号码必须为11位数字！");
+			return false;
 		}
         //check QQ,非必填项
-		if(final_object.data.QQ!=""||final_object.data.QQ!=null)
+		if(final_object.data.QQ)
 		{
 			if(isNaN(final_object.data.QQ)||final_object.data.QQ.length>10||final_object.data.QQ.length<5)
 			{
@@ -97,7 +101,7 @@
 			}
 		}
         //check intro,非必填项
-		if(final_object.data.intro!=""||final_object.data.intro!=null)
+		if(final_object.data.intro)
 		{
 			if(final_object.data.intro.length>45)
 			{

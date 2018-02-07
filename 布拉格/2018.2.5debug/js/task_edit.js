@@ -98,12 +98,12 @@ function getpriority()
 
 
 					//task_introduction
+					var task_introduction=layui.layedit.getContent(task_show_index);
 					if(task_introduction==""||task_introduction==null)
 					{
 							alert("任务简介不得为空");
 							return false;
 					}
-					var task_introduction=layui.layedit.getContent(task_show_index);
 					if(task_introduction.length<5)
 					{
 							alert("任务简介至少需含5个字符");
