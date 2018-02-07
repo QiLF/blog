@@ -12,8 +12,13 @@
    <meta name="description" content="团队管理blog。" />
    <meta name="keywords" content="账号，注册，登录，忘记密码，找回密码，Account，Sign in，登陆，团队，管理" />
    <script type="text/javascript" charset="utf-8" src="js/register.js"></script>
-   <script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
-   <link rel="stylesheet" href="layui/css/layui.css" media="all">
+   
+   <!--弹出层需要以下两个js-->
+   <script src="js/jquery-3.2.1.js"></script>
+   <script src="layer/layer.js"></script>
+   
+   <script type="text/javascript" src="layui/layui.js"></script> 
+   <link rel="stylesheet" href="layui/css/layui.css">
    
 
    
@@ -113,7 +118,7 @@
                     <br/>
                     <div class="layui-form-item">
                         <div class="layui-input-block">
-                            <input type="checkbox" name="agree" value="agree"/>我已阅读并同意<a href="agreement.html" style="font-size:14px;color:blue">《用户注册协议》</a>
+                            <input type="checkbox" name="agree" value="agree"></input>我已阅读并同意<a id="show_agreement" style="font-size:14px;color:blue">《用户注册协议》</a>
                         </div>
                     </div>
                     <div class="layui-form-item">
@@ -134,9 +139,8 @@
         <p style="color:black">Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn</a>.</p>
 </div> 
 
-   
-<script type="text/javascript" href="layui/layui.js"></script>   
-   
+    
+<script type="text/javascript" src="js/agreement_subframe.js"></script>   
    
 </body>
 </html>
