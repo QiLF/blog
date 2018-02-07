@@ -87,6 +87,7 @@ function init_task_part(task_num)
 		//add_task(i);
 		add_one_task(i);
 	}
+	add_blogs2_all_subtasks();
 }
 
 /*
@@ -176,7 +177,7 @@ function add_one_sub_task(task_label,sub_task_label)
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
 											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
-											+		"<a style='text-decoration:none;' onclick='change_display("+bloglinks_id+")'>"
+											+		"<a style='text-decoration:none;' onclick="+"change_display('"+bloglinks_id+"')>"
 											+			"<i class='layui-icon' style='font-size: 25px; color: #1E9FFF;'>&#xe705;</i>"
 											+			"<span class='layui-text' style='margin-left:5px;'>日志</span>"
 											+		"</a>"
@@ -284,4 +285,93 @@ function add_progress_bar(prefix,task_label)
 function change_one_bar(task_bar_id,percent)
 {
 	layui.element.progress(task_bar_id, percent);
+}
+
+
+/*
+函数说明：向一个子任务添加日志
+参数：子任务日志链接部分的id,subtask的id
+返回：无
+*/
+function add_blogs2_one_subtask(bloglinks_id,subtask_id)
+{
+	 var temp={
+				"state":"search_blog",
+				 "data":{
+						  "subtask_id":subtask_id,
+						  "order":"DESC",
+						  "order_by":"modify_date"
+						}
+			  };
+	var str=JSON.stringify(temp);
+	 $.ajax({ 
+             url: "php/blog_search.php",  
+             type: "POST", 
+             data:{res:str}, 
+             dataType: "json", 
+             error: function(){   
+                 //alert('Error loading XML document');   
+             },   
+             success: function(data){
+				if(data.success=="true"){
+					for(var i=0;i<data.res.length;i++){
+						$('#'+bloglinks_id).append(
+													  "<div>"
+													 +		"<a class='layui-text' onclick='open_blog_subframe()'>"
+													 +			"<i class='layui-icon' style='font-size: 18px; color: #1E9FFF;'>&#xe64c;</i>"
+													 +      		data.res[i].name
+													 +			"<span style='float:right'>编辑日期:"+data.res[i].modify_date.slice(0,19)+"</span>"
+													 +		"</a>"
+													 +"</div>"
+												  );
+					}
+				}else{
+					//如果查询blogs记录为空
+					if(data.error=="start_index exceeds number of rows")
+					{
+						document.getElementById(bloglinks_id).innerHTML="<div class='layui-text'>还没有博客记录,快去发表吧！</div>";
+					}
+				}
+			} 
+		});
+}
+
+
+function open_blog_subframe()
+{
+	layer.open({
+        type: 2,
+        title: '查看日志',
+        maxmin: true,
+        resize: false,
+        shade: 0.6,
+        shadeClose: true, //点击遮罩关闭层
+        area : ['1000px' , '600px'],
+        content: 'blog_view_subframe.html',
+        end:function()
+        {
+          get_personal_tasks(current_group_id);
+        }
+      });
+}
+
+
+
+
+
+
+/*
+函数说明：向所有子任务添加日志
+参数：子任务日志链接部分的id
+返回：无
+*/
+function add_blogs2_all_subtasks()
+{
+	for(var i=1;i<=task_num;i++)
+	{
+		for(var j=1;j<=sub_task_num[i-1];j++)
+		{
+			add_blogs2_one_subtask("sub_task"+i+"-"+j+"blogs",tasks[i-1].subtasks[j-1].subtask_id);
+		}
+	}
 }
