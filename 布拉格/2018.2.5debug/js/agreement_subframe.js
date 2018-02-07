@@ -6,6 +6,6 @@ $('#show_agreement').on('click', function(){
       maxmin: true,
       shadeClose: true, //点击遮罩关闭层
       area : ['800px' , '600px'],
-      content: 'agreement.html'
+      content: 'agreement_subframe.html'
     });
   });
