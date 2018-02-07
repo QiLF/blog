@@ -117,14 +117,14 @@ function add_one_task(task_label)
 				+"</div>";
 	layui.element.tabAdd('task-tab', 
 						 {
-								title: '任务'+task_label
+								title: tasks[task_label-1].name//'任务'+task_label
 								,content: content //支持传入html
 								,id: tasks[task_label-1].task_id//lay-id属性
 						 }); 
 	add_progress_bar("task",task_label);
 	$("#"+other_content_id).append(
 									"<div class='layui-field-box' style='position:relative;'>"
-										+"<p style='float:left;'>任务进展</p>     <p style='float:right;'>完成情况</p>"
+										+"<p style='float:left;'>任务进展</p>     <p style='margin-right:70px;float:right;'>完成情况</p>"
 										+"<br/>"
 									+"</div>"
 									);
@@ -159,22 +159,28 @@ function add_one_sub_task(task_label,sub_task_label)
 	var sub_task_content_id="sub_task"+task_label+"-"+sub_task_label+"_content";
 	var face_id="face"+task_label+"-"+sub_task_label;
 	var task_list_id="task_list"+task_label;
+	var bloglinks_id=sub_task_id+"blogs";
 	$("#"+task_list_id).append(
 										"<li class='layui-timeline-item'>"
 											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
 											+"<div class='layui-timeline-content layui-text' >"
-											+	"<span class='layui-timeline-title' id='"+sub_task_id+"'>子项"+sub_task_label
-											+		   "<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"') type='button'"
-											+			"class='layui-btn layui-btn-xs' style='margin-left:15px;float:right'>"
-											+			"确认完成"
-											+		   "</button>"
-											+	"</span>"
-											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
+											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
+											+		  "子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name
+											+		"<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"') type='button'"
+											+		"class='layui-btn layui-btn-xs' style='margin-left:15px;float:right'>"
+											+		"确认完成"
+											+		 "</button>"
+											+		"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
+											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
-											+		"<div class='layui-timeline-title' >子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name+ "</div>"
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
 											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
+											+		"<a style='text-decoration:none;' onclick='change_display("+bloglinks_id+")'>"
+											+			"<i class='layui-icon' style='font-size: 25px; color: #1E9FFF;'>&#xe705;</i>"
+											+			"<span class='layui-text' style='margin-left:5px;'>日志</span>"
+											+		"</a>"
+											+		"<div id='"+bloglinks_id+"' style='display:none'></div>"
 											+	"</div>"
 											+"</div>"
 										+"</li>"
@@ -245,12 +251,12 @@ function change_one_face(id,finished)
 	   if(finished==1)
 	   {
 	   target.innerHTML="&#xe60c;";
-	   target.style="font-size: 20px; color: #1E9FFF;float:right;";
+	   target.style="font-size: 20px; color: #1E9FFF;margin-right:30px;float:right;";
 	   }
 	   else
 	   {
 	   target.innerHTML="&#xe69c;";
-	   target.style="font-size: 19px; color:#FF5722;float:right;";
+	   target.style="font-size: 19px; color:#FF5722;margin-right:30px;float:right;";
 	   }
 }
 

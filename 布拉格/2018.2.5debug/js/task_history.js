@@ -25,7 +25,7 @@ var history_sub_task_num=new Array();
 				 "data":{
               "group_id":value,
 						  "member":getCookie("username"),
-						  "state":"1",
+						  "state":"2",
 						  "order":"DESC",
 						  "order_by":"real_end_time"
 						}
@@ -126,7 +126,7 @@ function add_one_history_task(task_label)
 				+"</div>";
 	layui.element.tabAdd('history-tab', 
 						 {
-								title: '历史任务'+task_label
+								title: tasks[task_label-1].name//'历史任务'+task_label
 								,content: content //支持传入html
 								,id: history_tasks[task_label-1].task_id//lay-id属性
 						 }); 
@@ -168,17 +168,24 @@ function add_one_sub_task_h(task_label,sub_task_label)
 	var sub_task_content_id="sub_task_h"+task_label+"-"+sub_task_label+"_content";
 	var face_id="face_h"+task_label+"-"+sub_task_label;
 	var task_list_id="task_list_h"+task_label;
+	var real_end_time;
+	if(history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==undefined||tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==null){
+		real_end_time="尚未完成";
+	}else{
+		real_end_time=history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time.slice(0,10);
+	}
 	$("#"+task_list_id).append(
 										"<li class='layui-timeline-item'>"
 											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
 											+"<div class='layui-timeline-content layui-text' >"
-											+	"<span class='layui-timeline-title' id='"+sub_task_id+"'>子项"+sub_task_label+"</span>"
-											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
+											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
+											+		"子项名称："+history_tasks[task_label-1].subtasks[sub_task_label-1].name
+											+		"<span style='margin-right:50px'><i id='"+face_id+"' class='layui-icon' style='float:left;font-size: 20px;color: #1E9FFF;'>&#xe60c;</i></span>"	
+											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
-											+		"<div class='layui-timeline-title' >子项名称："+history_tasks[task_label-1].subtasks[sub_task_label-1].name+ "</div>"
 											+		"<div class='layui-timeline-title' >开始时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
-											+		"<div class='layui-timeline-title' >完成时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time+ "</div>"
+											+		"<div class='layui-timeline-title' >完成时间："+real_end_time+ "</div>"
 											+		"<div class='layui-timeline-title'>负责人："+history_tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
 											+	"</div>"
 											+"</div>"

@@ -69,7 +69,7 @@ function add_one_task(task_label)
 				+"</div>";
 	layui.element.tabAdd('taskprogress-tab', 
 						 {
-								title: '任务'+task_label
+								title: tasks[task_label-1].name//'任务'+task_label
 								,content: content //支持传入html
 								,id: tasks[task_label-1].task_id//lay-id属性
 						 }); 
@@ -137,10 +137,11 @@ function add_one_sub_task(task_label,sub_task_label)
 										"<li class='layui-timeline-item'>"
 											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"	
 											+"<div class='layui-timeline-content layui-text' >"
-											+	"<span class='layui-timeline-title' id='"+sub_task_id+"'>子项"+sub_task_label+"</span>"
-											+	"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px;margin-right:20px; color: #1E9FFF;float:right'>&#xe60c;</i>"			
+											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
+											+		"子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name
+											+		"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px;margin-right:20px; color: #1E9FFF;float:right'>&#xe60c;</i>"			
+											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
-											+		"<div class='layui-timeline-title' >子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name+"</div>"
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
 											+		"<div class='layui-timeline-title' >完成日期："+real_end_time+ "</div>"
