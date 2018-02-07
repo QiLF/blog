@@ -43,10 +43,15 @@
         var res=JSON.stringify(final_object);
 
         //form data confirm part
-        //check nickname
-        if(final_object.data.nickname.length<3)
+        //check nickname,必填项
+		if(final_object.data.nickname==""||final_object.data.nickname==null)
         {
-            alert("昵称至少为三个字符！");
+            alert("昵称不得为空！");
+            return false;
+        }
+        if(final_object.data.nickname.length<3||final_object.data.nickname.length>15)
+        {
+            alert("昵称需为3-15个字符！");
             return false;
         }
         if(!isNaN(final_object.data.nickname))
@@ -59,30 +64,52 @@
             alert("昵称中包含了敏感字符"+sql_str()+",请重新输入！");
             return ;
         }
-        //check email
-        if(!checkemail(final_object.data.email))
-        {
-            alert("电子邮箱格式不正确！");
-            return false;
-        }
-        //check phone
-        if(isNaN(final_object.data.phone)||final_object.data.phone.length!=11)
-        {
-            alert("手机号码必须为11位数字！");
-            return false;
-        }
-        //check QQ
-        if(isNaN(final_object.data.QQ)||final_object.data.QQ.length>10||final_object.data.QQ.length<5)
-        {
-            alert("QQ号码必须为5-10位的数字！");
-            return false;
-        }
-        //check intro
-        if( filterSqlStr(final_object.data.intro))
-        {
-            alert("简介中包含了敏感字符"+sql_str()+",请重新输入！");
-            return ;
-        }
+        //check email,非必填项
+		if(final_object.data.email!=""||final_object.data.email!=null)
+		{
+			if(final_object.data.email.length>45)
+			{
+				alert("电子邮箱长度应在45以内！");
+				return false;
+			}
+			if(!checkemail(final_object.data.email))
+			{
+				alert("电子邮箱格式不正确！");
+				return false;
+			}
+		}
+        //check phone,非必填项
+		if(final_object.data.phone!=""||final_object.data.phone!=null)
+		{
+			if(isNaN(final_object.data.phone)||final_object.data.phone.length!=11)
+			{
+				alert("手机号码必须为11位数字！");
+				return false;
+			}
+		}
+        //check QQ,非必填项
+		if(final_object.data.QQ!=""||final_object.data.QQ!=null)
+		{
+			if(isNaN(final_object.data.QQ)||final_object.data.QQ.length>10||final_object.data.QQ.length<5)
+			{
+				alert("QQ号码必须为5-10位的数字！");
+				return false;
+			}
+		}
+        //check intro,非必填项
+		if(final_object.data.intro!=""||final_object.data.intro!=null)
+		{
+			if(final_object.data.intro.length>45)
+			{
+				alert("简介中长度不得超过45个字符！");
+				return ;
+			}
+			if( filterSqlStr(final_object.data.intro))
+			{
+				alert("简介中包含了敏感字符"+sql_str()+",请重新输入！");
+				return ;
+			}
+		}
         //form data confirm end
 
 

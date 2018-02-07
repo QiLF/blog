@@ -47,9 +47,14 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
         //task_title
             var task_title=document.forms["task_release_form"]["task_title"].value;
-            if(task_title.length<5||task_title.length>15)
+			if(task_title==""||task_title==null)
             {
-                alert("任务名需为5-15个字符");
+                alert("任务名不得为空");
+                return false;
+            }
+            if(task_title.length<5||task_title.length>32)
+            {
+                alert("任务名需为5-32个字符");
                 return false;
             }
             if(!isNaN(task_title))
@@ -98,19 +103,24 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 				        //alert(JSON.stringify(temp));
 		        		json_info.data.subtasks.push(temp);
 		        		//json_info.data.subtasks[blog_i].members=new Array();
-                if(form_subtask.length<5)
+                if(form_subtask==""||form_subtask==null)
                 {
-                    alert('子任务'+blog_i+'的简介至少含5个字符');
+                    alert('子任务'+blog_i+'的名称不得为空');
+                    return false;
+                }				
+                if(form_subtask.length<5||form_subtask.length>32)
+                {
+                    alert('子任务'+blog_i+'的名称需为5-32个字符');
                     return false;
                 }
                 if(!isNaN(form_subtask))
                 {
-                    alert('子任务'+blog_i+'的简介不能为纯数字');
+                    alert('子任务'+blog_i+'的名称不能为纯数字');
                     return false;
                 }
                 if( filterSqlStr(form_subtask))
                 {
-                    alert('子任务'+blog_i+'的简介中包含了敏感字符'+sql_str()+',请重新输入！');
+                    alert('子任务'+blog_i+'的名称中包含了敏感字符'+sql_str()+',请重新输入！');
                     return ;
                 }
 
@@ -118,26 +128,31 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 
                 var form_worker=document.forms["task_release_form"]['pic'+blog_i].value;
 		        		json_info.data.subtasks[blog_i-1].members.push(form_worker);//这里blog_i比数组下标大1！
-                if(form_worker.length<5)
+				if(form_worker==""||form_worker==null)
                 {
-                    alert('输入的执行者'+blog_i+'的昵称至少需含5个字符');
+                    alert('输入的执行者'+blog_i+'的用户名不得为空');
+                    return false;
+                }
+                if(form_worker.length<5form_worker.length>32)
+                {
+                    alert('输入的执行者'+blog_i+'的用户名需为5-32个字符');
                     return false;
                 }
                 if(!isNaN(form_worker))
                 {
-                    alert('输入的执行者'+blog_i+'的昵称不能为纯数字');
+                    alert('输入的执行者'+blog_i+'的用户名不能为纯数字');
                     return false;
                 }
                 if( filterSqlStr(form_worker))
                 {
-                    alert('输入的执行者'+blog_i+'的昵称中包含了敏感字符'+sql_str()+',请重新输入！');
+                    alert('输入的执行者'+blog_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
                     return ;
                 }
             }
 
 			//time_order
-			      var task_start_date=document.forms["task_release_form"]["start_date"].value;
-			      var task_end_date=document.forms["task_release_form"]["end_date"].value;
+			var task_start_date=document.forms["task_release_form"]["start_date"].value;
+			var task_end_date=document.forms["task_release_form"]["end_date"].value;
             var start_time=stringToDate(task_start_date);
             var end_time=stringToDate(task_end_date);
             if(end_time<=start_time)

@@ -63,9 +63,14 @@ function update_subtask(subtask_i)
 	}*/
 	var name=$('input[name="sub_task'+subtask_i+'"]').val();
   //confirm for name
-  if(name.length<5)
+  if(name==""||name==null)///////////////////////////////////////////////////////////////////////////////////2018.2.6 20:08
   {
-      alert('子任务'+subtask_i+'的名字至少含5个字符');
+      alert('子任务'+subtask_i+'的名字不得为空');
+      return false;
+  }
+  if(name.length<5||name.length>32)
+  {
+      alert('子任务'+subtask_i+'的名字至需为5-32个字符');
       return false;
   }
   if(!isNaN(name))
@@ -83,19 +88,24 @@ function update_subtask(subtask_i)
 	var members=new Array();
 	members.push($('select[name="pic'+subtask_i+'"]').val());
   //confirm for member, just consider one worker temporarily
-  if(members[0].length<5)
+  if(members[0]==""||members[0]==null)
   {
-      alert('输入的执行者'+subtask_i+'的昵称至少需含5个字符');
+      alert('输入的执行者'+subtask_i+'的用户名不得为空');
+      return false;
+  }
+  if(members[0].length<8||members[0].length>20)
+  {
+      alert('输入的执行者'+subtask_i+'的用户名需为8-20个字符');
       return false;
   }
   if(!isNaN(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的昵称不能为纯数字');
+      alert('输入的执行者'+subtask_i+'的用户名不能为纯数字');
       return false;
   }
   if( filterSqlStr(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的昵称中包含了敏感字符'+sql_str()+',请重新输入！');
+      alert('输入的执行者'+subtask_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
       return ;
   }
 
@@ -138,9 +148,9 @@ function insert_subtask(subtask_i)
 	var name=$('input[name="sub_task'+subtask_i+'"]').val();
 
   //confirm for name
-  if(name.length<5)
+  if(name.length<5||name.length>32)
   {
-      alert('子任务'+subtask_i+'的名字至少含5个字符');
+      alert('子任务'+subtask_i+'的名字需为5-32个字符');
       return false;
   }
   if(!isNaN(name))
@@ -161,17 +171,17 @@ function insert_subtask(subtask_i)
   //confirm for member, just consider one worker temporarily
   if(members[0].length<5)
   {
-      alert('输入的执行者'+subtask_i+'的昵称至少需含5个字符');
+      alert('输入的执行者'+subtask_i+'的用户名需为8-20个字符');
       return false;
   }
   if(!isNaN(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的昵称不能为纯数字');
+      alert('输入的执行者'+subtask_i+'的用户名不能为纯数字');
       return false;
   }
   if( filterSqlStr(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的昵称中包含了敏感字符'+sql_str()+',请重新输入！');
+      alert('输入的执行者'+subtask_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
       return ;
   }
 

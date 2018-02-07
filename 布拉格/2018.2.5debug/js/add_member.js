@@ -15,7 +15,7 @@
         //confirm name data;
         if(username.length<3||username.length>15)
         {
-            alert("昵称需为3至15个字符！");
+            alert("用户名需为3至15个字符！");
             return false;
         }
 /*        if(!isNaN(username))
@@ -26,7 +26,7 @@
 */
         if( filterSqlStr(username))
         {
-            alert("昵称中包含了敏感字符"+sql_str()+",请重新输入！");
+            alert("用户名中包含了敏感字符"+sql_str()+",请重新输入！");
             return false;
         }
 

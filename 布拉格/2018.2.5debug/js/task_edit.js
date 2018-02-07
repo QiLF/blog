@@ -75,9 +75,14 @@ function getpriority()
 					//////////////////////////////////////////////////////////////////////////////
 					//task_title
 					var task_title=document.forms["task_edit_form"]["task_edit_title"].value;
-					if(task_title.length<5||task_title.length>15)
+					if(task_title==""||task_title==null)
 					{
-							alert("任务名需为5-15个字符");
+							alert("任务名不得为空");
+							return false;
+					}					
+					if(task_title.length<5||task_title.length>32)
+					{
+							alert("任务名需为5-32个字符");
 							return false;
 					}
 					if(!isNaN(task_title))
@@ -93,6 +98,11 @@ function getpriority()
 
 
 					//task_introduction
+					if(task_introduction==""||task_introduction==null)
+					{
+							alert("任务简介不得为空");
+							return false;
+					}
 					var task_introduction=layui.layedit.getContent(task_show_index);
 					if(task_introduction.length<5)
 					{

@@ -35,14 +35,9 @@ function edit_form_sumit()
 //表单验证部分
 /////////////////////////////////////////////////////////////////////////////////        
             var form_theme=document.forms["log_edit_form"]["log_edit_title"].value;
-            if(form_theme.length<5)
+            if(form_theme.length<5||form_theme.length>32)
             {
-                alert("日志主题至少需含5个字符");
-                return false; 
-            }
-            if(form_theme.length>32)
-            {
-                alert("日志主题至多可含32个字符");
+                alert("日志主题需为5-32个字符");
                 return false; 
             }
             if(!isNaN(form_theme))

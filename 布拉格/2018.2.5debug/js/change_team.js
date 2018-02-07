@@ -19,9 +19,14 @@ function change_team_info(){
     var name=document.forms["team_change_form"]["teamname"].value;
     var introduction=document.forms["team_change_form"]["introduce"].value;
     //name data confirm
-    if(name.length<3)
+	if(name==""||name==null)
     {
-        alert("团队名称至少三个字符！");
+        alert("团队名称不得为空！");
+        return false;
+	}
+    if(name.length<3||name.length>15)
+    {
+        alert("团队名称需为3-15个字符！");
         return false;
     }
     if(!isNaN(name))
@@ -36,15 +41,19 @@ function change_team_info(){
     }
 
     //introduction data confirm
-    if(introduction.length<1)
+	if(introduction==""||introduction==null)
     {
         alert("团队介绍不得为空！");
         return false;
     }
-
     if(!isNaN(introduction))
     {
         alert("团队介绍不得为纯数字！");
+        return false;
+    }
+	if(introduction.length>512)
+    {
+        alert("团队介绍至多为512个字符！");
         return false;
     }
     if( filterSqlStr(introduction))
