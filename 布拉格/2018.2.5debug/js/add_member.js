@@ -13,17 +13,16 @@
 
 
         //confirm name data;
-        if(username.length<3||username.length>15)
+        if(username.length<8||username.length>20)
         {
-            alert("用户名需为3至15个字符！");
+            alert("用户名需为8至20个字符！");
             return false;
         }
-/*        if(!isNaN(username))
+        if(!isNaN(username))
         {
-            alert("昵称称不得为纯数字！");
+            alert("用户名不得为纯数字！");
             return false;
         }
-*/
         if( filterSqlStr(username))
         {
             alert("用户名中包含了敏感字符"+sql_str()+",请重新输入！");
