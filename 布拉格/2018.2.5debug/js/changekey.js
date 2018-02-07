@@ -42,6 +42,9 @@ function changekey_check()
 					parent.layer.close(index);
 				}else{
 					//alert(data.error);
+					if(data.error=="same_with_old"){
+						alert("新旧密码相同！");
+					}
 					if(data.error=="please sign in first"){
 						alert("请先登陆！");
 					}
