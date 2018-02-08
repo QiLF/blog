@@ -52,14 +52,14 @@ function add_one_task(task_label)
 	var other_content_id="task"+task_label;
 	var task_description_id="task"+task_label+"_description";
 	var content= "<div style='position:relative;float:none'>"
-				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>" 
+				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>"
 				+	"<a onclick="+"change_display('"+task_description_id+"');>"
 				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
 				+	"</a>"
 				+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
-				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"  
-				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>" 
-				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"  
+				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"
+				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"
+				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"
 				+		"<div class='layui-timeline-title' >"
 				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
 				+			"参与成员："+tasks[task_label-1].members
@@ -67,12 +67,12 @@ function add_one_task(task_label)
 				+ 	"</div>"
 			    +  "<div id='"+other_content_id+"'</div>"
 				+"</div>";
-	layui.element.tabAdd('taskprogress-tab', 
+	layui.element.tabAdd('taskprogress-tab',
 						 {
 								title: tasks[task_label-1].name//'任务'+task_label
 								,content: content //支持传入html
 								,id: tasks[task_label-1].task_id//lay-id属性
-						 }); 
+						 });
 	add_progress_bar(task_label,"100%");
 	$("#"+other_content_id).append(
 									"<div class='layui-field-box' style='position:relative;'>"
@@ -80,7 +80,7 @@ function add_one_task(task_label)
 										+"<br/>"
 									+"</div>"
 									);
-	add_total_sub_task(task_label,sub_task_num[task_label-1]);						 
+	add_total_sub_task(task_label,sub_task_num[task_label-1]);
 }
 
 /*
@@ -135,22 +135,22 @@ function add_one_sub_task(task_label,sub_task_label)
 	}
 	$("#"+task_list_id).append(
 										"<li class='layui-timeline-item'>"
-											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"	
+											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
 											+"<div class='layui-timeline-content layui-text' >"
 											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
 											+		"子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name
-											+		"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px;margin-right:20px; color: #1E9FFF;float:right'>&#xe60c;</i>"			
+											+		"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px;margin-right:20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
 											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
 											+		"<div class='layui-timeline-title' >完成日期："+real_end_time+ "</div>"
-											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
+											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+'<button style="float:right" class="layui-btn layui-btn-sm" onclick=check_logs("'+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+'")>子项日志</button></div>'
 											+	"</div>"
 											+"</div>"
 										+"</li>"
 	 						   );
-}		
+}
 
 /*
 函数说明：隐藏和显示内容，目前用于把timeline变成下拉列表
@@ -172,7 +172,7 @@ function change_display(id)
 函数说明：改变子项的完成/未完成状态（哭笑脸的转换）
 参数：表情元素的id;是否完成（完成true，未完成false）
 返回：无
-*/       
+*/
 function change_one_face(id,finished)
 {
   //alert(id);
@@ -199,7 +199,7 @@ function change_one_bar(task_bar_id,percent)
 {
 	layui.element.progress(task_bar_id, percent)
 }
-	
+
 /*
 函数说明：某个任务下所有子项的初始化
 参数：任务编号         全局数组：数组sub_task_situation（子项完成为1，未完成为0）
@@ -219,8 +219,8 @@ function total_sub_task(task_label)
 	change_one_bar("task_bar"+task_label,(percent*100)+"%");
 }
 
-					   
-							  						   
+
+
 /*
 函数说明：对所有任务的初始化
 参数：任务数目
