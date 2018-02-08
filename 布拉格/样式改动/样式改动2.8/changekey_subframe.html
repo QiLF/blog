@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="layui/css/layui.css">
+    <script src="layui/layui.js" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8" src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+	<fieldset class="layui-elem-field layui-field-title" style="margin-left:25px;margin-right:25px;margin-top:30px;">
+		<legend>密码修改</legend>
+	</fieldset>
+	<fieldset class="layui-elem-field" style="margin-left:25px;margin-right:25px">
+		<div class="layui-field-box" style="margin-left:25px;margin-right:25px">
+			<br/> <br/>  <br/>
+			<form class="layui-form" name="changekey-form">
+				<div class="layui-form-item">
+					<label class="layui-form-label" style="width:90px">请输入原密码</label>
+					<div class="layui-input-inline">
+						<input name="oldpsw" class="layui-input" type="password" placeholder="请输入原密码" autocomplete="off" style="width:310px"
+								onblur="oBlur_check_oldpsw()" onFocus="oFocus_oldpsw()">
+						<span id="reminder_oldpsw" style="color:red;font-weight:700"></span>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label" style="width:90px">请输入新密码</label>
+					<div class="layui-input-inline">
+						<input name="newpsw" class="layui-input" type="password" placeholder="格式为6~16个英文字符数字下划线"style="width:310px"
+								onblur="oBlur_check_newpsw()" onFocus="oFocus_newpsw()" autocomplete="off">
+						<span id="reminder_newpsw" style="color:red;font-weight:700"></span>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<label class="layui-form-label" style="width:90px">请确认新密码</label>
+					<div class="layui-input-inline">
+						<input name="confpsw" class="layui-input" type="password" placeholder="请确认新密码" autocomplete="off" style="width:310px"
+							onblur="oBlur_check_confpsw()" onFocus="oFocus_confpsw()">
+							<span id="reminder_confpsw" style="color:red;font-weight:700"></span>
+					</div>
+				</div>
+				<div class="layui-form-item">
+					<div class="layui-input-block">
+						<button class="layui-btn" style="width:87px" type="button" onclick="changekey_check()">提交</button>
+						<button class="layui-btn layui-btn-primary" type="reset" style="width:87px">重置</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</fieldset>
+
+<script type="text/javascript" src="js/changekey.js">/*表单验证及提交*/</script>
+</body>
+</html>
