@@ -143,12 +143,45 @@
 	change_display("change_page");
 	one_button_change("form_edit");
 	one_button_change("return");
+	one_button_change("task_complete_button");
 	one_button_change("create_task_button");
 	document.getElementById("task_show_title").innerHTML=tasks[task_i].name;
 	document.getElementById("task_show_content").innerHTML=tasks[task_i].introduction;
 	document.getElementById("task_show_start_date").innerHTML=tasks[task_i].start_date;
 	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
 	priority_show(task_i);
+	var subtasks_num=tasks[task_i].subtasks.length;
+	for(var i=0;i<subtasks_num;i++)
+	{
+		var subtask_state;
+		if(tasks[task_i].subtasks[i].state!='2'){
+			subtask_state="已完成";
+		}else{
+			subtask_state="未完成";
+		}
+		var temp='<div class="layui-row" style="padding:20px">\
+					<div class="layui-col-sm4">\
+						<span>子项名称:</span>\
+						<span class="layui-text">'+tasks[task_i].subtasks[i].name+'</span>\
+					</div>\
+					<div class="layui-col-sm4">\
+						<span>负责人:</span>\
+						<span class="layui-text">'+tasks[task_i].subtasks[i].members+'</span>\
+					</div>\
+					<div class="layui-col-sm4">\
+						<span>完成状态:</span>\
+						<span class="layui-text">'+subtask_state+'</span>\
+					</div>\
+				</div>';
+		$('#task_show_subtasks').append(temp);
+	}
+	var task_state;
+	if(tasks[task_i].state!='2'){
+		task_state="已完成";
+	}else{
+		task_state="未完成";
+	}
+	document.getElementById("task_show_state").innerHTML=task_state;
 	//编辑相关，初始化编辑部分的任务内容
 	$("#task_edit_title").val(tasks[task_i].name);
 	edit_form_init();
@@ -182,6 +215,7 @@
   {
 	  one_button_change("form_edit");
 	  one_button_change("form_undo");
+	  //one_button_change("task_complete_button");
 	  one_button_change("form_sumit");
 	  one_button_change("form_delete");
   }
@@ -198,4 +232,29 @@
 	  one_button_change("create_task_button");
 	  one_button_change("form_edit");
 	  one_button_change("return");
+	  one_button_change("task_complete_button");
   }
+  
+  
+	  //编辑按钮被点击，触发编辑事件
+	function edit_form_edit(task_i)
+	{
+		one_button_change("form_edit");
+		one_button_change("return");
+		one_button_change("task_complete_button");
+		one_button_change("form_undo");
+		one_button_change("form_delete");
+		change_display('task_show');
+		change_display('task_edit');
+	}
+	//取消按钮被点击，返回预览
+	function edit_form_undo()
+	{
+		one_button_change("form_undo");
+		one_button_change("form_delete");
+		one_button_change("form_edit");
+		one_button_change("return");
+		one_button_change("task_complete_button");
+		change_display('task_show');
+		change_display('task_edit');
+	}

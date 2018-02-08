@@ -43,7 +43,38 @@ function delete_task()
 				});
 }
 
+//完成任务按钮被点击，提交完成任务请求并刷新
+function complete_task()
+{
+	var temp={"state":"update_task","data":{"task_id":tasks[edit_task_i].task_id,"state":"1"}};
+	var str=JSON.stringify(temp);
+	//alert("提交删除请求的json："+str);
 
+				$.ajax({
+						url: "php/task.php",
+						type: "POST",
+						data:{res:str},
+						dataType: "json",
+						error: function()
+						{
+										//alert('Error loading XML document');
+						},
+						success: function(data)
+						{
+										if(data.success=="true")
+										{
+												//alert(current_group_id);
+												get_tasks(current_group_id);//任务完成后进行刷新
+												layui.layer.msg("恭喜任务完成！");
+												$("#return").click();
+										}
+										else
+										{
+												//alert(data.error);
+										}
+						}
+				});
+}
 
 //检查和获取优先级
 function getpriority()

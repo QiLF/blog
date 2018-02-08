@@ -22,27 +22,6 @@ layui.use(['form','layedit', 'laydate'], function(){
   });
 });
 
-//编辑按钮被点击，触发编辑事件
-function edit_form_edit(task_i)
-{
-	one_button_change("form_edit");
-	one_button_change("return");
-	one_button_change("form_undo");
-	one_button_change("form_delete");
-	change_display('task_show');
-	change_display('task_edit');
-}
-//取消按钮被点击，返回预览
-function edit_form_undo()
-{
-	one_button_change("form_undo");
-	one_button_change("form_delete");
-	one_button_change("form_edit");
-	one_button_change("return");
-	change_display('task_show');
-	change_display('task_edit');
-}
-
 //更新对应的位序的子任务
 function update_subtask(subtask_i)
 {
