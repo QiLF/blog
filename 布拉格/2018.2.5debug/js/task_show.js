@@ -113,8 +113,8 @@
 					show_task_link(tasks,task_links);
 /***************************更新任务进度************************************/
 					task_progress();
-					
-/********************************处理刷新问题******************************************/	
+
+/********************************处理刷新问题******************************************/
 					subtasks_part_init();//重新加载子任务部分
 					renew_subtasks();
 				}else{
@@ -135,7 +135,7 @@
   {
 	//更新修改任务指示变量的值
 	task_edit_state=true;
-	
+
 	edit_task_i=task_i;
 	//alert("edit_task_i="+edit_task_i);
 	change_display("links_block");
@@ -151,6 +151,9 @@
 	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
 	priority_show(task_i);
 	var subtasks_num=tasks[task_i].subtasks.length;
+	//预先清空subtask显示容器内容，防止多次点击进入查看任务时出现子项目重复多次显示问题
+	document.getElementById("task_show_subtasks").innerHTML="";
+	//循环向subtask容器内加入子项目
 	for(var i=0;i<subtasks_num;i++)
 	{
 		var subtask_state;
@@ -225,7 +228,7 @@
   {
 	  //更新修改任务指示变量的值
 	  task_edit_state=false;
-	  
+
 	  change_display('change_page');
 	  change_display('task_show');
 	  change_display('links_block');
@@ -234,8 +237,8 @@
 	  one_button_change("return");
 	  one_button_change("task_complete_button");
   }
-  
-  
+
+
 	  //编辑按钮被点击，触发编辑事件
 	function edit_form_edit(task_i)
 	{
