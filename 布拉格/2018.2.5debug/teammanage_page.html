@@ -273,29 +273,36 @@
 								 </div>
 									<!--任务的显示-->
 								<div id="task_show"  style="display:none">
-									<div style="padding:20px">
-										<span>任务名称：</span>
-										<span name="task_show_title" id="task_show_title" class="layui-text" style="text-align:center"></span>
+									<div class="layui-row" style="padding:20px">
+										<div class="layui-col-sm4">
+											<span>任务名称：</span>
+											<span name="task_show_title" id="task_show_title" class="layui-text" style="text-align:center"></span>
+										</div>
+										<div class="layui-col-sm4">
+										</div>
+										<div class="layui-col-sm4"></div>
 									</div>
-									<div style="padding:20px">
-										<span>任务简介：</span>
+									<fieldset class="layui-elem-field" style="margin-top: 30px;min-height:200px">
+										<legend>任务简介</legend>
 										<p name="task_show_content" id="task_show_content" class="layui-text" style="text-indent:2em"></p>
-									</div>
+									</fieldset>
 									 <div class="layui-row" style="padding:20px">
-										<div class="layui-col-sm1"></div>
-										<div class="layui-col-sm5">
+										<div class="layui-col-sm4">
 											<span>开始日期：</span>
 											<span name="task_show_start_date" id="task_show_start_date" class="layui-text"></span>
 										</div>
-										<div class="layui-col-sm5">
+										<div class="layui-col-sm4">
 											<span>截止日期：</span>
 											<span name="task_show_end_date" id="task_show_end_date" class="layui-text"></span>
 										</div>
-										<div class="layui-col-sm1"></div>
+										<div class="layui-col-sm4">
+											<span>优先级别：</span>
+											<span name="task_show_priority" id="task_show_priority" class="layui-text"></span>
+										</div>
 									</div>
 									<div style="padding:20px">
-										<span>优先级别：</span>
-										<span name="task_show_priority" id="task_show_priority" class="layui-text"></span>
+										<span>任务完成情况：</span>
+										<span name="task_show_state" id="task_show_state" class="layui-text" style="text-indent:2em"></span>
 									</div>
 									<div class="layui-field-box">
 										<div>
@@ -386,6 +393,7 @@
 								
 									</fieldset>
 								</div>
+							<button id="task_complete_button" type="button" onclick="complete_task()" style="display:none;margin-left:20px" class="layui-btn" >完成任务</button>
 							<button id="form_edit" type="button" onclick="edit_form_edit()" style="display:none;margin-left:20px" class="layui-btn" >编辑</button>
 							<button id="return" type="button" onclick="edit_form_return()" class="layui-btn" style="display:none;font-size:15px"><i class="layui-icon" style="font-size: 10px; color: white;">&#xe65c;</i></button>
 							<div id="change_page"></div><!--分页功能-->
