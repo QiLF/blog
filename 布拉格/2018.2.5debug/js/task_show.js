@@ -181,8 +181,12 @@
 	var task_state;
 	if(tasks[task_i].state!='2'){
 		task_state="已完成";
+		//$("task_complete_button").css("background-color","yellow");   jQuery设置css不管用
+		document.getElementById("task_complete_button").innerHTML="设为未完成";
 	}else{
 		task_state="未完成";
+		//$("task_complete_button").removeClass("layui-btn-primary");   jquery添加和删除类也不管用
+		document.getElementById("task_complete_button").innerHTML="完成任务";
 	}
 	document.getElementById("task_show_state").innerHTML=task_state;
 	//编辑相关，初始化编辑部分的任务内容

@@ -15,22 +15,22 @@
             var form_theme=document.forms["log_release_form"]["log_title"].value;
 			if(form_theme==""||form_theme==null)
             {
-                alert("日志内容不得为空");
+                layer.msg("日志内容不得为空");
                 return false; 
             }		
             if(form_theme.length<5||form_theme.length>32)
             {
-                alert("日志主题需为5-32个字符");
+                layer.msg("日志主题需为5-32个字符");
                 return false; 
             }
             if(!isNaN(form_theme))
             {
-                alert("日志主题不能为纯数字");
+                layer.msg("日志主题不能为纯数字");
                 return false; 
             }        
             if( filterSqlStr(form_theme))
             {  
-                alert("日志主题中包含了敏感字符"+sql_str()+",请重新输入！");  
+                layer.msg("日志主题中包含了敏感字符"+sql_str()+",请重新输入！");  
                 return false;  
             } 
             
@@ -39,24 +39,24 @@
             var form_content=layui.layedit.getContent(log_index);
 			if(form_content==""||form_content==null)
             {
-                alert("日志内容不得为空");
+                layer.msg("日志内容不得为空");
                 return false; 
             }
             if(form_content.length>4096)
             {
-                alert("日志内容至多可含4096个字符");
+                layer.msg("日志内容至多可含4096个字符");
                 return false; 
             }       
             if( filterSqlStr(form_content))
             {  
-                alert("日志内容中包含了敏感字符"+sql_str()+",请重新输入！");  
+                layer.msg("日志内容中包含了敏感字符"+sql_str()+",请重新输入！");  
                 return false;  
             }      
 /////////////////////////////////////////////////////////////////////////////////        
 //表单验证部分结束        
 			var userName=getCookie("username");
         
-			var temp={"state":"insert_blog","data":{"writer":userName,"subtask_id":"PB14210144","name":form_theme,"content":form_content}};
+			var temp={"state":"insert_blog","data":{"writer":userName,"subtask_id":"subtask20180131074155pm454254418","name":form_theme,"content":form_content}};
 			//var temp={"data":{"username":userName,"first_password":first_pwd,"second_password":second_pwd,"check_agree":check_agree}};
 			var str=JSON.stringify(temp);
 			//alert(str);
@@ -71,7 +71,7 @@
 										 },   
 						success: function(data){
 										if(data.success=="true"){
-																alert("日志发布成功！");
+																layer.msg("日志发布成功！");
 																get_blogs();//刷新博客预览展示部分
 																layui.element.tabChange('blog_tabs','blog_tabitem1');//跳转到博客预览
 																document.getElementById('log_title').value="";//清空发布模块的博客标题
@@ -80,7 +80,7 @@
 																	//alert(data.error);
 																	if(data.error=="unsigned")
 																	{
-																		alert("请先登陆！");
+																		layer.msg("请先登陆！");
 																	}
 																 }
 												} });

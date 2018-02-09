@@ -37,17 +37,17 @@ function edit_form_sumit()
             var form_theme=document.forms["log_edit_form"]["log_edit_title"].value;
             if(form_theme.length<5||form_theme.length>32)
             {
-                alert("日志主题需为5-32个字符");
+                layer.msg("日志主题需为5-32个字符");
                 return false; 
             }
             if(!isNaN(form_theme))
             {
-                alert("日志主题不能为纯数字");
+                layer.msg("日志主题不能为纯数字");
                 return false; 
             }        
             if( filterSqlStr(form_theme))
             {  
-                alert("日志主题中包含了敏感字符"+sql_str()+",请重新输入！");  
+                layer.msg("日志主题中包含了敏感字符"+sql_str()+",请重新输入！");  
                 return false;  
             } 
             
@@ -56,12 +56,12 @@ function edit_form_sumit()
             var form_content=layui.layedit.getContent(log_show_index);
             if(form_content.length>4096)
             {
-                alert("日志内容至多可含4096个字符");
+                layer.msg("日志内容至多可含4096个字符");
                 return false; 
             }       
             if( filterSqlStr(form_content))
             {  
-                alert("日志内容中包含了敏感字符"+sql_str()+",请重新输入！");  
+                layer.msg("日志内容中包含了敏感字符"+sql_str()+",请重新输入！");  
                 return false;  
             }      
 /////////////////////////////////////////////////////////////////////////////////        
@@ -80,7 +80,7 @@ function edit_form_sumit()
 										 },   
 						success: function(data){
 										if(data.success=="true"){
-																alert("操作成功！");
+																layer.msg("操作成功！");
 															}else{
 																	//alert(data.error);
 																 }
@@ -94,27 +94,45 @@ function edit_form_sumit()
 //删除按钮被点击，提交删除请求并刷新
 function blog_delete()
 {
-	var temp={"state":"delete_blog","data":{"blog_id":blog_id[edit_blog_i]}};
-	var str=JSON.stringify(temp);
-	//alert("提交删除请求的json："+str);
-	$(function(){
-				$.ajax({ 
-						url: "php/uploadblog.php",  
-						type: "POST", 
-						data:{res:str}, 
-						dataType: "json", 
-						error: function(){   
-											//alert('Error loading XML document');   
-										 },   
-						success: function(data){
-										if(data.success=="true"){
-																alert("操作成功！");
-															}else{
-																//	alert(data.error);
-																 }
-												} });
-										get_blogs();//提交删除后进行刷新
-										$("#form_undo").click();
-										$("#return").click();
-						});
+	layer.open({
+		  content: '真的要删除这篇日志吗？'
+		  ,btn: ['确认', '取消']
+		  ,yes: function(index, layero){
+			  
+								//按钮【按钮一】的回调
+								var temp={"state":"delete_blog","data":{"blog_id":blog_id[edit_blog_i]}};
+								var str=JSON.stringify(temp);
+								//alert("提交删除请求的json："+str);
+								$.ajax({ 
+										url: "php/uploadblog.php",  
+										type: "POST", 
+										data:{res:str}, 
+										dataType: "json", 
+										error: function(){   
+															//alert('Error loading XML document');   
+														 },   
+										success: function(data){
+														if(data.success=="true"){
+																				get_blogs();//提交删除后进行刷新
+																				layer.msg("删除日志成功！");
+																			}else{
+																				//	alert(data.error);
+																				 }
+																} });
+														layer.close(index);
+														$("#form_undo").click();
+														$("#return").click();
+		  }
+		  ,btn2: function(index, layero){
+			//按钮【按钮二】的回调
+			
+			//return false 开启该代码可禁止点击该按钮关闭
+		  }
+		  ,cancel: function(){ 
+			//右上角关闭回调
+			
+			//return false 开启该代码可禁止点击该按钮关闭
+		  }
+		});
+	
 }

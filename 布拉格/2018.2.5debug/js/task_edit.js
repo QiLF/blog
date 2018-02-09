@@ -12,43 +12,69 @@ function task_part_init()
 //删除按钮被点击，提交删除请求并刷新
 function delete_task()
 {
-	var temp={"state":"delete_task","data":{"task_id":tasks[edit_task_i].task_id}};
-	var str=JSON.stringify(temp);
-	//alert("提交删除请求的json："+str);
-
-				$.ajax({
-						url: "php/task.php",
-						type: "POST",
-						data:{res:str},
-						dataType: "json",
-						error: function()
-						{
-										//alert('Error loading XML document');
-						},
-						success: function(data)
-						{
-										if(data.success=="true")
+		layer.open({
+		  content: '真的要删除此任务吗？'
+		  ,btn: ['确认', '取消']
+		  ,yes: function(index, layero){
+			  
+								//按钮【按钮一】的回调
+								var temp={"state":"delete_task","data":{"task_id":tasks[edit_task_i].task_id}};
+								var str=JSON.stringify(temp);
+								//alert("提交删除请求的json："+str);
+								$.ajax({
+										url: "php/task.php",
+										type: "POST",
+										data:{res:str},
+										dataType: "json",
+										error: function()
 										{
-												//alert(current_group_id);
-												get_tasks(current_group_id);//提交删除后进行刷新
-												alert("删除任务操作成功！");
-												$("#form_undo").click();
-												$("#return").click();
-										}
-										else
+														//alert('Error loading XML document');
+										},
+										success: function(data)
 										{
-												//alert(data.error);
+														if(data.success=="true")
+														{
+																//alert(current_group_id);
+																get_tasks(current_group_id);//提交删除后进行刷新
+																layer.msg("删除任务操作成功！");
+																$("#form_undo").click();
+																$("#return").click();
+														}
+														else
+														{
+																//alert(data.error);
+														}
 										}
-						}
-				});
+								});
+								layer.close(index);
+		  }
+		  ,btn2: function(index, layero){
+			//按钮【按钮二】的回调
+			
+			//return false 开启该代码可禁止点击该按钮关闭
+		  }
+		  ,cancel: function(){ 
+			//右上角关闭回调
+			
+			//return false 开启该代码可禁止点击该按钮关闭
+		  }
+		});
 }
 
 //完成任务按钮被点击，提交完成任务请求并刷新
 function complete_task()
 {
-	var temp={"state":"update_task","data":{"task_id":tasks[edit_task_i].task_id,"state":"1"}};
+	var temp={"state":"update_task","data":{"task_id":tasks[edit_task_i].task_id}};
+	var msg;
+	if(tasks[edit_task_i].state=="1"){
+		temp.data.state="2";
+		msg="任务已重设未未完成状态，快去做任务吧";
+	}else{
+		temp.data.state="1";
+		msg="恭喜任务完成！";
+	}
 	var str=JSON.stringify(temp);
-	//alert("提交删除请求的json："+str);
+	//alert("提交完成任务请求的json："+str);
 
 				$.ajax({
 						url: "php/task.php",
@@ -65,7 +91,7 @@ function complete_task()
 										{
 												//alert(current_group_id);
 												get_tasks(current_group_id);//任务完成后进行刷新
-												layui.layer.msg("恭喜任务完成！");
+												layui.layer.msg(msg);
 												$("#return").click();
 										}
 										else
@@ -91,7 +117,7 @@ function getpriority()
 	}
 	if (priority == checks.length)
 	{
-		alert("请确认优先级");//感觉不用验证但保险起见还是放在这了
+		layer.msg("请确认优先级");//感觉不用验证但保险起见还是放在这了
 		return "";
 	}
 }
@@ -108,22 +134,22 @@ function getpriority()
 					var task_title=document.forms["task_edit_form"]["task_edit_title"].value;
 					if(task_title==""||task_title==null)
 					{
-							alert("任务名不得为空");
+							layer.msg("任务名不得为空");
 							return false;
 					}					
 					if(task_title.length<5||task_title.length>32)
 					{
-							alert("任务名需为5-32个字符");
+							layer.msg("任务名需为5-32个字符");
 							return false;
 					}
 					if(!isNaN(task_title))
 					{
-							alert("任务名不能为纯数字");
+							layer.msg("任务名不能为纯数字");
 							return false;
 					}
 					if( filterSqlStr(task_title))
 					{
-							alert("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
+							layer.msg("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
 							return false;
 					}
 
@@ -132,22 +158,22 @@ function getpriority()
 					var task_introduction=layui.layedit.getContent(task_show_index);
 					if(task_introduction==""||task_introduction==null)
 					{
-							alert("任务简介不得为空");
+							layer.msg("任务简介不得为空");
 							return false;
 					}
 					if(task_introduction.length<5)
 					{
-							alert("任务简介至少需含5个字符");
+							layer.msg("任务简介至少需含5个字符");
 							return false;
 					}
 					if(task_introduction.length>512)
 					{
-							alert("任务简介至多可含512个字符");
+							layer.msg("任务简介至多可含512个字符");
 							return false;
 					}
 					if( filterSqlStr(task_introduction))
 					{
-							alert("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
+							layer.msg("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
 							return ;
 					}
 
@@ -171,7 +197,7 @@ function getpriority()
 					var end_time=stringToDate(task_end_date);
 					if(end_time<=start_time)
 					{
-							alert('开始时间不应迟于或等于结束时间.');
+							layer.msg('开始时间不应迟于或等于结束时间.');
 							return false;
 					}
 					////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +225,7 @@ function getpriority()
 								{
 									memorize_new_subtask(-1);//记住全部追加子项
 									get_tasks(current_group_id);//提交修改后进行刷新
-									alert("任务修改成功");
+									layer.msg("任务修改成功");
 								}
 							},
 							error : function()
