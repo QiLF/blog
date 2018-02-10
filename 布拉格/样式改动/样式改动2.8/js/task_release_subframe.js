@@ -8,7 +8,7 @@ $('#create_task_button').on('click', function(){
         resize: false,
         shade: 0.6,
         shadeClose: true, //点击遮罩关闭层
-        area : ['1000px' , '600px'],
+        area : ['500px' , '520px'],
         content: 'task_create_subframe.html',
         end:function()
         {
