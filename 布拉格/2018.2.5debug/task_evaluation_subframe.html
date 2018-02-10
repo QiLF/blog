@@ -51,57 +51,26 @@
 		<div class="layui-col-sm4">
 			<div id="task_stars"  class="block clearfix" >
 				  <div class="star_score"></div>
-				  <p style="float:left;">您的评分：<span id="task-evalution" class="fenshu"></span> 分</p>
+				  <p style="float:left;">您的评分：<span id="task_evaluation" class="fenshu"></span> 分</p>
 			</div>
 		</div>
 		<div class="layui-col-sm4"></div>
 	</div>
 		
-	<div class="layui-row layui-text" style="padding:20px">
-		<div class="layui-col-sm4">
-			<span>子项名称：</span>
-			<span name="subtask_name1" id="subtask_name1" class="layui-text" style="text-align:center"></span>
-		</div>
-		<div class="layui-col-sm4">
-			<div id="subtask_stars1"  class="block clearfix" >
-				  <div class="star_score"></div>
-				  <p style="float:left;">您的评分：<span id="task-evalution" class="fenshu"></span> 分</p>
-			</div>
-		</div>
-		<div class="layui-col-sm4"></div>
-	</div>	
-	
-	<div class="layui-row layui-text" style="padding:20px">
-		<div class="layui-col-sm4">
-			<span>子项名称：</span>
-			<span name="subtask_name2" id="subtask_name2" class="layui-text" style="text-align:center"></span>
-		</div>
-		<div class="layui-col-sm4">
-			<div id="subtask_stars2"  class="block clearfix" >
-				  <div class="star_score"></div>
-				  <p style="float:left;">您的评分：<span id="task-evalution" class="fenshu"></span> 分</p>
-			</div>
-		</div>
-		<div class="layui-col-sm4"></div>
-	</div>
+	<div id="subtasks_div"></div>	
 
 		
-		
-		
-		
 		<div style="margin-left:20px">
-			<button type="button" class="layui-btn layui-btn-danger">提交</button>
-			<button type="button" class="layui-btn layui-btn-primary">关闭</button>	
+			<button type="button" onclick="evaluation_sumit()" class="layui-btn layui-btn-danger">提交</button>
+			<button type="button"  onclick="close_subframe()" class="layui-btn layui-btn-primary">关闭</button>	
 		</div>
 	</fieldset>
     
     <script type="text/javascript" src="js/startscore.js"></script>
     <script>
-     scoreFun($("#task_stars"));
-	 scoreFun($("#subtask_stars1"));
-	 scoreFun($("#subtask_stars2"));
-    </script>
-    <script>
+	layui.use('layer', function(){
+		var layer = layui.layer;
+	});              
     //显示分数
       $(".show_number li p").each(function(index, element) {
         var num=$(this).attr("tip");
@@ -110,6 +79,7 @@
         $(this).parent(".atar_Show").siblings("span").text(num+"分");
     });
     </script>
+	<script type="text/javascript" src="js/task_evaluation.js"></script>
 </body>
 	
 </html>

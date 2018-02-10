@@ -9,7 +9,7 @@ $('#evalution_button').on('click', function(){
         shade: 0.6,
         shadeClose: true, //点击遮罩关闭层
         area : ['1000px' , '600px'],
-        content: 'task_evalution_subframe.html',
+        content: 'task_evaluation_subframe.html',
         end:function()
         {
           get_tasks(current_group_id);
