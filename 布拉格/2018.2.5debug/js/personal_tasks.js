@@ -61,7 +61,7 @@
 						//切换到任务一
 							if(task_num>0){
 											layui.element.tabChange('task-tab', tasks[0].task_id);
-										  }	
+										  }
 					}else{
 					//如果查询任务记录为空
 					if(data.error=="start_index exceeds number of rows")
@@ -101,14 +101,14 @@ function add_one_task(task_label)
 	var other_content_id="task"+task_label;
 	var task_description_id="task"+task_label+"_description";
 	var content= "<div style='position:relative;float:none'>"
-				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>" 
+				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>"
 				+	"<a onclick="+"change_display('"+task_description_id+"');>"
 				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
 				+	"</a>"
 				+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
-				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"  
-				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"  
-				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"  
+				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"
+				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"
+				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"
 				+		"<div class='layui-timeline-title' >"
 				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
 				+			"参与成员："+tasks[task_label-1].members
@@ -116,12 +116,12 @@ function add_one_task(task_label)
 				+ 	"</div>"
 			    +  "<div id='"+other_content_id+"'</div>"
 				+"</div>";
-	layui.element.tabAdd('task-tab', 
+	layui.element.tabAdd('task-tab',
 						 {
 								title: tasks[task_label-1].name//'任务'+task_label
 								,content: content //支持传入html
 								,id: tasks[task_label-1].task_id//lay-id属性
-						 }); 
+						 });
 	add_progress_bar("task",task_label);
 	$("#"+other_content_id).append(
 									"<div class='layui-field-box' style='position:relative;'>"
@@ -129,7 +129,7 @@ function add_one_task(task_label)
 										+"<br/>"
 									+"</div>"
 									);
-	add_total_sub_task(task_label,sub_task_num[task_label-1]);						 
+	add_total_sub_task(task_label,sub_task_num[task_label-1]);
 }
 
 /*
@@ -177,11 +177,7 @@ function add_one_sub_task(task_label,sub_task_label)
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
 											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
 											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
-											+		"<a style='text-decoration:none;' onclick="+"change_display('"+bloglinks_id+"')>"
-											+			"<i class='layui-icon' style='font-size: 25px; color: #1E9FFF;'>&#xe705;</i>"
-											+			"<span class='layui-text' style='margin-left:5px;'>日志</span>"
-											+		"</a>"
-											+		"<div id='"+bloglinks_id+"' style='display:none'></div>"
+                      +   '<div class="layui-timeline-title">操作:<button type="button" style="margin-left:20px" class="layui-btn layui-btn-xs" onclick=goto_subtask_blog("'+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+'")>添加子项日志</button></div>'
 											+	"</div>"
 											+"</div>"
 										+"</li>"
@@ -304,14 +300,14 @@ function add_blogs2_one_subtask(bloglinks_id,subtask_id)
 						}
 			  };
 	var str=JSON.stringify(temp);
-	 $.ajax({ 
-             url: "php/blog_search.php",  
-             type: "POST", 
-             data:{res:str}, 
-             dataType: "json", 
-             error: function(){   
-                 //alert('Error loading XML document');   
-             },   
+	 $.ajax({
+             url: "php/blog_search.php",
+             type: "POST",
+             data:{res:str},
+             dataType: "json",
+             error: function(){
+                 //alert('Error loading XML document');
+             },
              success: function(data){
 				if(data.success=="true"){
 					for(var i=0;i<data.res.length;i++){
@@ -332,7 +328,7 @@ function add_blogs2_one_subtask(bloglinks_id,subtask_id)
 						document.getElementById(bloglinks_id).innerHTML="<div class='layui-text'>还没有博客记录,快去发表吧！</div>";
 					}
 				}
-			} 
+			}
 		});
 }
 
