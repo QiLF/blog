@@ -145,11 +145,22 @@
 	one_button_change("return");
 	one_button_change("task_complete_button");
 	one_button_change("create_task_button");
+	//任务信息
 	document.getElementById("task_show_title").innerHTML=tasks[task_i].name;
 	document.getElementById("task_show_content").innerHTML=tasks[task_i].introduction;
 	document.getElementById("task_show_start_date").innerHTML=tasks[task_i].start_date;
 	document.getElementById("task_show_end_date").innerHTML=tasks[task_i].end_date;
 	priority_show(task_i);
+	var task_evaluation;
+	if(tasks[task_i].evaluation=="-1"){
+		task_evaluation="待评价";
+	}else{
+		task_evaluation=tasks[task_i].evaluation+"分";
+	}
+	document.getElementById("task_show_evaluation").innerHTML=task_evaluation;
+	
+	
+	
 	var subtasks_num=tasks[task_i].subtasks.length;
 	//预先清空subtask显示容器内容，防止多次点击进入查看任务时出现子项目重复多次显示问题
 	document.getElementById("task_show_subtasks").innerHTML="";
@@ -157,23 +168,38 @@
 	for(var i=0;i<subtasks_num;i++)
 	{
 		var subtask_state;
+		var subtask_evaluation;
+		if(tasks[task_i].subtasks[i].evaluation=="-1"){
+			subtask_evaluation="待评价";
+		}else{
+			subtask_evaluation=tasks[task_i].subtasks[i].evaluation+"分";
+		}
+
+		
 		if(tasks[task_i].subtasks[i].state!='2'){
 			subtask_state="已完成";
 		}else{
 			subtask_state="未完成";
 		}
 		var temp='<div class="layui-row" style="padding:20px">\
-					<div class="layui-col-sm4">\
+					<div class="layui-col-sm3">\
 						<span>子项名称:</span>\
 						<span class="layui-text">'+tasks[task_i].subtasks[i].name+'</span>\
 					</div>\
-					<div class="layui-col-sm4">\
+					<div class="layui-col-sm3">\
 						<span>负责人:</span>\
 						<span class="layui-text">'+tasks[task_i].subtasks[i].members+'</span>\
 					</div>\
-					<div class="layui-col-sm4">\
-						<span>完成状态:</span>\
+					<div class="layui-col-sm3">\
+						<span>完成情况:</span>\
 						<span class="layui-text">'+subtask_state+'</span>\
+						<span style="margin-left:15px">评分</span>\
+						<span class="layui-text" style="text-indent:2em">'+subtask_evaluation+'</span>\
+					</div>\
+					<div class="layui-col-sm3">\
+						<a onclick='+'set_evaluating_subtask_i('+i+')'+' name="subtask_evaluation_button" class="layui-text" style="margin-left:30px">\
+							<i class="layui-icon" style="font-size: 30px; color: #FFB800;">&#xe600;</i>评价\
+						</a>\
 					</div>\
 				</div>';
 		$('#task_show_subtasks').append(temp);
