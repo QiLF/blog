@@ -2,10 +2,15 @@
 function goto_subtask_blog(value)
 {
 	//给全局变量当前子项目赋值
-	current_subtask_id=value;
+	//current_subtask_id=value;
 	//跳转到日志发布界面
 	layui.element.tabChange('main-tab','personal_blogs');//跳转到日志tab
 	layui.element.tabChange('blog_tabs','blog_tabitem2');//跳转到日志tab内的发布tab
+	//选中子项日志
+	$('#submission_type').attr("checked",true);//设置子项日志为选中
+	$('#personal_type').attr("checked",false);//
+	$('#submission_choose').css('display','block');//显示任务子项为显示状态
+	//选中当前任务和子项目。明天写。。。2018.2.12 19:42 开车
 }
 
 
@@ -22,14 +27,10 @@ function goto_subtask_blog(value)
      //用于获取富文本编辑器的内容，添加到表单的json数据中，提交
     function onclick_sumit()
     {
-						if(current_subtask_id==null)
-						{
-								layer.msg("未选择指定的子项目！");
-								return false;
-						}
 //表单验证部分
 /////////////////////////////////////////////////////////////////////////////////
             var form_theme=document.forms["log_release_form"]["log_title"].value;
+						var form_subtask_id=document.forms["log_release_form"]["log_submission"].value;
 						if(form_theme==""||form_theme==null)
             {
                 layer.msg("日志内容不得为空");
@@ -73,8 +74,7 @@ function goto_subtask_blog(value)
 //表单验证部分结束
 			var userName=getCookie("username");
 
-			var temp={"state":"insert_blog","data":{"writer":userName,"subtask_id":current_subtask_id,"name":form_theme,"content":form_content}};
-			//var temp={"data":{"username":userName,"first_password":first_pwd,"second_password":second_pwd,"check_agree":check_agree}};
+			var temp={"state":"insert_blog","data":{"writer":userName,"subtask_id":form_subtask_id,"name":form_theme,"content":form_content}};
 			var str=JSON.stringify(temp);
 			//alert(str);
 			$(function(){

@@ -274,6 +274,27 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
       								<div class="layui-tab-item">
 							<!--日志发布部分-->
       									<form id="log_release_form" class="layui-form" action="" style="position:relative;right:30px">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">类型</label>
+                                                <div class="layui-input-block">
+                                                    <input name="log_type" value="个人日志" title="个人日志" checked="" type="radio" lay-filter="choose_type">
+                                                    <input name="log_type" value="子项日志" title="子项日志" type="radio" lay-filter="choose_type">
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item" id="submission_choose" style="display:none">
+                                                <label class="layui-form-label">任务</label>
+                                                <div class="layui-input-inline">
+                                                    <select name="log_mission" id="log_mission" lay-filter="choose_task">
+                                                    <!--动态添加联动任务-->
+                                                    </select>
+                                                </div>
+                                                <label class="layui-form-label">子项</label>
+                                                <div class="layui-input-inline">
+                                                    <select name="log_submission" id="log_submission" lay-filter="choose_subtask">
+                                                    <!--动态添加联动任务的子项目-->
+                                                    </select>
+                                                </div>
+                                            </div>
       										<div class="layui-form-item">
       											<label class="layui-form-label">主题</label>
       											<div class="layui-input-block">
@@ -401,6 +422,8 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 	<script type="text/javascript" src="js/blog_edit.js"></script>
 	
 	<script type="text/javascript" src="js/subtask_finish_func.js"></script>
+	
+	<script type="text/javascript" src="js/log_type_organize.js"></script>
 
    <div style="text-align:center;padding:20px">
         <p>Powered by: USTC-Bloger Team, Contact:<a style="color:blue" href="">example@mail.ustc.edu.cn.</a></p>
