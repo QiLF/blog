@@ -9,7 +9,7 @@
       "data":
       {
         "subtask_id":subtask_id,
-        "order":"ASC",
+        "order":"DESC",
         "order_by":"modify_date"
       }
     };
@@ -28,7 +28,7 @@
             {
               alert("这个成员很懒，啥都没写～");
             }
-            else 
+            else
             {
               alert(data.error);
             }
