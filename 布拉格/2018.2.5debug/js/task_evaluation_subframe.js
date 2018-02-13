@@ -12,11 +12,7 @@ $('#task_evalution_button').on('click', function(){
         shade: 0.6,
         shadeClose: true, //点击遮罩关闭层
         area : ['1000px' , '600px'],
-        content: 'task_evaluation_subframe.html',
-        end:function()
-        {
-          get_tasks(current_group_id);
-        }
+        content: 'task_evaluation_subframe.html'
       });
     }
     else
@@ -43,11 +39,7 @@ $('#task_evalution_button').on('click', function(){
 			shade: 0.6,
 			shadeClose: true, //点击遮罩关闭层
 			area : ['1000px' , '600px'],
-			content: 'subtask_evaluation_subframe.html',
-			end:function()
-			{
-				get_tasks(current_group_id);
-			}
+			content: 'subtask_evaluation_subframe.html'
 		  });
 		}
 		else

@@ -102,8 +102,11 @@ function evaluation_sumit()
 	}
 	//评价操作是否成功的检验
 	if(success_flag==true){
+		window.parent.fresh_flag=true;
+		window.parent.display_flag=false;
+		window.parent.get_tasks(window.parent.current_group_id);//提交评价后进行刷新
 		close_subframe();
-		layer.msg("评价成功");
+		window.parent.layer.msg("评价成功");
 	}
 }
 

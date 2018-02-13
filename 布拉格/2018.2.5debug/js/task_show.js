@@ -2,6 +2,10 @@
 //功能：实现显示团队的task及查看task内容;对团队页面的任务模块元素的显示和隐藏
 	var task_show_index;
 	var tasks=new Array();
+	
+	var display_flag=true;//判断是否要在调用task_view()时进行对任务预览，任务链接的display属性进行改变,true:需要，false:不需要
+	var fresh_flag=false;//判断是否需要在get_tasks()函数中重新载入任务预览，false不需要，true需要
+	
 	//var task_introduction=new Array();//为保险起见只把名字及内容拎出来作全局变量
 	//var task_name=new Array();
 	//var task_id=new Array();//把task_id也拎出来
@@ -115,6 +119,10 @@
 					task_progress();
 
 /********************************处理刷新问题******************************************/
+					if(fresh_flag==true){
+						task_view(edit_task_i);
+						fresh_flag=false;
+					}
 					subtasks_part_init();//重新加载子任务部分
 					renew_subtasks();
 				}else{
@@ -135,16 +143,12 @@
   {
 	//更新修改任务指示变量的值
 	task_edit_state=true;
-
 	edit_task_i=task_i;
-	//alert("edit_task_i="+edit_task_i);
-	change_display("links_block");
-	change_display("task_show");
-	change_display("change_page");
-	one_button_change("form_edit");
-	one_button_change("return");
-	one_button_change("task_complete_button");
-	one_button_change("create_task_button");
+	if(display_flag==true){
+		taskview_change_display();
+	}else{
+		display_flag=true;
+	}
 	//任务信息
 	document.getElementById("task_show_title").innerHTML=tasks[task_i].name;
 	document.getElementById("task_show_content").innerHTML=tasks[task_i].introduction;
@@ -290,4 +294,16 @@
 		one_button_change("task_complete_button");
 		change_display('task_show');
 		change_display('task_edit');
+	}
+
+	//任务链接被点击时，改变任务链接、任务预览的dispaly
+	function taskview_change_display()
+	{
+		change_display("links_block");
+		change_display("task_show");
+		change_display("change_page");
+		one_button_change("form_edit");
+		one_button_change("return");
+		one_button_change("task_complete_button");
+		one_button_change("create_task_button");
 	}

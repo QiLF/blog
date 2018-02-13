@@ -224,7 +224,13 @@ function getpriority()
 								else
 								{
 									memorize_new_subtask(-1);//记住全部追加子项
+									display_flag=false;
+									fresh_flag=true;
 									get_tasks(current_group_id);//提交修改后进行刷新
+									
+									//修改后任务预览也进行响应
+									
+									
 									layer.msg("任务修改成功");
 								}
 							},

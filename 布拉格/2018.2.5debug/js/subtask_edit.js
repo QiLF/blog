@@ -44,22 +44,22 @@ function update_subtask(subtask_i)
   //confirm for name
   if(name==""||name==null)///////////////////////////////////////////////////////////////////////////////////2018.2.6 20:08
   {
-      alert('子任务'+subtask_i+'的名字不得为空');
+      layer.msg('子任务'+subtask_i+'的名字不得为空');
       return false;
   }
   if(name.length<5||name.length>32)
   {
-      alert('子任务'+subtask_i+'的名字至需为5-32个字符');
+      layer.msg('子任务'+subtask_i+'的名字至需为5-32个字符');
       return false;
   }
   if(!isNaN(name))
   {
-      alert('子任务'+subtask_i+'的名字不能为纯数字');
+      layer.msg('子任务'+subtask_i+'的名字不能为纯数字');
       return false;
   }
   if( filterSqlStr(name))
   {
-      alert('子任务'+subtask_i+'的名字中包含了敏感字符'+sql_str()+',请重新输入！');
+      layer.msg('子任务'+subtask_i+'的名字中包含了敏感字符'+sql_str()+',请重新输入！');
       return false;
   }
 
@@ -69,22 +69,22 @@ function update_subtask(subtask_i)
   //confirm for member, just consider one worker temporarily
   if(members[0]==""||members[0]==null)
   {
-      alert('输入的执行者'+subtask_i+'的用户名不得为空');
+      layer.msg('输入的执行者'+subtask_i+'的用户名不得为空');
       return false;
   }
   if(members[0].length<8||members[0].length>20)
   {
-      alert('输入的执行者'+subtask_i+'的用户名需为8-20个字符');
+      layer.msg('输入的执行者'+subtask_i+'的用户名需为8-20个字符');
       return false;
   }
   if(!isNaN(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的用户名不能为纯数字');
+      layer.msg('输入的执行者'+subtask_i+'的用户名不能为纯数字');
       return false;
   }
   if( filterSqlStr(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
+      layer.msg('输入的执行者'+subtask_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
       return ;
   }
 
@@ -112,8 +112,10 @@ function update_subtask(subtask_i)
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
+													display_flag=false;
+													fresh_flag=true;
 													get_tasks(current_group_id);//提交修改后进行刷新
-													alert("修改子任务成功！");
+													layer.msg("修改子任务成功！");
 												}else{
 														//alert(data.error);
 													 }
@@ -129,17 +131,17 @@ function insert_subtask(subtask_i)
   //confirm for name
   if(name.length<5||name.length>32)
   {
-      alert('子任务'+subtask_i+'的名字需为5-32个字符');
+      layer.msg('子任务'+subtask_i+'的名字需为5-32个字符');
       return false;
   }
   if(!isNaN(name))
   {
-      alert('子任务'+subtask_i+'的名字不能为纯数字');
+      layer.msg('子任务'+subtask_i+'的名字不能为纯数字');
       return false;
   }
   if( filterSqlStr(name))
   {
-      alert('子任务'+subtask_i+'的名字中包含了敏感字符'+sql_str()+',请重新输入！');
+      layer.msg('子任务'+subtask_i+'的名字中包含了敏感字符'+sql_str()+',请重新输入！');
       return false;
   }
 
@@ -150,17 +152,17 @@ function insert_subtask(subtask_i)
   //confirm for member, just consider one worker temporarily
   if(members[0].length<5)
   {
-      alert('输入的执行者'+subtask_i+'的用户名需为8-20个字符');
+      layer.msg('输入的执行者'+subtask_i+'的用户名需为8-20个字符');
       return false;
   }
   if(!isNaN(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的用户名不能为纯数字');
+      layer.msg('输入的执行者'+subtask_i+'的用户名不能为纯数字');
       return false;
   }
   if( filterSqlStr(members[0]))
   {
-      alert('输入的执行者'+subtask_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
+      layer.msg('输入的执行者'+subtask_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
       return ;
   }
 
@@ -189,8 +191,10 @@ function insert_subtask(subtask_i)
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
+													display_flag=false;
+													fresh_flag=true;
 													get_tasks(current_group_id);//提交插入后进行刷新
-													alert("追加子任务成功！");
+													layer.msg("追加子任务成功！");
 												}else{
 														//alert(data.error);
 													 }
@@ -223,8 +227,10 @@ function delete_subtask(subtask_i)
 			success: function(data){
 							if(data.success=="true"){
 													memorize_new_subtask(subtask_i);
+													display_flag=false;
+													fresh_flag=true;
 													get_tasks(current_group_id);//提交删除后进行刷新
-													alert("删除子任务成功！");
+													layer.msg("删除子任务成功！");
 												}else{
 														//alert(data.error);
 													 }
@@ -338,7 +344,7 @@ function edit_add_subtask()
 	   }
 	else
 	{
-		alert("子项目数目已经达到上限");
+		layer.msg("子项目数目已经达到上限");
 	}
 	//////////////
 	});

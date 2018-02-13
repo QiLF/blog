@@ -30,9 +30,14 @@ function subtask_evaluation_sumit()
 			{
 				if(data.success!="true")
 				{
-					layer.msg("出错啦");
+					window.parent.layer.msg("出错啦");
 					close_subframe();
 				}
+					window.parent.fresh_flag=true;
+					window.parent.display_flag=false;
+					window.parent.get_tasks(window.parent.current_group_id);//提交评价后进行刷新
+					close_subframe();
+					window.parent.layer.msg("评价成功");
 			}
 		});
 }
