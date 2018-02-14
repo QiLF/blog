@@ -87,7 +87,6 @@ function init_task_part(task_num)
 		//add_task(i);
 		add_one_task(i);
 	}
-	add_blogs2_all_subtasks();
 }
 
 /*
@@ -289,6 +288,8 @@ function change_one_bar(task_bar_id,percent)
 参数：子任务日志链接部分的id,subtask的id
 返回：无
 */
+
+/*
 function add_blogs2_one_subtask(bloglinks_id,subtask_id)
 {
 	 var temp={
@@ -351,7 +352,7 @@ function open_blog_subframe()
       });
 }
 
-
+*/
 
 
 
@@ -361,6 +362,8 @@ function open_blog_subframe()
 参数：子任务日志链接部分的id
 返回：无
 */
+
+/*
 function add_blogs2_all_subtasks()
 {
 	for(var i=1;i<=task_num;i++)
@@ -371,3 +374,5 @@ function add_blogs2_all_subtasks()
 		}
 	}
 }
+
+*/

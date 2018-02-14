@@ -1,16 +1,44 @@
 //当前任务导引部分
 function goto_subtask_blog(value)
 {
-	//给全局变量当前子项目赋值
-	//current_subtask_id=value;
-	//跳转到日志发布界面
-	layui.element.tabChange('main-tab','personal_blogs');//跳转到日志tab
-	layui.element.tabChange('blog_tabs','blog_tabitem2');//跳转到日志tab内的发布tab
-	//选中子项日志
-	$('#submission_type').attr("checked",true);//设置子项日志为选中
-	$('#personal_type').attr("checked",false);//
-	$('#submission_choose').css('display','block');//显示任务子项为显示状态
-	//选中当前任务和子项目。明天写。。。2018.2.12 19:42 开车
+	layui.use(['form'], function(){
+		var form = layui.form
+		,layer = layui.layer
+		//跳转到日志发布界面
+		layui.element.tabChange('main-tab','personal_blogs');//跳转到日志tab
+		layui.element.tabChange('blog_tabs','blog_tabitem2');//跳转到日志tab内的发布tab
+		//选中子项日志
+		$('#submission_type').prop("checked",true);
+		$('#personal_type').prop("checked",false);
+
+		$('#submission_choose').css('display','block');//显示任务子项为显示状态
+		//选中当前任务和子项目。明天写。。。2018.2.12 19:42 开车
+		//加载任务选择栏
+		log_load_task();
+		//选中任务
+		var target_task=null//用来存储子项目所在的任务
+		for(var i=0;i<group_tasks.length;i++)
+		{
+			if(target_task!=null)
+			{
+				break;
+			}
+			for(var j=0;j<group_tasks[i].subtasks.length;j++)
+			{
+				if(group_tasks[i].subtasks[j].subtask_id==value)
+				{
+					target_task=group_tasks[i];
+					break;
+				}
+			}
+		}
+		$("#log_mission").find("option[value="+target_task.name+"]").prop("selected",true);
+		//加载特定任务的子项目选择栏
+		log_load_subtask(target_task.name);
+		//选中子任务
+		$("#log_submission").find("option[value="+value+"]").prop("selected",true);
+		form.render();
+	});
 }
 
 
@@ -30,7 +58,17 @@ function goto_subtask_blog(value)
 //表单验证部分
 /////////////////////////////////////////////////////////////////////////////////
             var form_theme=document.forms["log_release_form"]["log_title"].value;
-						var form_subtask_id=document.forms["log_release_form"]["log_submission"].value;
+						var form_subtask_id=null;
+						//分日志类型对当前子项目id进行赋值
+						if(document.forms["log_release_form"]["log_type"].value=="子项日志")
+						{
+								form_subtask_id=document.forms["log_release_form"]["log_submission"].value;
+						}
+						else
+						{
+								form_subtask_id="a_specified_subtask_id_which_lelongs_to_a_super_account_used_to_store_all_users'_logs";
+						}
+
 						if(form_theme==""||form_theme==null)
             {
                 layer.msg("日志内容不得为空");

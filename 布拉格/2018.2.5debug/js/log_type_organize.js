@@ -50,6 +50,7 @@ function log_load_task()
   var res=JSON.stringify(temp_data);
   //ajax part
   $.ajax({
+           async: false,
            url: "php/search_tasks.php",
            type: "POST",
            data:{res:res},
@@ -115,7 +116,10 @@ function load_options_for_subtask(value)
   var temp_html='<option value=""></option>';
   for(var i=0;i<value.subtasks.length;i++)
   {
-    temp_html+='<option value="'+value.subtasks[i].subtask_id+'">'+value.subtasks[i].name+'</option>'
+    if(value.subtasks[i].members==getCookie('username'))
+    {
+      temp_html+='<option value="'+value.subtasks[i].subtask_id+'">'+value.subtasks[i].name+'</option>'
+    }
   }
   document.getElementById('log_submission').innerHTML=temp_html;
   layui.use(['form', 'layedit', 'laydate'], function(){
