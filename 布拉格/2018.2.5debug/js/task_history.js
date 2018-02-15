@@ -168,6 +168,12 @@ function add_one_sub_task_h(task_label,sub_task_label)
 	var sub_task_content_id="sub_task_h"+task_label+"-"+sub_task_label+"_content";
 	var face_id="face_h"+task_label+"-"+sub_task_label;
 	var task_list_id="task_list_h"+task_label;
+	var evaluation;
+	if(history_tasks[task_label-1].subtasks[sub_task_label-1].evaluation==-1){
+		evaluation="待评价";
+	}else{
+		evaluation="<span style='color:#FFB800;font-size:20px'>"+history_tasks[task_label-1].subtasks[sub_task_label-1].evaluation+"</span> 分"
+	}
 	var real_end_time;
 	if(history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==undefined||tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==null){
 		real_end_time="尚未完成";
@@ -187,6 +193,7 @@ function add_one_sub_task_h(task_label,sub_task_label)
 											+		"<div class='layui-timeline-title' >截止时间："+history_tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
 											+		"<div class='layui-timeline-title' >完成时间："+real_end_time+ "</div>"
 											+		"<div class='layui-timeline-title'>负责人："+history_tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
+											+		"<div class='layui-timeline-title'>评价："+evaluation+"</div>"
 											+	"</div>"
 											+"</div>"
 										+"</li>"

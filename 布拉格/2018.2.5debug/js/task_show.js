@@ -159,7 +159,7 @@
 	if(tasks[task_i].evaluation=="-1"){
 		task_evaluation="待评价";
 	}else{
-		task_evaluation=tasks[task_i].evaluation+"分";
+		task_evaluation=tasks[task_i].evaluation;
 	}
 	document.getElementById("task_show_evaluation").innerHTML=task_evaluation;
 	
@@ -176,7 +176,7 @@
 		if(tasks[task_i].subtasks[i].evaluation=="-1"){
 			subtask_evaluation="待评价";
 		}else{
-			subtask_evaluation=tasks[task_i].subtasks[i].evaluation+"分";
+			subtask_evaluation=tasks[task_i].subtasks[i].evaluation;
 		}
 
 		
@@ -197,8 +197,9 @@
 					<div class="layui-col-sm3">\
 						<span>完成情况:</span>\
 						<span class="layui-text">'+subtask_state+'</span>\
-						<span style="margin-left:15px">评分</span>\
-						<span class="layui-text" style="text-indent:2em">'+subtask_evaluation+'</span>\
+						<span style="margin-left:15px">评分:</span>\
+						<span class="layui-text" style="font-size:20px;color:#FFB800">'+subtask_evaluation+'</span>\
+						<span class="layui-text">分</span>\
 					</div>\
 					<div class="layui-col-sm3">\
 						<a onclick='+'set_evaluating_subtask_i('+i+')'+' name="subtask_evaluation_button" class="layui-text" style="margin-left:30px">\

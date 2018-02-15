@@ -28,9 +28,13 @@ function evaluation_subframe_init()
 		var evaluation_id='subtask_evaluation'+i;
 		$("#subtasks_div").append(
 								'<div class="layui-row layui-text" style="padding:20px">\
-									<div class="layui-col-sm4">\
+									<div class="layui-col-sm3">\
 										<span>子项名称：</span>\
 										<span name='+subtask_id+' id='+subtask_id+' class="layui-text" style="text-align:center">'+tasks[task_i].subtasks[i-1].name+'</span>\
+									</div>\
+									<div class="layui-col-sm3">\
+										<span>负责人：</span>\
+										<span class="layui-text" style="text-align:center">'+tasks[task_i].subtasks[i-1].members+'</span>\
 									</div>\
 									<div class="layui-col-sm4">\
 										<div id='+stars_id+'  class="block clearfix" >\
@@ -38,7 +42,7 @@ function evaluation_subframe_init()
 											  <p style="float:left;">您的评分：<span id='+evaluation_id+' class="fenshu"></span> 分</p>\
 										</div>\
 									</div>\
-									<div class="layui-col-sm4"></div>\
+									<div class="layui-col-sm2"></div>\
 								</div>'
 								);
 	}
