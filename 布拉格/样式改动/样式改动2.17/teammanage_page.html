@@ -80,7 +80,7 @@
  padding-left: 65px; 
 }/* 兼容IE6 透明 */
 .special li { display: inline-block; font-size: 16px; font-family: "Microsoft Yahei", Arial, Helvetica, sans-serif; color: #FFF; padding-left: 46px;padding-right: 40px; -webkit-transition: all 1s; -moz-transition: all 1s; -o-transition: all 1s; transition: all 1s;cursor:pointer; }
-.special li a{display:block}
+
 /*nav li:hover { background: #6C6C6C; }*/
 .special li:hover{ color: #fff; background: #7B7B7B; transform:skewX(10deg);-webkit-transform:skewX(10deg);-o-transform:skewX(10deg);-ms-transform:skewX(10deg);-moz-transform:skewX(10deg) }
 
@@ -432,13 +432,13 @@
             <li  class="layui-nav-item layui-nav-itemed">
                 <a  href="javascript:;">我所在的团队</a>
 
-                <dl id="team_own" class="layui-nav-child"><!--此处内容动态填充--></dl>
+                <dl id="team_own" class="layui-nav-child"><dd><!--此处内容动态填充--></dd></dl>
             </li>
             <li class="layui-nav-item">
-                <a  href="javascript:;">操作</a>
+                <a  href="javascript:;">创建和解散团队</a>
                 <dl class="layui-nav-child">
-                    <dd><a id="create_team">创建新的团队</a></dd>
-                    <dd><a onclick="delete_team()">解散当前团队</a></dd>
+                    <dd><a id="create_team" style="cursor:pointer">创建新的团队</a></dd>
+                    <dd><a onclick="delete_team()" style="cursor:pointer">解散当前团队</a></dd>
                 </dl> 
             </li>
         </ul>
