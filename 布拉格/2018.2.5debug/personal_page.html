@@ -332,7 +332,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
       	<div class="layui-col-sm4">
             <div id="float" class="div1">
-                <ul style="margin-top:60px ;background-color:#55B5B" class="layui-nav layui-nav-tree layui-inline" lay-filter="demo">
+                <ul style="margin-top:60px ;background-color:#55B5B" class="layui-nav layui-nav-tree layui-inline" lay-filter="group_nav">
 					<li class="layui-nav-item layui-nav-itemed"><a href="">团队风向标</a> </li>
 					<div class="avatar"><a href="about.html"><span>瞅啥</span></a></div>
 					<li><p id="current_team_name_navbar" style="text-align:center;">未选择团队</p></li>
@@ -349,49 +349,41 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
 
 
-    <script>
-      layui.use('element', function(){
-        var $ = layui.jquery
-        ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+<script>
+layui.use('element', function(){
+  var $ = layui.jquery
+  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+		  //监听导航点击
+		  element.on("nav(group_nav)", function(elem){
+			//console.log(elem)
+			layer.msg(elem.text());
+		  });
+  //触发事件
+  var active = {
+    tabAdd: function(){
+      //新增一个Tab项
+      element.tabAdd('demo', {
+        title: '新选项'+ (Math.random()*1000|0) //用于演示
+        ,content: '内容'+ (Math.random()*1000|0)
+        ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
+      })
+    }
+    ,tabDelete: function(othis){
+      //删除指定Tab项
+      element.tabDelete('demo', '44'); //删除：“商品管理”
 
-        //触发事件
-        var active = {
-          tabAdd: function(){
-            //新增一个Tab项
-            element.tabAdd('demo', {
-              title: '新选项'+ (Math.random()*1000|0) //用于演示
-              ,content: '内容'+ (Math.random()*1000|0)
-              ,id: new Date().getTime() //实际使用一般是规定好的id，这里以时间戳模拟下
-            })
-          }
-          ,tabDelete: function(othis){
-            //删除指定Tab项
-            element.tabDelete('demo', '44'); //删除：“商品管理”
+
+      othis.addClass('layui-btn-disabled');
+    }
+    ,tabChange: function(){
+      //切换到指定Tab项
+      element.tabChange('demo', '22'); //切换到：用户管理
+    }
+  };
 
 
-            othis.addClass('layui-btn-disabled');
-          }
-          ,tabChange: function(){
-            //切换到指定Tab项
-            element.tabChange('demo', '22'); //切换到：用户管理
-          }
-        };
-
-        $('.site-demo-active').on('click', function(){
-          var othis = $(this), type = othis.data('type');
-          active[type] ? active[type].call(this, othis) : '';
-        });
-
-        //Hash地址的定位
-        var layid = location.hash.replace(/^#test=/, '');
-        element.tabChange('test', layid);
-
-        element.on('tab(test)', function(elem){
-          location.hash = 'test='+ $(this).attr('lay-id');
-        });
-
-      });
-    </script>
+});
+</script>
     <script type="text/javascript" src="js/log_type_organize.js"></script>
     
     <script type="text/javascript" src="js/person_info_load.js"></script>

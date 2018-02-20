@@ -33,7 +33,7 @@
 							//加载侧边栏我拥有的团队
 							while(flag_i<data.res.length)
 							{
-								temp_html+='<dd><a onclick="fresh_team_info('+data.res[flag_i].group_id+')">'+data.res[flag_i].name+'</a></dd>'
+								temp_html+='<dd><a style="cursor:pointer" onclick="fresh_team_info('+data.res[flag_i].group_id+')">'+data.res[flag_i].name+'</a></dd>'
 								flag_i++;
 							}
 							document.getElementById("team_own").innerHTML=temp_html;
