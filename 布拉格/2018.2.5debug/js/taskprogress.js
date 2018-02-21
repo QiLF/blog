@@ -53,7 +53,7 @@ function add_one_task(task_label)
 	var task_description_id="task"+task_label+"_description";
 	var content= "<div style='position:relative;float:none'>"
 				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>"
-				+	"<a onclick="+"change_display('"+task_description_id+"');>"
+				+	"<a style='cursor:pointer' onclick="+"change_display('"+task_description_id+"');>"
 				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
 				+	"</a>"
 				+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
