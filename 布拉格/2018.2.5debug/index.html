@@ -25,6 +25,10 @@
     <link rel="stylesheet" type="text/css" href="imageshow/css/elastislide.css" />
 
     <link rel="stylesheet" type="text/css" href="imageshow/css/custom.css" />
+	
+    <!--弹出层需要以下两个js-->
+    <script src="js/jquery-3.2.1.js"></script>
+    <script src="layer/layer.js"></script>
 
     <script src="imageshow/js/modernizr.custom.17475.js"></script>
     <!---->
@@ -78,7 +82,7 @@
                         <div class="layui-input-inline" style="width:200px;">
                             <input  placeholder="请输入用户名" name="username" 
         onblur="oBlur_check_user()" onFocus="oFocus_userName()" style="background-color:transparent;color:white"   autocomplete="off"  class="layui-input" type="text"/>
-                            <span id="reminder_userName" style="color:yellow;font-weight:500"></span>
+                            <span id="reminder_userName" style="color:yellow;font-weight:500;text-shadow:none"></span>
                         </div>
                     </div>
                     <br/>
@@ -87,7 +91,7 @@
                         <div class="layui-input-inline"  style="width:200px;">
                             <input  name="password" 
     autocomplete="off" onblur="oBlur_check_password()" onFocus="oFocus_password()" style="background-color:transparent;color:white"  placeholder="请输入密码"  class="layui-input" type="password"/>
-                            <span id="reminder_password" style="color:yellow;font-weight:500"></span>
+                            <span id="reminder_password" style="color:yellow;font-weight:500;text-shadow:none"></span>
                         </div>
                     </div>
                     <div style="text-align:center" class="layui-form-item">

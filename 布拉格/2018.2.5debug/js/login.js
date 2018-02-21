@@ -32,15 +32,15 @@
 	var username=document.forms["login-form"]["username"].value;
 	var password=document.forms["login-form"]["password"].value;
 	if (username==null || username==""){
-	  alert("用户名必须填写");
+	  layer.msg("用户名必须填写");
 	  return false;
 	  }
 	if(check_userName(username)==false){
-		alert("请检查用户名格式是否正确");
+		layer.msg("请检查用户名格式是否正确");
 		return false;
 		}
 	if (password==null || password==""){
-	  alert("密码必须填写");
+	  layer.msg("密码必须填写");
 	  return false;
 	  }
 	  
@@ -64,10 +64,10 @@
             //alert the reason for false
             //alert(data.error);
 			if(data.error=="user_not_exist"){
-				alert("用户名不存在！");
+				layer.msg("用户名不存在！");
 			}
 			if(data.error=="password_not_correct"){
-				alert("密码错误！");
+				layer.msg("密码错误！");
 			}
           }
           else {

@@ -11,31 +11,31 @@
   var check_agree=document.forms["register-form"]["agree"].value;
   var checked=document.forms["register-form"]["agree"].checked;
   if (userName==null || userName==""){
-	alert("用户名必须填写");
+	layer.msg("用户名必须填写");
 	return false;
 	}
   if (first_pwd==null || first_pwd==""){
-	alert("密码必须填写");
+	layer.msg("密码必须填写");
 	return false;
 	}
   if (second_pwd==null || second_pwd==""){
-	alert("请再次确认密码");
+	layer.msg("请再次确认密码");
 	return false;
 	}
   if(check_password(first_pwd)==false){
-	  alert("请检查密码格式是否正确");
+	  layer.msg("请检查密码格式是否正确");
 	  }
   if(first_pwd!=second_pwd)
 	{
-	  alert("两次密码输入不一致");
+	  layer.msg("两次密码输入不一致");
 	  return false;
 	}
   if(check_userName(userName)==false){
-	  alert("请检查用户名格式是否正确");
+	  layer.msg("请检查用户名格式是否正确");
 	  return false;
 	}
   if(checked==false){
-	  alert("请确认用户协议");
+	  layer.msg("请确认用户协议");
 	  return false;
 	}
 	var temp={"data":{"username":userName,"first_password":first_pwd,"second_password":second_pwd,"check_agree":check_agree}};
@@ -52,11 +52,11 @@
              },   
              success: function(data){
 				if(data.success=="true"){
-					alert("注册成功,快去登陆吧！");
+					layer.msg("注册成功,快去登陆吧！");
 					window.location.href="index.html";
 				}else{
 					if(data.error=="user_is_exist"){
-						alert("该用户名已被注册！");
+						layer.msg("该用户名已被注册！");
 					}
 				}
              } });
@@ -73,9 +73,12 @@
   {
 	  var parten=/^([A-Z a-z 0-9 _ ]{8,20})$/;
 	  if(parten.test(userName)){
-	  return true; 
+		 if(userName.indexOf(" ") == -1) {  
+			return true; 
+		}
+	  return false;
 	  }else{
-	  return false; 
+			return false; 
 	  }
   }
   /*
@@ -88,7 +91,10 @@
   {
 	  var parten=/^([A-Z a-z 0-9 _ ]{6,16})$/;
 	  if(parten.test(password)){
-	  return true; 
+		if(password.indexOf(" ") == -1) {  
+		   return true; 
+		}
+		return false;
 	  }
 	  else{
 	  return false; 
@@ -104,7 +110,7 @@
   {
 	 var userName=document.forms["register-form"]["userName"].value;
 	if (userName==null || userName==""){
-	document.getElementById("reminder_userName").innerHTML = "请输入用户名！";
+	  document.getElementById("reminder_userName").innerHTML = "请输入用户名！";
 	}else if(check_userName(userName)==false){
 	  document.getElementById("reminder_userName").innerHTML = "用户名格式不正确";  
 	}else{
