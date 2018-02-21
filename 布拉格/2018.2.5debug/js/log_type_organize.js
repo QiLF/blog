@@ -10,6 +10,22 @@ layui.use(['form', 'layedit', 'laydate'], function(){
     layer.msg(data.value); //被点击的radio的value值
     if(data.value=="子项日志")
     {
+
+      //发布子项日志时当前团队检测部分
+      if(current_group_id==null)
+      {
+        layui.use(['form'], function(){
+          var form = layui.form
+          ,layer = layui.layer
+          $('#submission_type').prop("checked",false);
+          $('#personal_type').prop("checked",true);
+          form.render();
+        });
+        layer.msg("请先选择团队！");;
+        return false;
+      }
+      //2018.2.21
+
       //显示子项目选择联动框
       $('#submission_choose').css('display','block');
       //用当前团队id动态加载联动选择框的内容

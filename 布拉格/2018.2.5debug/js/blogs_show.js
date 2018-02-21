@@ -4,21 +4,22 @@
 	var blog_content=new Array();//为保险起见只把名字及内容拎出来作全局变量
 	var blog_name=new Array();
 	var blog_id=new Array();//把blog_id也拎出来
+	var subtask_id=new Array();//对子项目blog的归属判断有用
 	layui.use('layedit', function(){
 	  var layedit = layui.layedit;
 	  log_show_index=layedit.build('log_edit_content'); //建立编辑器
 	});
-	
+
   //进入个人页面加载博客链接
   $(document).ready(function(){
-	/***********************************日志信息的获取部分******************************************/   
-	  get_blogs();	
+	/***********************************日志信息的获取部分******************************************/
+	  get_blogs();
 	//  alert("查询后的长度"+blogs.length);
   });
-  
-  
-  
-  
+
+
+
+
   //展示blog链接   !注意这里 i 是从0开始的   这里layui.use放在函数里面是为了使分页功能加载前blog_links内容就已经确定
   //否则会出现只有点击页码按钮后链接内容才显示的问题
   //分页数等于count/limit
@@ -38,11 +39,11 @@
 
 								  );
 	  }
-	  	/**************************************layui分页部分**********************************************/	 
+	  	/**************************************layui分页部分**********************************************/
 		layui.use(['laypage', 'layer'], function(){
 		  var laypage = layui.laypage
 		  ,layer = layui.layer;
-		  
+
 		  //自定义分页样式
 		  laypage.render
 		({
@@ -55,7 +56,7 @@
 			,next: '<em>→</em>'
 			,theme: '#1E9FFF'
 		  });
-	  
+
 		  //调用分页
 		  laypage.render({
 			elem: 'change_page'
@@ -74,7 +75,7 @@
 		  });
 		});
   }
-  
+
   //获取个人博客信息
   function get_blogs()
   {
@@ -84,6 +85,7 @@
 	  blog_content.splice(0,blog_content.length);
 	  blog_name.splice(0,blog_name.length);
 	  blog_id.splice(0,blog_id.length);
+		subtask_id.splice(0,subtask_id.length);
 	  var res={
 				"state":"search_blog",
 				 "data":{
@@ -94,23 +96,24 @@
 			  };
 	  str=JSON.stringify(res);
 	  //alert("向后端传入的json数据为"+str);
-	  $.ajax({ 
-             url: "php/blog_search.php",  
-             type: "POST", 
-             data:{res:str}, 
-             dataType: "json", 
-             error: function(){   
-                 //alert('Error loading XML document');   
-             },   
+	  $.ajax({
+             url: "php/blog_search.php",
+             type: "POST",
+             data:{res:str},
+             dataType: "json",
+             error: function(){
+                 //alert('Error loading XML document');
+             },
              success: function(data){
 				if(data.success=="true"){
 					//alert("查询blogs成功！");
-					
+
 					for(var i=0;i<data.res.length;i++){
 						blogs.push(data.res[i]);
 						blog_content.push(blogs[i].content);
 						blog_name.push(blogs[i].name);
 						blog_id.push(blogs[i].blog_id);
+						subtask_id.push(blogs[i].subtask_id);
 					}
 /**********************************导入blog链接************************************************/
 					show_blog_link(blogs,blog_links);
@@ -122,10 +125,10 @@
 					}
 					//alert(data.error);
 				}
-			} 
+			}
 		});
   }
-  
+
   //一篇blog的预览
   function blog_view(blog_i)
   {
@@ -138,6 +141,68 @@
 	one_button_change("return");
 	document.getElementById("log_show_title").innerHTML=blog_name[blog_i];
 	document.getElementById("log_show_content").innerHTML=blog_content[blog_i];
+
+	//实现日志类型的判定并显示
+	if(subtask_id[blog_i]!=12345)
+	{
+		document.getElementById("log_show_type").innerHTML="子项日志";
+
+		//加载所属
+		var temp_data=
+	  {
+	    "state":"get_result",
+	    "data":
+	    {
+	      "member":getCookie('username'),
+	      "state":"2",//仅可对尚未完成的任务进行子项日志的添加
+	      "order":"DESC",
+	    }
+	  }
+	  var res=JSON.stringify(temp_data);
+	  //ajax part
+	  $.ajax({
+	           url: "php/search_tasks.php",
+	           type: "POST",
+	           data:{res:res},
+	           dataType: "json",
+	           error: function()
+	           {
+	             alert('数据请求失败');
+	           },
+	           success: function(data)
+	           {
+	             if(data.success=="true")
+	             {
+								 var target_task=null;
+								 var temp_j=null;
+								 for(i=0;i<data.res.length;i++)
+								 {
+									 for(j=0;j<data.res[i].subtasks.length;j++)
+									 {
+										 if(data.res[i].subtasks[j].subtask_id==subtask_id[blog_i])
+										 {
+											 target_task=data.res[i];
+											 temp_j=j;
+										 }
+									 }
+								 }
+								 document.getElementById("log_show_submission").innerHTML=target_task.name+"/"+target_task.subtasks[temp_j].name;
+	             }
+	             else
+	             {
+	               alert(data.error);
+	             }
+	           }
+	  });
+
+	}
+	else
+	{
+		document.getElementById("log_show_type").innerHTML="个人日志";
+		document.getElementById("log_show_submission").innerHTML="无";
+	}
+	//2018.2.21
+
 	//编辑相关，初始化编辑部分的博客内容
 	$("#log_edit_title").val(blog_name[blog_i]);
 	layui.layedit.setContent(log_show_index,blog_content[blog_i]);			//!!!这里有一个问题，但不影响功能，此语句能正常执行但其后的语句无法执行，显示错误在layedit.js里
@@ -145,7 +210,7 @@
 	//alert(blog_name[blog_i]);
 
   }
-  
+
   //改变一个按钮的隐藏和显示
   function one_button_change(id)
 {
@@ -164,8 +229,8 @@
 	  one_button_change("form_undo");
 	  one_button_change("form_sumit");
 	  one_button_change("form_delete");
-  }  
-  
+  }
+
   //返回按钮被点击，展示链接块，隐藏编辑块    (删除按钮也用了此函数)
   function edit_form_return()
   {
@@ -175,4 +240,3 @@
 	  one_button_change("form_edit");
 	  one_button_change("return");
   }
-  

@@ -230,18 +230,25 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 										  <div id="links_block">
 											 <!--日志链接-->
 										  </div>
-										  <div id="blog_show"  style="display:none">
+										  <div id="blog_show"  style="display:none;padding:30px">
 											<div class="layui-form-item">
-													<label class="layui-form-label">主题</label>
-													<div name="log_show_title" id="log_show_title" class="layui-text" style="text-align:center"></div>
+													<label>主题:</label>
+													<span name="log_show_title" id="log_show_title" class="layui-text"></span>
 											</div>
 											<div class="layui-form-item layui-form-text">
-													<label class="layui-form-label">内容</label>
-													<div name="log_show_content" id="log_show_content" class="layui-text"></div>
+													<label>内容:</label>
+													<span name="log_show_content" id="log_show_content" class="layui-text" style="text-indent: 2em"></span>
 											</div>
-										  <!---->
+											<div class="layui-form-item layui-form-text">
+													<label>类型:</label>
+													<span name="log_show_type" id="log_show_type" class="layui-text"></span>
+											</div>
+											<div class="layui-form-item layui-form-text">
+													<label>所属:</label>
+													<span name="log_show_submission" id="log_show_submission" class="layui-text"></span>
+											</div>
 										  </div>
-										  <div id="blog_edit" style="display:none">
+										  <div id="blog_edit" style="display:none;margin-top:30px">
 										  		<form id="log_edit_form" class="layui-form" action="" style="position:relative;right:30px">
 													<div class="layui-form-item">
 														<label class="layui-form-label">主题</label>
