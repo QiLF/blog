@@ -311,7 +311,7 @@
 											<span>分</span>
 										</div>
 										<div class="layui-col-sm4">
-											<a id="task_evalution_button" class="layui-text" style="margin-left:30px">
+											<a id="task_evalution_button" class="layui-text" style="margin-left:30px;cursor:pointer">
 												<i class="layui-icon" style="font-size: 30px; color: #FFB800;">&#xe600;</i>评价
 											</a> 
 										</div>
@@ -428,7 +428,7 @@
             <li  class="layui-nav-item layui-nav-itemed">
                 <a  href="javascript:;">我所在的团队</a>
 
-                <dl id="team_own" class="layui-nav-child"><!--此处内容动态填充--></dl>
+                <dl id="team_own" class="layui-nav-child"><dd><!--此处内容动态填充--></dd></dl>
             </li>
             <li class="layui-nav-item">
                 <a  href="javascript:;">创建和解散团队</a>
@@ -443,17 +443,6 @@
 
 </div>
 
-<script>
-layui.use('element', function(){
-  var $ = layui.jquery
-  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-		  //监听导航点击
-		  element.on("nav(group_nav)", function(elem){
-			//console.log(elem)
-			//layer.msg(elem.text());
-		  });
-});
-</script>
 	<script type="text/javascript" src="js/team_info_load.js"></script>
 
 	<script type="text/javascript" src="js/person_info_load.js"></script>

@@ -34,7 +34,7 @@
 		  //$("#links_block").append(
 				task_links.push(
 								  "<div>"
-								 +		"<a class='layui-text' onclick='task_view("+i+")'>"
+								 +		"<a style='cursor:pointer' class='layui-text' onclick='task_view("+i+")'>"
 								 +			"<i class='layui-icon' style='font-size: 18px; color: #1E9FFF;'>&#xe64c;</i>"
 								 +      		tasks[i].name
 								 +			"<span style='float:right'>开始日期:"+tasks[i].start_date+"</span>"
@@ -202,7 +202,7 @@
 						<span class="layui-text">分</span>\
 					</div>\
 					<div class="layui-col-sm3">\
-						<a onclick='+'set_evaluating_subtask_i('+i+')'+' name="subtask_evaluation_button" class="layui-text" style="margin-left:30px">\
+						<a style="cursor:pointer" onclick='+'set_evaluating_subtask_i('+i+')'+' name="subtask_evaluation_button" class="layui-text" style="margin-left:30px">\
 							<i class="layui-icon" style="font-size: 30px; color: #FFB800;">&#xe600;</i>评价\
 						</a>\
 					</div>\

@@ -37,6 +37,17 @@
 								flag_i++;
 							}
 							document.getElementById("team_own").innerHTML=temp_html;
+							
+							layui.use('element', function(){
+															var $ = layui.jquery
+															,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+														     element.render('group_nav');
+															//监听导航点击
+															element.on("nav(group_nav)", function(elem){
+															//console.log(elem)
+															//layer.msg(elem.text());
+														  });
+										});
 						}
 	        },
 	        error : function() {
