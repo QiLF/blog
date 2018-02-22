@@ -148,10 +148,10 @@
 <div class="mainContent  layui-fluid" style="min-height:800px">
   <div class="layui-col-sm8">
     <div>
-    	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+    	<div class="layui-tab layui-tab-brief" lay-filter="main-tab">
     		<ul class="special layui-tab-title layui-fluid" id="topnav" >
     			<li class="layui-this " style="color:white">人员管理</li>
-				<li class="" style="color:white"><a onclick="fresh_team_info(current_group_id)" style="color:white">任务进度</a></li>
+				<li class="" style="color:white">任务进度</li>
     			<li class="" style="color:white">团队信息</li>
     			<li class="" style="color:white">任务管理</li>
     		</ul>
@@ -444,7 +444,17 @@
   </div>
 
 </div>
-
+	<script>
+	layui.use('element', function(){
+						var $ = layui.jquery
+								element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+								//监听选项卡点击
+								element.on("tab(main-tab)", function(elem){
+								element.render('taskprogress-tab');
+						 });
+			});
+	</script>
+	
 	<script type="text/javascript" src="js/team_info_load.js"></script>
 
 	<script type="text/javascript" src="js/person_info_load.js"></script>
