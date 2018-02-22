@@ -7,7 +7,7 @@ $('#task_evalution_button').on('click', function(){
      layer.open({
         type: 2,
         title: '任务评价',
-        maxmin: true,
+        maxmin: false,
         resize: false,
         shade: 0.6,
         shadeClose: true, //点击遮罩关闭层
@@ -22,10 +22,10 @@ $('#task_evalution_button').on('click', function(){
     }
 
   })
-  
 
 
-  
+
+
   function set_evaluating_subtask_i(subtask_i)
   {
 	  evaluating_subtask_i=subtask_i;

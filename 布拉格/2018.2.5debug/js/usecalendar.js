@@ -3,14 +3,9 @@ $('#calendar').on('click', function(){
       type: 2,
       title: '日历',
       maxmin: false,
-      title:false,
-      //title: false,
-
-
       shade: 0.6,
-      skin: '',
       shadeClose: true, //点击遮罩关闭层
-      area : ['500px' , '520px'],
+      area : ['503px' , '565px'],
       content: 'checkcalendar_subframe.html'
     });
   });

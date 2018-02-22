@@ -2,7 +2,7 @@ $('#create_team').on('click', function(){
     layer.open({
       type: 2,
       title: '创建团队',
-      maxmin: true,
+      maxmin: false,
       shadeClose: true, //点击遮罩关闭层
       area : ['500px' , '520px'],
       content: 'createteam_subframe.html',
