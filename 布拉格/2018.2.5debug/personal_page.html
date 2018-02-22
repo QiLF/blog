@@ -149,8 +149,8 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 
       				<ul class="special layui-tab-title layui-fluid" id="topnav">
       					<li  class="layui-this " style="color:white" lay-id="task_reminder">任务提醒</li>
-      					<li class="" lay-id="current_task"><a onclick="get_personal_tasks(current_group_id)" style="color:white" >当前任务</a></li>
-      					<li class="" lay-id="complete_history"><a onclick="get_history_tasks(current_group_id)" style="color:white" >完成历史</a></li>
+      					<li class="" lay-id="current_task">当前任务</li>
+      					<li class="" lay-id="complete_history">完成历史</li>
       					<li class="" style="color:white" lay-id="group_communication">团队交流</li>
       					<li class="" style="color:white" lay-id="personal_blogs">日志TIPS</li>
       				</ul>
@@ -353,7 +353,17 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
       	</div>
       </div>
     </div>
-
+	<script>
+	layui.use('element', function(){
+						var $ = layui.jquery
+								element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+								//监听选项卡点击
+								element.on("tab(main-tab)", function(elem){
+								element.render('history-tab');
+								element.render('task-tab');
+						 });
+			});
+	</script>
 	
     <script type="text/javascript" src="js/log_type_organize.js"></script>
     
