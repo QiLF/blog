@@ -31,17 +31,27 @@
   {
 	  for(var i=0;i<tasks.length;i++)
 	  {
-		  //$("#links_block").append(
+		  if(tasks[i].state=="1"){
+				task_links.push(
+								  "<div>"
+								 +		"<a style='cursor:pointer' class='layui-text' onclick='task_view("+i+")'>"
+								 +			"<i class='layui-icon' style='font-size: 18px; color: #FF5722;'>&#xe64c;</i>"
+								 +      		tasks[i].name
+								 +			"<span style='margin-right:10px;float:right'>开始日期:"+tasks[i].start_date+"</span>"
+								 +		"</a>"
+								 +"</div>"
+								  );
+		  }else{
 				task_links.push(
 								  "<div>"
 								 +		"<a style='cursor:pointer' class='layui-text' onclick='task_view("+i+")'>"
 								 +			"<i class='layui-icon' style='font-size: 18px; color: #1E9FFF;'>&#xe64c;</i>"
 								 +      		tasks[i].name
-								 +			"<span style='float:right'>开始日期:"+tasks[i].start_date+"</span>"
+								 +			"<span style='margin-right:10px;float:right'>开始日期:"+tasks[i].start_date+"</span>"
 								 +		"</a>"
 								 +"</div>"
-
 								  );
+		  }
 	  }
 	  	/**************************************layui分页部分**********************************************/
 	layui.use(['laypage', 'layer'], function(){

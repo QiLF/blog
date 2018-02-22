@@ -25,7 +25,7 @@ var history_sub_task_num=new Array();
 				 "data":{
               "group_id":value,
 						  "member":getCookie("username"),
-						  "state":"2",
+						  "state":"1",
 						  "order":"DESC",
 						  "order_by":"real_end_time"
 						}

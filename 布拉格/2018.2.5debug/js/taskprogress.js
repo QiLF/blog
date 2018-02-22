@@ -139,7 +139,7 @@ function add_one_sub_task(task_label,sub_task_label)
 											+"<div class='layui-timeline-content layui-text' >"
 											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
 											+		"子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name
-											+		"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px;margin-right:20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
+											+		"<span style='margin-right:50px'><i id='"+face_id+"' class='layui-icon' style='float:right;font-size: 20px;color: #1E9FFF;'>&#xe60c;</i></span>"	
 											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
@@ -180,15 +180,14 @@ function change_one_face(id,finished)
 	   if(finished==1)
 	   {
 	   target.innerHTML="&#xe60c;";
-	   target.style="font-size: 20px; color: #1E9FFF;float:right;";
+	   target.style="font-size: 20px; color: #1E9FFF;margin-right:30px;float:right;";
 	   }
 	   else
 	   {
 	   target.innerHTML="&#xe69c;";
-	   target.style="font-size: 19px; color:#FF5722;float:right;";
+	   target.style="font-size: 19px; color:#FF5722;margin-right:30px;float:right;";
 	   }
 }
-
 
 /*
 函数说明：改变某个进度条的进度

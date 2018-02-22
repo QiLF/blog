@@ -260,10 +260,13 @@
 						<button id="form_delete" type="button" onclick="delete_task()" style="display:none" class="layui-btn layui-btn-primary" >删除任务</button>							   
 					  </div>
 					</fieldset>
-
 								<div id="links_block">
-									<fieldset class="layui-elem-field" style="margin-top: 30px;position:relative;right:40px">
-										<legend>我的任务</legend>
+									<fieldset class="layui-elem-field" style="margin-top: 10px;position:relative;right:40px">
+										<legend>我的任务</legend> 	
+										<span id="state_reminder" style="margin-left:30px;">
+											<span class="layui-text" style="margin-right:20px"><i class="layui-icon" style="font-size: 15px; color: #FF5722;">&#xe64c;</i>已完成</span>
+											<span class="layui-text"><i class="layui-icon" style="font-size: 15px; color: #1E9FFF;">&#xe64c;</i>未完成</span>
+										<span>
 										<div id="links">
 									<!--任务链接-->
 										</div>
