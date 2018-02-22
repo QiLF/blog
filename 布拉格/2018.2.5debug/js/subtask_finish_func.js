@@ -25,7 +25,7 @@ function finish_subtask_func(value)
           //alert(data.error);
         }
         else {
-          alert("子项进度提交成功！");
+          layer.msg("子项进度提交成功！");
 		  get_personal_tasks(current_group_id);
         }
       },

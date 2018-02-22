@@ -25,6 +25,8 @@ function task_progress()
 	total_task(task_num);
 	if(task_num>0){
 		layui.element.tabChange('taskprogress-tab', tasks[0].task_id);
+	}else{
+			document.getElementById("task_part").innerHTML='<div class="layui-text">还没有任务呢,快去发布吧</div>';
 	}
 }
 

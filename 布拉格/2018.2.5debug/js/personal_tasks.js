@@ -7,7 +7,7 @@
   function get_personal_tasks(value)
   {
 	  if(current_group_id==null){
-		  alert("请先选择团队");
+		  layer.msg("请先选择团队");
 		  layui.element.tabChange('main-tab','task-reminder');
 		  return;
 	  }

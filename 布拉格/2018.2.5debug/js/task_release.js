@@ -33,7 +33,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                                       }
                                   }
                                   if (priority == checks.length) {
-									  alert("请确认优先级");//感觉不用验证但保险起见还是放在这了
+									  layer.msg("请确认优先级");//感觉不用验证但保险起见还是放在这了
                                       return -1;
 									}
 	}
@@ -49,22 +49,22 @@ layui.use(['form', 'layedit', 'laydate'], function(){
             var task_title=document.forms["task_release_form"]["task_title"].value;
 			if(task_title==""||task_title==null)
             {
-                alert("任务名不得为空");
+                layer.msg("任务名不得为空");
                 return false;
             }
             if(task_title.length<5||task_title.length>32)
             {
-                alert("任务名需为5-32个字符");
+                layer.msg("任务名需为5-32个字符");
                 return false;
             }
             if(!isNaN(task_title))
             {
-                alert("任务名不能为纯数字");
+                layer.msg("任务名不能为纯数字");
                 return false;
             }
             if( filterSqlStr(task_title))
             {
-                alert("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
+                layer.msg("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
                 return false;
             }
 
@@ -73,17 +73,17 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 			var task_introduction=layui.layedit.getContent(task_index);
             if(task_introduction.length<5)
             {
-                alert("任务简介至少需含5个字符");
+                layer.msg("任务简介至少需含5个字符");
                 return false;
             }
             if(task_introduction.length>512)
             {
-                alert("任务简介至多可含512个字符");
+                layer.msg("任务简介至多可含512个字符");
                 return false;
             }
             if( filterSqlStr(task_introduction))
             {
-                alert("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
+                layer.msg("任务名中包含了敏感字符"+sql_str()+",请重新输入！");
                 return ;
             }
 
@@ -105,22 +105,22 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 		        		//json_info.data.subtasks[blog_i].members=new Array();
                 if(form_subtask==""||form_subtask==null)
                 {
-                    alert('子任务'+blog_i+'的名称不得为空');
+                    layer.msg('子任务'+blog_i+'的名称不得为空');
                     return false;
                 }				
                 if(form_subtask.length<5||form_subtask.length>32)
                 {
-                    alert('子任务'+blog_i+'的名称需为5-32个字符');
+                    layer.msg('子任务'+blog_i+'的名称需为5-32个字符');
                     return false;
                 }
                 if(!isNaN(form_subtask))
                 {
-                    alert('子任务'+blog_i+'的名称不能为纯数字');
+                    layer.msg('子任务'+blog_i+'的名称不能为纯数字');
                     return false;
                 }
                 if( filterSqlStr(form_subtask))
                 {
-                    alert('子任务'+blog_i+'的名称中包含了敏感字符'+sql_str()+',请重新输入！');
+                    layer.msg('子任务'+blog_i+'的名称中包含了敏感字符'+sql_str()+',请重新输入！');
                     return ;
                 }
 
@@ -130,22 +130,22 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 		        		json_info.data.subtasks[blog_i-1].members.push(form_worker);//这里blog_i比数组下标大1！
 				if(form_worker==""||form_worker==null)
                 {
-                    alert('输入的执行者'+blog_i+'的用户名不得为空');
+                    layer.msg('输入的执行者'+blog_i+'的用户名不得为空');
                     return false;
                 }
                 if(form_worker.length<5||form_worker.length>32)
                 {
-                    alert('输入的执行者'+blog_i+'的用户名需为5-32个字符');
+                    layer.msg('输入的执行者'+blog_i+'的用户名需为5-32个字符');
                     return false;
                 }
                 if(!isNaN(form_worker))
                 {
-                    alert('输入的执行者'+blog_i+'的用户名不能为纯数字');
+                    layer.msg('输入的执行者'+blog_i+'的用户名不能为纯数字');
                     return false;
                 }
                 if( filterSqlStr(form_worker))
                 {
-                    alert('输入的执行者'+blog_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
+                    layer.msg('输入的执行者'+blog_i+'的用户名中包含了敏感字符'+sql_str()+',请重新输入！');
                     return ;
                 }
             }
@@ -157,7 +157,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
             var end_time=stringToDate(task_end_date);
             if(end_time<=start_time)
             {
-                alert('开始时间不应迟于或等于结束时间.');
+                layer.msg('开始时间不应迟于或等于结束时间.');
                 return false;
             }
 
@@ -190,7 +190,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
       					  }
       					  else {
 							  success_flag=true;
-      						  alert("任务发布成功");
+      						  layer.msg("任务发布成功");
 							  var index = parent.layer.getFrameIndex(window.name); //获取窗口索引  
 							  parent.layer.close(index);
 							  //parent.layer.close(layer.index);//关闭弹出层

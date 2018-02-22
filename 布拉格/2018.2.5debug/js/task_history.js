@@ -66,7 +66,7 @@ var history_sub_task_num=new Array();
 						
 						//切换到历史任务一
 							if(task_num>0){
-											layui.element.tabChange('history-tab', tasks[0].task_id);
+											layui.element.tabChange('history-tab', history_tasks[0].task_id);
 										  }	
 				}else{
 					//如果查询任务记录为空
