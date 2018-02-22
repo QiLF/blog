@@ -5,7 +5,7 @@ $('#detail').on('click', function(){
     layer.open({
       type: 2,
       title: '个人资料',
-      maxmin: true,
+      maxmin: false,
       shadeClose: true, //点击遮罩关闭层
       area : ['500px' , '520px'],
       content: 'findman_subframe.html'
