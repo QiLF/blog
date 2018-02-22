@@ -54,6 +54,14 @@
             }
             else {
                // alert(data.error);
+               if(data.error=="member already exist")
+               {
+                 layer.msg("该用户已是团队成员！");
+               }
+               if(data.error=="user not exist")
+               {
+                 layer.msg("该用户名不存在！");
+               }
             }
             },
             error : function() {

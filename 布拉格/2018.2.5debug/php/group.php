@@ -97,6 +97,13 @@
 			}
 			//增加成员
 			else if($opt == "add_member"){
+                $check_res=mysqli_query($con,"select * from users where username='{$data["username"]}'");
+                if(!mysqli_num_rows($check_res))
+                {
+                    echo json_encode(array("success"=>"false", "error"=>"user not exist", "res"=>""));
+					mysqli_close($con);
+					return;
+                }
 				$sql = "select * from group_user where group_id = '{$data["group_id"]}' and username= '{$data["username"]}'";
 				$num = mysqli_query($con,$sql);
 				if(!$num){
