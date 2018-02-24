@@ -185,7 +185,7 @@ function add_one_sub_task(task_label,sub_task_label)
 											+		"class='layui-btn layui-btn-xs' style='margin-left:15px;float:right'>"
 											+		"确认完成"
 											+		 "</button>"
-											+		"<i id='"+face_id+"' class='layui-icon' style='font-size: 20px; color: #1E9FFF;float:right'>&#xe60c;</i>"
+											+		"<span id='"+face_id+"'></span>"
 											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
 											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
@@ -261,13 +261,11 @@ function change_one_face(id,finished)
        var target=document.getElementById(id);
 	   if(finished==1)
 	   {
-	   target.innerHTML="&#xe60c;";
-	   target.style="font-size: 20px; color: #1E9FFF;margin-right:30px;float:right;";
+	   target.innerHTML="<i class='layui-icon' style='float:right;margin-right:30px;font-size: 22px;color: #1E9FFF;'>&#xe60c;</i>";
 	   }
 	   else
 	   {
-	   target.innerHTML="&#xe69c;";
-	   target.style="font-size: 19px; color:#FF5722;margin-right:30px;float:right;";
+	   target.innerHTML="<i class='layui-icon' style='float:right;margin-right:30px;font-size: 19px;color: #FF5722;'>&#xe69c;</i>";
 	   }
 }
 
