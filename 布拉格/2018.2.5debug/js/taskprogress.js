@@ -1,5 +1,7 @@
 var task_num;
 var sub_task_num=new Array();
+//任务进度
+var task_percent=new Array();
 
 /*
 函数说明：初始化任务选项卡模块
@@ -11,6 +13,7 @@ function task_progress()
 	sub_task_num.splice(0,sub_task_num.length);
 	document.getElementById("tab_title").innerHTML="";
 	document.getElementById("task_part").innerHTML="";
+	task_percent.splice(0,task_percent.length);//清空任务进度数组
 	//获取任务数，子任务数
 	task_num=tasks.length;
 	for(var i=0;i<task_num;i++)
@@ -23,6 +26,9 @@ function task_progress()
 	}
 	init_tab(task_num);
 	total_task(task_num);
+	//为任务条设置进度
+	set_task_percent();
+	layui.element.render('taskprogress-tab');
 	if(task_num>0){
 		layui.element.tabChange('taskprogress-tab', tasks[0].task_id);
 	}else{
@@ -217,7 +223,7 @@ function total_sub_task(task_label)
 		  if(is_finished==1)sub_finish_num++;
 	   }
 	   percent=sub_finish_num/sub_task_num[task_label-1];
-	change_one_bar("task_bar"+task_label,(percent*100)+"%");
+	   task_percent.push((percent.toFixed(2)*100)+"%");
 }
 
 
@@ -233,4 +239,12 @@ function total_task(task_num)
 		{
 		   total_sub_task(i);
 		}
+}
+//函数说明:为所有任务条设置进度
+function set_task_percent()
+{
+	for(var i=1;i<=task_num;i++)
+	{
+		document.getElementById("task_bar"+i).innerHTML="<div   class='layui-progress-bar layui-bg-red' lay-percent="+task_percent[i-1]+"></div>";
+	}
 }

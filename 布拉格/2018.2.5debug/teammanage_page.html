@@ -450,6 +450,7 @@
 								element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 								//监听选项卡点击
 								element.on("tab(main-tab)", function(elem){
+								set_task_percent();
 								element.render('taskprogress-tab');
 						 });
 			});

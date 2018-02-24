@@ -2,6 +2,8 @@ var history_tasks=new Array();
 //历史任务数及每个历史任务的子项数
 var history_task_num=0;
 var history_sub_task_num=new Array();
+//历史任务进度
+var history_task_percent=new Array();
 /*
  $(document).ready(function(){
 	 get_history_tasks();
@@ -16,6 +18,7 @@ var history_sub_task_num=new Array();
 		  return;
 	  }
 	  history_tasks.splice(0,history_tasks.length);	//清空个人历史任务数组
+	  history_task_percent.splice(0,history_task_percent.length);//清空历史任务进度数组
 	  history_task_num=0;
 	  history_sub_task_num.splice(0,history_sub_task_num.length);//清空子项数量数组
 	  document.getElementById('task_h_part').innerHTML="";
@@ -63,7 +66,9 @@ var history_sub_task_num=new Array();
 						document.getElementById('task_h_part').innerHTML=="还没有任务完成记录，快去帮团队做任务吧！"
 						}
 						total_task_h(history_task_num);
-						
+						//为历史任务条设置进度
+						set_history_task_percent();
+						layui.element.render('history-tab');
 						//切换到历史任务一
 							if(task_num>0){
 											layui.element.tabChange('history-tab', history_tasks[0].task_id);
@@ -217,7 +222,7 @@ function total_sub_task_h(task_label)
 		  if(is_finished==1)sub_finish_num++;
 	   }
 	   percent=sub_finish_num/history_sub_task_num[task_label-1];
-	   change_one_bar("task_h_bar"+task_label,(percent*100)+"%");
+	   history_task_percent.push((percent.toFixed(2)*100)+"%");
 }
 
 /*
@@ -231,4 +236,12 @@ function total_task_h(task_h_num)
 		{
 		   total_sub_task_h(i);
 		}
+}
+//函数说明:为所有历史任务条设置进度
+function set_history_task_percent()
+{
+	for(var i=1;i<=history_task_num;i++)
+	{
+		document.getElementById("task_h_bar"+i).innerHTML="<div   class='layui-progress-bar layui-bg-red' lay-percent="+history_task_percent[i-1]+"></div>";
+	}
 }

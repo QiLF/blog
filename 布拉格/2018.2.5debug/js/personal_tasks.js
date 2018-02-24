@@ -2,7 +2,13 @@
   //任务数及每个任务的子项数
   var task_num=0;
   var sub_task_num=new Array();
-
+  //任务进度
+  var task_percent=new Array();
+  //表示是否需要切换到特定选项卡的标志，需要切换为true,否则为false
+  var tabchange_flag=false;
+  //切换到的任务的id
+  var tabchange_id=null;
+  
  //获取个人任务信息
   function get_personal_tasks(value)
   {
@@ -12,6 +18,7 @@
 		  return;
 	  }
 	  tasks.splice(0,tasks.length);	//清空个人任务数组
+	  task_percent.splice(0,task_percent.length);//清空任务进度数组
 	  task_num=0;
 	  sub_task_num.splice(0,sub_task_num.length);//清空子项数量数组
 	  document.getElementById('task_part').innerHTML="";//初始化任务部分
@@ -58,10 +65,17 @@
 						document.getElementById('task_part').innerHTML=="目前还没任务，快去发布任务吧！"
 						}
 						total_task(task_num);
+					//为任务条设置进度
+					set_task_percent();
+					layui.element.render('task-tab');
 						//切换到任务一
-							if(task_num>0){
+							if(task_num>0&&tabchange_flag==false){
 											layui.element.tabChange('task-tab', tasks[0].task_id);
 										  }
+							if(tabchange_flag==true){
+								layui.element.tabChange('task-tab', tabchange_id);//切换到特定任务
+								tabchange_flag=false;//重置
+							}
 					}else{
 					//如果查询任务记录为空
 					if(data.error=="start_index exceeds number of rows")
@@ -75,6 +89,7 @@
   }
 
 /*******************************************************当前任务所用函数*********************************************************************/
+
 /*
 函数说明：初始化选项卡的当前任务模块
 参数：任务数目
@@ -166,7 +181,7 @@ function add_one_sub_task(task_label,sub_task_label)
 											+"<div class='layui-timeline-content layui-text' >"
 											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
 											+		  "子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name
-											+		"<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"') type='button'"
+											+		"<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"','"+tasks[task_label-1].task_id+"') type='button'"
 											+		"class='layui-btn layui-btn-xs' style='margin-left:15px;float:right'>"
 											+		"确认完成"
 											+		 "</button>"
@@ -200,7 +215,7 @@ function total_sub_task(task_label)
 		  if(is_finished==1)sub_finish_num++;
 	   }
 	   percent=sub_finish_num/sub_task_num[task_label-1];
-	change_one_bar("task_bar"+task_label,(percent*100)+"%");
+	   task_percent.push((percent.toFixed(2)*100)+"%");
 }
 
 /*
@@ -267,7 +282,6 @@ function add_progress_bar(prefix,task_label)
 	$("#"+prefix+task_label).append(
 								"<!--进度条-->"
 											+	"<div  style='margin-top:10px;margin-bottom:10px;position:relative;clear:left;' class='layui-progress layui-progress-big' id='" + task_bar_id + "' lay-filter='"+task_bar_id+"'  lay-showPercent='true'>"
-											+	"	<div   class='layui-progress-bar layui-bg-red' lay-percent='100%'></div>"
 											+	"</div>"
 								);
 }
@@ -282,6 +296,14 @@ function change_one_bar(task_bar_id,percent)
 	layui.element.progress(task_bar_id, percent);
 }
 
+//函数说明:为所有任务条设置进度
+function set_task_percent()
+{
+	for(var i=1;i<=task_num;i++)
+	{
+		document.getElementById("task_bar"+i).innerHTML="<div   class='layui-progress-bar layui-bg-red' lay-percent="+task_percent[i-1]+"></div>";
+	}
+}
 
 /*
 函数说明：向一个子任务添加日志

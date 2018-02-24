@@ -169,7 +169,7 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 							 <div>
 								<div class="layui-tab layui-tab-brief" lay-filter="task-tab">
 								
-									<ul class="layui-tab-title" id="task_title_part" style="margin-bottom:10px">
+									<ul class="layui-tab-title" id="task_title_part" lay-filter="task-tab_title" style="margin-bottom:10px">
 										<!--任务进度的任务标题部分，通过jquery添加-->
 									</ul>
 									
@@ -359,8 +359,11 @@ padding-left: 65px; filter: progid:DXImageTransform.Microsoft.gradient(gradientT
 								element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 								//监听选项卡点击
 								element.on("tab(main-tab)", function(elem){
+								set_task_percent();
+								set_history_task_percent();
 								element.render('history-tab');
 								element.render('task-tab');
+								//set_task_percent();
 						 });
 			});
 	</script>

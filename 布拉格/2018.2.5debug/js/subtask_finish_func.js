@@ -1,6 +1,6 @@
-function finish_subtask_func(value)
+function finish_subtask_func(subtask_id,task_id)
 {
-  if(value==null)
+  if(subtask_id==null)
   {
     //alert("子项目id为空！")
     return false;
@@ -10,7 +10,7 @@ function finish_subtask_func(value)
   var month_num=now_date.getMonth()+1;
   var date_num=now_date.getDate();
   var current_date=year_num+'-'+month_num+'-'+date_num;
-  var temp_data={"state":"update_subtask","data":{"subtask_id":value,"state":1,"progress":1,"real_end_time":current_date}};
+  var temp_data={"state":"update_subtask","data":{"subtask_id":subtask_id,"state":1,"progress":1,"real_end_time":current_date}};
   var res=JSON.stringify(temp_data);
   //ajax part
   $.ajax({
@@ -26,6 +26,10 @@ function finish_subtask_func(value)
         }
         else {
           layer.msg("子项进度提交成功！");
+		  //用于在get_personal_tasks中将选项卡切换回原任务
+		  tabchange_id=task_id;
+		  tabchange_flag=true;
+		  
 		  get_personal_tasks(current_group_id);
         }
       },
