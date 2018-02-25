@@ -14,20 +14,18 @@
 	        success: function (data) {
 	          //deal with data from back_end
 	          if(data.success == "false"){
-	            //alert the reason for false
+	            //layer.msg the reason for false
 							if(data.error=="start_index exceeds number of rows")
 							{
 								document.getElementById("team_own").innerHTML="";
-								alert('亲爱的用户，你还没有加入任何团队，试试去创建属于自己的团队吧！');
+								layer.msg('亲爱的用户，你还没有加入任何团队，试试去创建属于自己的团队吧！');
 							}
 							else
 							{
-								//alert(data.error);
+								layer.msg(data.error);
 							}
 	          }
 	          else {
-	            //alert('所属团队信息加载成功');
-							//链接测试成功，接下来就是用返回的数据去填充侧边栏了，23333，先去开车了。。2018.1.27 18:55
 							var flag_i=0;
 							var temp_html="";
 							//加载侧边栏我拥有的团队
@@ -37,7 +35,7 @@
 								flag_i++;
 							}
 							document.getElementById("team_own").innerHTML=temp_html;
-							
+
 							layui.use('element', function(){
 															var $ = layui.jquery
 															,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -51,7 +49,7 @@
 						}
 	        },
 	        error : function() {
-	          //alert("数据请求异常");
+	          layer.msg("数据请求异常");
 	        }
 	      });
 		}

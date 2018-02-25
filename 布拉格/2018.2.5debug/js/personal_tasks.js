@@ -8,7 +8,7 @@
   var tabchange_flag=false;
   //切换到的任务的id
   var tabchange_id=null;
-  
+
  //获取个人任务信息
   function get_personal_tasks(value)
   {
@@ -34,57 +34,59 @@
 						}
 			  };
 	  var str=JSON.stringify(res);
-	  //alert("向后端传入的json数据为"+str);
+	  //layer.msg("向后端传入的json数据为"+str);
 	  $.ajax({
              url: "php/search_tasks.php",
              type: "POST",
              data:{res:str},
-			 dataType: "json",
+			       dataType: "json",
              error: function(){
-                 //alert('Error loading XML document');
+                layer.msg('数据请求失败');
              },
              success: function(data){
-				if(data.success=="true"){
-					//alert("查询个人任务成功！");
-					for(var i=0;i<data.res.length;i++){
-						tasks.push(data.res[i]);
-					}
-					//获取任务数及每个任务的子项数
-					task_num=tasks.length;
-					for(var i=0;i<task_num;i++)
-					{
-						if(tasks[i].subtasks!=undefined){
-						sub_task_num[i]=tasks[i].subtasks.length;
-						}else{
-							sub_task_num[i]=0;
-						}
-					}
-					//加载当前任务
-					  init_task_part(task_num);
-					  if(document.getElementById('task_part').innerHTML==""){
-						document.getElementById('task_part').innerHTML=="目前还没任务，快去发布任务吧！"
-						}
-						total_task(task_num);
-					//为任务条设置进度
-					set_task_percent();
-					layui.element.render('task-tab');
-						//切换到任务一
-							if(task_num>0&&tabchange_flag==false){
-											layui.element.tabChange('task-tab', tasks[0].task_id);
-										  }
-							if(tabchange_flag==true){
-								layui.element.tabChange('task-tab', tabchange_id);//切换到特定任务
-								tabchange_flag=false;//重置
-							}
-					}else{
-					//如果查询任务记录为空
-					if(data.error=="start_index exceeds number of rows")
-					{
-						document.getElementById('task_part').innerHTML="<div class='layui-text'>还没有任务呢,快去发布吧！</div>";
-					}
-					//alert(data.error);
-				}
-			}
+				        if(data.success=="true"){
+					        //layer.msg("查询个人任务成功！");
+					        for(var i=0;i<data.res.length;i++){
+						        tasks.push(data.res[i]);
+					        }
+					        //获取任务数及每个任务的子项数
+					        task_num=tasks.length;
+					        for(var i=0;i<task_num;i++)
+					        {
+						        if(tasks[i].subtasks!=undefined){
+						          sub_task_num[i]=tasks[i].subtasks.length;
+						        }
+                    else{
+							        sub_task_num[i]=0;
+						        }
+					        }
+        					//加载当前任务
+        					init_task_part(task_num);
+        					if(document.getElementById('task_part').innerHTML==""){
+        				  document.getElementById('task_part').innerHTML=="目前还没任务，快去发布任务吧！"
+        				  }
+        					total_task(task_num);
+        					//为任务条设置进度
+        					set_task_percent();
+        					layui.element.render('task-tab');
+						      //切换到任务一
+							    if(task_num>0&&tabchange_flag==false){
+										layui.element.tabChange('task-tab', tasks[0].task_id);
+									}
+							    if(tabchange_flag==true){
+							      layui.element.tabChange('task-tab', tabchange_id);//切换到特定任务
+								    tabchange_flag=false;//重置
+							    }
+					      }
+                else{
+					        //如果查询任务记录为空
+					        if(data.error=="start_index exceeds number of rows")
+					        {
+						        document.getElementById('task_part').innerHTML="<div class='layui-text'>还没有任务呢,快去发布吧！</div>";
+					        }
+					        //layer.msg(data.error);
+				        }
+			       }
 		});
   }
 
@@ -159,7 +161,7 @@ function add_total_sub_task(task_label,sub_task_num)
 	{
 		add_one_sub_task(task_label,i);
 	}
-	//alert(ok);
+	//layer.msg(ok);
 }
 
 
@@ -257,7 +259,7 @@ function change_display(id)
 */
 function change_one_face(id,finished)
 {
-  //alert(id);
+  //layer.msg(id);
        var target=document.getElementById(id);
 	   if(finished==1)
 	   {
@@ -327,7 +329,7 @@ function add_blogs2_one_subtask(bloglinks_id,subtask_id)
              data:{res:str},
              dataType: "json",
              error: function(){
-                 //alert('Error loading XML document');
+                 //layer.msg('Error loading XML document');
              },
              success: function(data){
 				if(data.success=="true"){

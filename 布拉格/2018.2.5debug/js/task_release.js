@@ -23,31 +23,32 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 	function getpriority()
 	{
 		var checks = document.getElementsByName("superior");
-                                 var priority = -1;
-                                  for (i = 0; i < checks.length; i++)
-                                  {
-									                    priority++;
-                                      if (checks[i].checked)
-                                      {
-                                         return(priority+1);
-                                      }
-                                  }
-                                  if (priority == checks.length) {
-									  layer.msg("请确认优先级");//感觉不用验证但保险起见还是放在这了
-                                      return -1;
-									}
+    var priority = -1;
+    for (i = 0; i < checks.length; i++)
+    {
+	    priority++;
+      if(checks[i].checked)
+      {
+        return(priority+1);
+      }
+    }
+    if (priority == checks.length)
+    {
+			layer.msg("请确认优先级");//感觉不用验证但保险起见还是放在这了
+      return -1;
+		}
 	}
 
 	//用于将发布任务页面的表单转换为json格式发送到后端
     function onclick_sumit()
     {
-			     var json_info;
+      			var json_info;
             //表单验证部分
-        /////////////////////////////////////////////////////////////////////////////////////////////
+            /////////////////////////////////////////////////////////////////////////////////////////////
 
-        //task_title
+            //task_title
             var task_title=document.forms["task_release_form"]["task_title"].value;
-			if(task_title==""||task_title==null)
+      			if(task_title==""||task_title==null)
             {
                 layer.msg("任务名不得为空");
                 return false;
@@ -69,8 +70,8 @@ layui.use(['form', 'layedit', 'laydate'], function(){
             }
 
 
-       //task_introduction
-			var task_introduction=layui.layedit.getContent(task_index);
+            //task_introduction
+			      var task_introduction=layui.layedit.getContent(task_index);
             if(task_introduction.length<5)
             {
                 layer.msg("任务简介至少需含5个字符");
@@ -87,13 +88,16 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                 return ;
             }
 
-				    json_info={"state":"insert_task","data":{
-														"name":task_title,
-														"introduction":task_introduction
-														}
-					      };
+				    json_info={
+              "state":"insert_task",
+              "data":
+              {
+  							"name":task_title,
+  							"introduction":task_introduction
+  						}
+					  };
 			      json_info.data.subtasks=new Array();
-        //sub_task and pic
+            //sub_task and pic
             var blog_i=1;
             for(blog_i;blog_i<=sub_task_flag;blog_i++)//此处引用了add_and_drop中的全局变量sub_task_flag
             {
@@ -107,7 +111,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                 {
                     layer.msg('子任务'+blog_i+'的名称不得为空');
                     return false;
-                }				
+                }
                 if(form_subtask.length<5||form_subtask.length>32)
                 {
                     layer.msg('子任务'+blog_i+'的名称需为5-32个字符');
@@ -150,9 +154,9 @@ layui.use(['form', 'layedit', 'laydate'], function(){
                 }
             }
 
-			//time_order
-			var task_start_date=document.forms["task_release_form"]["start_date"].value;
-			var task_end_date=document.forms["task_release_form"]["end_date"].value;
+      			//time_order
+      			var task_start_date=document.forms["task_release_form"]["start_date"].value;
+      			var task_end_date=document.forms["task_release_form"]["end_date"].value;
             var start_time=stringToDate(task_start_date);
             var end_time=stringToDate(task_end_date);
             if(end_time<=start_time)
@@ -191,7 +195,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
       					  else {
 							  success_flag=true;
       						  layer.msg("任务发布成功");
-							  var index = parent.layer.getFrameIndex(window.name); //获取窗口索引  
+							  var index = parent.layer.getFrameIndex(window.name); //获取窗口索引
 							  parent.layer.close(index);
 							  //parent.layer.close(layer.index);//关闭弹出层
       					  }

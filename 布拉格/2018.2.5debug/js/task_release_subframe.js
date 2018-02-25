@@ -18,7 +18,7 @@ $('#create_task_button').on('click', function(){
     }
     else
     {
-        alert("请先选择团队再执行该操作！");
+        layer.msg("请先选择团队再执行该操作！");
         return false;
     }
 

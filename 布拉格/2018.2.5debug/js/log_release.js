@@ -114,7 +114,7 @@ function goto_subtask_blog(value)
 
 			var temp={"state":"insert_blog","data":{"writer":userName,"subtask_id":form_subtask_id,"name":form_theme,"content":form_content}};
 			var str=JSON.stringify(temp);
-			//alert(str);
+			//layer.msg(str);
 			$(function(){
 				$.ajax({
 						url: "php/uploadblog.php",
@@ -122,7 +122,7 @@ function goto_subtask_blog(value)
 						data:{res:str},
 						dataType: "json",
 						error: function(){
-											//alert('Error loading XML document');
+											//layer.msg('Error loading XML document');
 										 },
 						success: function(data){
 										if(data.success=="true"){
@@ -132,7 +132,7 @@ function goto_subtask_blog(value)
 																document.getElementById('log_title').value="";//清空发布模块的博客标题
 																layui.layedit.setContent(log_index,"");//清空发布模块的博客内容
 															}else{
-																	//alert(data.error);
+																	//layer.msg(data.error);
 																	if(data.error=="unsigned")
 																	{
 																		layer.msg("请先登陆！");

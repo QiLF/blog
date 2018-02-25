@@ -3,30 +3,30 @@
   参数：无
   返回：true/false
   */
-  
-  //function for transform from form to json object.    
-  $.fn.serializeObject = function()    
-    {    
-       var object = {};    
-       var temp = this.serializeArray();    
-       $.each(temp, function() {    
-           if (object[this.name]) {    
-               if (!object[this.name].push) {    
-                   object[this.name] = [object[this.name]];    
-               }    
-               object[this.name].push(this.value || '');    
-           } else {    
-               object[this.name] = this.value || '';    
-           }    
-       });    
-       return object;    
+
+  //function for transform from form to json object.
+  $.fn.serializeObject = function()
+    {
+       var object = {};
+       var temp = this.serializeArray();
+       $.each(temp, function() {
+           if (object[this.name]) {
+               if (!object[this.name].push) {
+                   object[this.name] = [object[this.name]];
+               }
+               object[this.name].push(this.value || '');
+           } else {
+               object[this.name] = this.value || '';
+           }
+       });
+       return object;
     };
-  
-  
-  
-  
-  
-  
+
+
+
+
+
+
 	function validateForm()
 	{
 	var username=document.forms["login-form"]["username"].value;
@@ -43,15 +43,15 @@
 	  layer.msg("密码必须填写");
 	  return false;
 	  }
-	  
-	  
-	  
-	  
+
+
+
+
     var temp_data=$('#login-form').serializeObject();
     var final_object={"data":temp_data};
-    //alert(JSON.stringify(final_object));
+    //layer.msg(JSON.stringify(final_object));
     var res=JSON.stringify(final_object);
-    
+
     //ajax part
     $.ajax({
         type: "POST",
@@ -61,14 +61,14 @@
         success: function (data) {
           //deal with data from back_end
           if(data.success=="false"){
-            //alert the reason for false
-            //alert(data.error);
-			if(data.error=="user_not_exist"){
-				layer.msg("用户名不存在！");
-			}
-			if(data.error=="password_not_correct"){
-				layer.msg("密码错误！");
-			}
+            //layer.msg the reason for false
+            layer.msg(data.error);
+			      if(data.error=="user_not_exist"){
+				      layer.msg("用户名不存在！");
+			      }
+			      if(data.error=="password_not_correct"){
+				      layer.msg("密码错误！");
+			      }
           }
           else {
             //login successfully and go to personal page
@@ -78,13 +78,10 @@
           }
         },
         error : function() {
-          //alert("数据请求异常");
+          layer.msg("数据请求异常");
         }
       });
-    
-    
-    
-    return true;
+      return true;
     }
   /*
   标题:验证用户名有效格式
@@ -96,9 +93,9 @@
   {
 	  var parten=/^([A-Z a-z 0-9 _ ]{8,20})$/;
 	  if(parten.test(username)){
-	  return true; 
+	  return true;
 	  }else{
-	  return false; 
+	  return false;
 	  }
   }
   /*
@@ -111,10 +108,10 @@
   {
 	  var parten=/^([A-Z a-z 0-9 _ ]{6,16})$/;
 	  if(parten.test(password)){
-	  return true; 
+	  return true;
 	  }
 	  else{
-	  return false; 
+	  return false;
 	  }
   }
   /*
@@ -144,7 +141,7 @@
   */
   function oBlur_check_password()
   {
-	  
+
 	  var password=document.forms["login-form"]["password"].value;
 	  if (password==null || password==""){
 	  document.getElementById("reminder_password").innerHTML = "请输入密码！";
@@ -161,20 +158,13 @@
   function oFocus_userName() {
 	  document.getElementById("reminder_userName").innerHTML = "";
   }
-  
+
   /*
   标题：用户框获得焦点的隐藏提醒
   参数：
   返回：
   */
-  
+
   function oFocus_password() {
 	  document.getElementById("reminder_password").innerHTML = "";
   }
-  
-  
-  
-  
-  
-  
-  

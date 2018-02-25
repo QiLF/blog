@@ -19,12 +19,12 @@ layui.use('upload', function(){
         return layer.msg('上传成功');
       }
       else{
-        //alert(data.error);
+        //layer.msg(data.error);
 		if(data.error=="unsigned"){
-			alert("请先登陆！");
+			layer.msg("请先登陆！");
 		}
 		if(data.error=="format_error"){
-			alert("文件类型不对！");
+			layer.msg("文件类型不对！");
 		}
       }
     }

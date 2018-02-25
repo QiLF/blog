@@ -1,12 +1,12 @@
 
 sub_task_flag=3;
-function add_file() 
+function add_file()
 {
 	layui.use(['form', 'layedit', 'laydate'], function(){
 		var form = layui.form
 		,layer = layui.layer
 		,layedit = layui.layedit
-		,laydate = layui.laydate;	
+		,laydate = layui.laydate;
 	   if(sub_task_flag<9)
 	   {
 		sub_task_flag++;
@@ -25,7 +25,7 @@ function add_file()
 							   <option value="">请选择执行者</option>'
 		for(var elem_i=0;elem_i<window.parent.current_members.length;elem_i++)
 		{
-			addelem+='<option value="'+window.parent.current_members[elem_i]+'">'+window.parent.current_members[elem_i]+'</option>';	
+			addelem+='<option value="'+window.parent.current_members[elem_i]+'">'+window.parent.current_members[elem_i]+'</option>';
 		}
 		addelem+=              '</select>\
 							  </div>\
@@ -38,7 +38,7 @@ function add_file()
 	   }
 	   else
 	   {
-		alert("子项目数目已经达到上限");
+			 layer.msg("子项目数目已经达到上限");
 	   }
 	   });
 }
@@ -52,8 +52,6 @@ function drop_file()
    }
    else
    {
-		alert("子项目数目不能为空");
+			layer.msg("子项目数目不能为空");
    }
 }
-
-

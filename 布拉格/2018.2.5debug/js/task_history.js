@@ -13,7 +13,7 @@ var history_task_percent=new Array();
   function get_history_tasks(value)
   {
 	   if(current_group_id==null){
-		  alert("请先选择团队");
+		  layer.msg("请先选择团队");
 		  layui.element.tabChange('main-tab','task-reminder');
 		  return;
 	  }
@@ -34,54 +34,55 @@ var history_task_percent=new Array();
 						}
 			  };
 	  var str=JSON.stringify(res);
-	  //alert("向后端传入的json数据为"+str);
+	  //layer.msg("向后端传入的json数据为"+str);
 	  $.ajax({
              url: "php/search_tasks.php",
              type: "POST",
              data:{res:str},
-			 dataType: "json",
+			       dataType: "json",
              error: function(){
-                 //alert('Error loading XML document');
+               layer.msg('数据请求失败');
              },
              success: function(data){
-				if(data.success=="true"){
-					//alert("查询历史任务成功！");
-					for(var i=0;i<data.res.length;i++){
-						history_tasks.push(data.res[i]);
-					}
-					//获取任务数及每个任务的子项数
-					history_task_num=history_tasks.length;
-					for(var i=0;i<history_task_num;i++)
-					{
-						if(history_tasks[i].subtasks!=undefined){
-						history_sub_task_num[i]=history_tasks[i].subtasks.length;
-						}else{
-							history_sub_task_num[i]=0;
-						}
+				        if(data.success=="true"){
+					        for(var i=0;i<data.res.length;i++){
+						        history_tasks.push(data.res[i]);
+					        }
+					        //获取任务数及每个任务的子项数
+					        history_task_num=history_tasks.length;
+					        for(var i=0;i<history_task_num;i++)
+					        {
+						        if(history_tasks[i].subtasks!=undefined){
+						          history_sub_task_num[i]=history_tasks[i].subtasks.length;
+						        }
+                    else{
+							        history_sub_task_num[i]=0;
+						        }
 
-					}
-						//加载任务历史
-						init_task_h_part(history_task_num);
-						if(document.getElementById('task_h_part').innerHTML==""){
-						document.getElementById('task_h_part').innerHTML=="还没有任务完成记录，快去帮团队做任务吧！"
-						}
-						total_task_h(history_task_num);
-						//为历史任务条设置进度
-						set_history_task_percent();
-						layui.element.render('history-tab');
-						//切换到历史任务一
-							if(task_num>0){
-											layui.element.tabChange('history-tab', history_tasks[0].task_id);
-										  }	
-				}else{
-					//如果查询任务记录为空
-					if(data.error=="start_index exceeds number of rows")
-					{
-						document.getElementById('task_h_part').innerHTML="<div class='layui-text'>无历史记录</div>";
-					}
-					//alert(data.error);
-				}
-			}
+					        }
+      						//加载任务历史
+      						init_task_h_part(history_task_num);
+      						if(document.getElementById('task_h_part').innerHTML==""){
+      						  document.getElementById('task_h_part').innerHTML=="还没有任务完成记录，快去帮团队做任务吧！"
+      						}
+      						total_task_h(history_task_num);
+      						//为历史任务条设置进度
+      						set_history_task_percent();
+      						layui.element.render('history-tab');
+      						//切换到历史任务一
+							    if(task_num>0){
+										layui.element.tabChange('history-tab', history_tasks[0].task_id);
+									}
+				        }
+                else{
+        					//如果查询任务记录为空
+        					if(data.error=="start_index exceeds number of rows")
+        					{
+        						document.getElementById('task_h_part').innerHTML="<div class='layui-text'>无历史记录</div>";
+        					}
+        					//layer.msg(data.error);
+				        }
+			       }
 		});
   }
 
@@ -121,7 +122,7 @@ function add_one_history_task(task_label)
 				+	"<div class=' layui-text' id='task_h"+task_label+"_description' style='display:none;'>"
 				+		"<div class='layui-timeline-title' >任务简介:"+history_tasks[task_label-1].introduction+"</div>"
 				+		"<div class='layui-timeline-title' >开始日期:"+history_tasks[task_label-1].start_date+"  截止日期:"+history_tasks[task_label-1].end_date+"</div>"
-				+		"<div class='layui-timeline-title' >优先级:"+priority[history_tasks[task_label-1].priority-1]+"</div>"  
+				+		"<div class='layui-timeline-title' >优先级:"+priority[history_tasks[task_label-1].priority-1]+"</div>"
 				+		"<div class='layui-timeline-title' >"
 				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
 				+			"参与成员："+history_tasks[task_label-1].members
@@ -129,12 +130,12 @@ function add_one_history_task(task_label)
 				+ 	"</div>"
 				+  "<div id='"+other_content_id+"'</div>"
 				+"</div>";
-	layui.element.tabAdd('history-tab', 
+	layui.element.tabAdd('history-tab',
 						 {
 								title: tasks[task_label-1].name//'历史任务'+task_label
 								,content: content //支持传入html
 								,id: history_tasks[task_label-1].task_id//lay-id属性
-						 }); 
+						 });
 	add_progress_bar("task_h",task_label);
 	$("#"+other_content_id).append(
 									"<div class='layui-field-box' style='position:relative;'>"
@@ -142,7 +143,7 @@ function add_one_history_task(task_label)
 										+"<br/>"
 									+"</div>"
 									);
-	add_total_sub_task_h(task_label,history_sub_task_num[task_label-1]);				 
+	add_total_sub_task_h(task_label,history_sub_task_num[task_label-1]);
 }
 
 /*
@@ -158,7 +159,7 @@ function add_total_sub_task_h(task_label,sub_task_num)
 	{
 		add_one_sub_task_h(task_label,i);
 	}
-	//alert(ok);
+	//layer.msg(ok);
 }
 
 

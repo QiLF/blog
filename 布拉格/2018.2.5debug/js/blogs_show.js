@@ -167,7 +167,7 @@
 	           dataType: "json",
 	           error: function()
 	           {
-	             alert('数据请求失败');
+	             layer.msg('数据请求失败');
 	           },
 	           success: function(data)
 	           {
@@ -190,7 +190,7 @@
 	             }
 	             else
 	             {
-	               alert(data.error);
+	               layer.msg(data.error);
 	             }
 	           }
 	  });

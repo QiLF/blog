@@ -26,11 +26,11 @@
           {
             if(data.error=="start_index exceeds number of rows")
             {
-              alert("这个成员很懒，啥都没写～");
+              layer.msg("这个成员很懒，啥都没写～");
             }
             else
             {
-              alert(data.error);
+              layer.msg(data.error);
             }
           }
           else
@@ -50,7 +50,7 @@
         },
         error : function()
         {
-          alert('数据请求失败');
+          layer.msg('数据请求失败');
         }
     });
 

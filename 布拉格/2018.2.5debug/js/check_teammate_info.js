@@ -11,17 +11,17 @@
         data: {res:res},
         success: function (data) {
         //deal with data from back_end
-        if(data.success=="false"){
-            //alert the reason for false
-            //alert(data.error);
-        }
-        else {
-            //alert('信息获取成功！')
+          if(data.success=="false"){
+            //layer.msg the reason for false
+            layer.msg(data.error);
+          }
+          else {
+            //layer.msg('信息获取成功！')
             show_mate_info_iframe(data);
-        }
+          }
         },
         error : function() {
-        //alert("数据请求异常");
+          layer.msg("数据请求异常");
         }
     });
   }
@@ -50,7 +50,7 @@
   function get_place_in(value)
   {
 
-
+    /////////////
 
     return '合肥';//暂时没做id转地名的函数，就合肥了
   }
