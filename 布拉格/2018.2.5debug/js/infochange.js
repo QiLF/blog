@@ -62,7 +62,7 @@
         if( filterSqlStr(final_object.data.nickname))
         {
           layer.msg("昵称中包含了敏感字符"+sql_str()+",请重新输入！");
-          return ;
+          return false;
         }
         //check email,必填项
     		if(!final_object.data.email)
@@ -106,12 +106,12 @@
     			if(final_object.data.intro.length>45)
     			{
     				layer.msg("简介中长度不得超过45个字符！");
-    				return ;
+    				return false;
     			}
     			if( filterSqlStr(final_object.data.intro))
     			{
     				layer.msg("简介中包含了敏感字符"+sql_str()+",请重新输入！");
-    				return ;
+    				return false;
     			}
     		}
         //form data confirm end
@@ -131,7 +131,7 @@
               //deal with data from back_end
               if(data.success=="false"){
                   //layer.msg the reason for false
-                  layer.msg(data.error);
+                  //layer.msg(data.error);
   				        if(data.error=="please sign in first")
   				        {
   					        layer.msg("请先登录！");

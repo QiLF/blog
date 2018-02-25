@@ -1,11 +1,11 @@
 //任务预览 相关js函数
 //功能：实现显示团队的task及查看task内容;对团队页面的任务模块元素的显示和隐藏
 	var task_show_index;
-	var tasks=new Array();
-	
+	//var tasks=new Array();转至全局变量管理中心
+
 	var display_flag=true;//判断是否要在调用task_view()时进行对任务预览，任务链接的display属性进行改变,true:需要，false:不需要
 	var fresh_flag=false;//判断是否需要在get_tasks()函数中重新载入任务预览，false不需要，true需要
-	
+
 	//var task_introduction=new Array();//为保险起见只把名字及内容拎出来作全局变量
 	//var task_name=new Array();
 	//var task_id=new Array();//把task_id也拎出来
@@ -171,9 +171,9 @@
 		task_evaluation=tasks[task_i].evaluation;
 	}
 	document.getElementById("task_show_evaluation").innerHTML=task_evaluation;
-	
-	
-	
+
+
+
 	var subtasks_num=tasks[task_i].subtasks.length;
 	//预先清空subtask显示容器内容，防止多次点击进入查看任务时出现子项目重复多次显示问题
 	document.getElementById("task_show_subtasks").innerHTML="";
@@ -188,7 +188,7 @@
 			subtask_evaluation=tasks[task_i].subtasks[i].evaluation;
 		}
 
-		
+
 		if(tasks[task_i].subtasks[i].state!='2'){
 			subtask_state="已完成";
 		}else{
