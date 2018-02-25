@@ -7,7 +7,13 @@
   <script src="layui/layui.js" charset="utf-8"></script>
   <link rel="stylesheet" href="layui/css/layui.css"  >
   <style>
-	body,li,p,ul { 
+	body{
+	  width: 100%;
+	  height:auto;
+	  background:url("imageshow/images/evaluation_bg.jpg") no-repeat;
+	  background-size: 100%;
+	}
+	li,p,ul { 
 		margin: 0;
 		padding: 0;
 		font: 12px/1 Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
@@ -18,9 +24,9 @@
 	a:hover { text-decoration: none; }
 	.clearfix::after{ display:block; content:''; height:0; overflow:hidden; clear:both;} 
 	/*星星样式*/
-	.content{ width:600px; margin:0 auto; padding-top:20px;}
+	.content{ width:600px; margin:0 auto; padding-top:0px;}
 	.title{ font-size:14px; background:#dfdfdf; padding:10px; margin-bottom:10px;}
-	.block{ width:100%; margin:0 0 20px 0; padding-top:10px; padding-left:50px; line-height:21px;}
+	.block{ width:100%; margin:0 0 20px 0; padding-top:0px; padding-left:50px; line-height:21px;}
 	.block .star_score{ float:left;}
 	.star_list{height:21px;margin:50px; line-height:21px;}
 	.block p,.block .attitude{ padding-left:20px; line-height:21px; display:inline-block;}
@@ -33,7 +39,7 @@
 	#starttwo .star_score a:hover{ background:url(imageshow/starsy.png);left:0;}
 	#starttwo .star_score a.clibg{ background:url(imageshow/starsy.png);left:0;}
 	/*星星样式*/
-	.show_number{ padding-left:50px; padding-top:20px;}
+	.show_number{ padding-left:50px; padding-top:0px;}
 	.show_number li{ width:240px; border:1px solid #ccc; padding:10px; margin-right:5px; margin-bottom:20px;}
 	.atar_Show{background:url(imageshow/stark2.png); width:160px; height:21px;  position:relative; float:left; }
 	.atar_Show p{ background:url(imageshow/stars2.png);left:0; height:21px; width:134px;}
@@ -61,7 +67,7 @@
 			<div class="layui-col-sm2"></div>
 		</div>
 			
-		<div style="margin-left:20px">
+		<div style="margin-left:20px;margin-top:50px">
 			<button type="button" onclick="subtask_evaluation_sumit()" class="layui-btn layui-btn-danger">提交</button>
 			<button type="button" onclick="close_subframe()" class="layui-btn layui-btn-primary">关闭</button>	
 		</div>
