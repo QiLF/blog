@@ -132,7 +132,7 @@ function add_one_history_task(task_label)
 				+"</div>";
 	layui.element.tabAdd('history-tab',
 						 {
-								title: tasks[task_label-1].name//'历史任务'+task_label
+								title: history_tasks[task_label-1].name//'历史任务'+task_label
 								,content: content //支持传入html
 								,id: history_tasks[task_label-1].task_id//lay-id属性
 						 });
@@ -181,7 +181,7 @@ function add_one_sub_task_h(task_label,sub_task_label)
 		evaluation="<span style='color:#FFB800;font-size:20px'>"+history_tasks[task_label-1].subtasks[sub_task_label-1].evaluation+"</span> 分"
 	}
 	var real_end_time;
-	if(history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==undefined||tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==null){
+	if(history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==undefined||history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time==null){
 		real_end_time="尚未完成";
 	}else{
 		real_end_time=history_tasks[task_label-1].subtasks[sub_task_label-1].real_end_time.slice(0,10);
