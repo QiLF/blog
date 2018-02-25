@@ -1,4 +1,4 @@
-  //var tasks=new Array();转至全局变量管理中心
+  var tasks=new Array();
   //任务数及每个任务的子项数
   var task_num=0;
   var sub_task_num=new Array();
@@ -141,7 +141,7 @@ function add_one_task(task_label)
 	add_progress_bar("task",task_label);
 	$("#"+other_content_id).append(
 									"<div class='layui-field-box' style='position:relative;'>"
-										+"<p style='float:left;'>任务进展</p>     <p style='margin-right:70px;float:right;'>完成情况</p>"
+										+"<p style='float:left;'>任务进展</p>     <p style='float:right;'>完成情况</p>"
 										+"<br/>"
 									+"</div>"
 									);
@@ -156,10 +156,11 @@ function add_one_task(task_label)
 
 function add_total_sub_task(task_label,sub_task_num)
 {
+	var username=getCookie("username");
 	$("#task"+task_label).append("<ul class='layui-timeline' id='task_list"+task_label+"'></ul>");
 	for(var i=1;i<=sub_task_num;i++)
 	{
-		add_one_sub_task(task_label,i);
+		add_one_sub_task(username,task_label,i);
 	}
 	//layer.msg(ok);
 }
@@ -170,34 +171,61 @@ function add_total_sub_task(task_label,sub_task_num)
 参数：任务编号,待添加子项在此任务中的编号
 返回：无
 */
-function add_one_sub_task(task_label,sub_task_label)
+function add_one_sub_task(username,task_label,sub_task_label)
 {
 	var sub_task_id="sub_task"+task_label+"-"+sub_task_label;
 	var sub_task_content_id="sub_task"+task_label+"-"+sub_task_label+"_content";
 	var face_id="face"+task_label+"-"+sub_task_label;
 	var task_list_id="task_list"+task_label;
 	var bloglinks_id=sub_task_id+"blogs";
-	$("#"+task_list_id).append(
-										"<li class='layui-timeline-item'>"
-											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
-											+"<div class='layui-timeline-content layui-text' >"
-											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
-											+		  "<span style='color:black'>子项名称：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].name
-											+		"<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"','"+tasks[task_label-1].task_id+"') type='button'"
-											+		"class='layui-btn layui-btn-xs' style='margin-left:15px;float:right'>"
-											+		"确认完成"
-											+		 "</button>"
-											+		"<span id='"+face_id+"'></span>"
-											+	"</div>"
-											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
-											+		"<div class='layui-timeline-title' ><span style='color:black'>开始日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
-											+		"<div class='layui-timeline-title' ><span style='color:black'>截止日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
-											+		"<div class='layui-timeline-title'><span style='color:black'>负责人：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
-                      +   '<div class="layui-timeline-title"><span style="color:black">操作:</span><button type="button" style="margin-left:20px" class="layui-btn layui-btn-xs" onclick=goto_subtask_blog("'+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+'")>添加子项日志</button></div>'
-											+	"</div>"
-											+"</div>"
+	var subtask_button;
+	if(tasks[task_label-1].subtasks[sub_task_label-1].state=="2"){
+		subtask_button=	"<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"','"+tasks[task_label-1].task_id+"') type='button'"
+						+		 "class='layui-btn layui-btn-xs' style='float:right;margin-right:20px'>"
+						+		 "确认完成"
+						+"</button>";
+	}else{
+		subtask_button=	"<button onclick="+"undo_finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"','"+tasks[task_label-1].task_id+"') type='button'"
+						+		 "class='layui-btn layui-btn-xs' style='float:right;margin-right:20px'>"
+						+		 "设为未完成"
+						+"</button>";
+	}
+	if(username==tasks[task_label-1].subtasks[sub_task_label-1].members){
+		$("#"+task_list_id).append(
+											"<li class='layui-timeline-item'>"
+												+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
+												+"<div class='layui-timeline-content layui-text' >"
+												+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
+												+		  "<span style='color:black'>子项名称：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].name
+												+		"<span id='"+face_id+"'></span>"
+												+   subtask_button
+												+	"</div>"
+												+	"<div id='"+sub_task_content_id+"' style='display:none'>"
+												+		"<div class='layui-timeline-title' ><span style='color:black'>开始日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
+												+		"<div class='layui-timeline-title' ><span style='color:black'>截止日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
+												+		"<div class='layui-timeline-title'><span style='color:black'>负责人：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
+												+   '<div class="layui-timeline-title"><span style="color:black">操作:</span><button type="button" style="margin-left:20px" class="layui-btn layui-btn-xs" onclick=goto_subtask_blog("'+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+'")>添加子项日志</button></div>'
+												+	"</div>"
+												+"</div>"
+											+"</li>"
+								   );
+	}else{
+		$("#"+task_list_id).append(
+									"<li class='layui-timeline-item'>"
+										+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
+										+"<div class='layui-timeline-content layui-text' >"
+										+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
+										+		"<span style='color:black'>子项名称：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].name
+										+		"<span id='"+face_id+"'></span>"
+										+	"</div>"
+										+	"<div id='"+sub_task_content_id+"' style='display:none'>"
+										+		"<div class='layui-timeline-title' ><span style='color:black'>开始日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
+										+		"<div class='layui-timeline-title' ><span style='color:black'>截止日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
+										+		"<div class='layui-timeline-title'><span style='color:black'>负责人：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
+										+"</div>"
 										+"</li>"
-	 						   );
+								   );
+	}
 }
 
 
@@ -267,7 +295,7 @@ function change_one_face(id,finished)
 	   }
 	   else
 	   {
-	   target.innerHTML="<i class='layui-icon' style='float:right;margin-right:30px;font-size: 19px;color: #FF5722;'>&#xe69c;</i>";
+	   target.innerHTML="<i class='layui-icon' style='float:right;margin-right:32px;font-size: 19px;color: #FF5722;'>&#xe69c;</i>";
 	   }
 }
 
