@@ -53,43 +53,7 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 //加载任务选择框的函数，调用全局变量current_group_id
 function log_load_task()
 {
-  var temp_data=
-  {
-    "state":"get_result",
-    "data":
-    {
-      "group_id":current_group_id,
-      "state":"2",//仅可对尚未完成的任务进行子项日志的添加
-      "order":"DESC",
-    }
-  }
-  var res=JSON.stringify(temp_data);
-  //ajax part
-  $.ajax({
-           async: false,
-           url: "php/search_tasks.php",
-           type: "POST",
-           data:{res:res},
-           dataType: "json",
-           error: function()
-           {
-             alert('数据请求失败');
-           },
-           success: function(data)
-           {
-             if(data.success=="true")
-             {
-               //加载任务select的option内容
-               load_options_for_task(data.res);
-               group_tasks=data.res;
-             }
-             else
-             {
-               alert(data.error);
-             }
-           }
-  });
-
+  load_options_for_task(tasks);
 }
 
 //加载选择框内子项目的函数，以任务id为参数
@@ -97,11 +61,11 @@ function log_load_subtask(task_name)
 {
   //在group_tasks中寻找任务id为参数值的任务，用其子项目来加载选择框
   var choosed_task=null;
-  for(var i=0;i<group_tasks.length;i++)
+  for(var i=0;i<tasks.length;i++)
   {
-    if(group_tasks[i].name==task_name)
+    if(tasks[i].name==task_name)
     {
-      choosed_task=group_tasks[i];
+      choosed_task=tasks[i];
     }
   }
   load_options_for_subtask(choosed_task);

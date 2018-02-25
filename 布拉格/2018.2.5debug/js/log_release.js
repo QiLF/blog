@@ -71,7 +71,7 @@ function goto_subtask_blog(value)
 
 						if(form_theme==""||form_theme==null)
             {
-                layer.msg("日志内容不得为空");
+                layer.msg("日志主题不得为空");
                 return false;
             }
             if(form_theme.length<5||form_theme.length>32)
