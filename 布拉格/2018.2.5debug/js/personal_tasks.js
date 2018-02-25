@@ -26,7 +26,7 @@
 	  var res={
 				"state":"get_result",
 				 "data":{
-              "group_id":value,
+						  "group_id":value,
 						  "member":getCookie("username"),
 						  "state":"2",
 						  "order":"ASC",
@@ -117,17 +117,17 @@ function add_one_task(task_label)
 	var other_content_id="task"+task_label;
 	var task_description_id="task"+task_label+"_description";
 	var content= "<div style='position:relative;float:none'>"
-				+	"<div class='layui-text' >任务名称:"+tasks[task_label-1].name+"</div>"
+				+	"<div class='layui-text' ><span style='color:black'>任务名称:</span>"+tasks[task_label-1].name+"</div>"
 				+	"<a style='cursor:pointer' onclick="+"change_display('"+task_description_id+"');>"
-				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span>任务详情</span>"
+				+		"<i class='layui-icon' style='font-size: 30px; color: #1E9FFF;'>&#xe63c;</i><span class='layui-text' style='color:black'>任务详情</span>"
 				+	"</a>"
 				+	"<div class=' layui-text' id='task"+task_label+"_description' style='display:none;'>"
-				+		"<div class='layui-timeline-title' >任务简介:"+tasks[task_label-1].introduction+"</div>"
-				+		"<div class='layui-timeline-title' >开始日期:"+tasks[task_label-1].start_date+"  截止日期:"+tasks[task_label-1].end_date+"</div>"
-				+		"<div class='layui-timeline-title' >优先级:"+priority[tasks[task_label-1].priority-1]+"</div>"
+				+		"<div class='layui-timeline-title' ><span style='color:black'>任务简介:</span>"+tasks[task_label-1].introduction+"</div>"
+				+		"<div class='layui-timeline-title' ><span style='color:black'>开始日期:</span>"+tasks[task_label-1].start_date+"  <span style='color:black'>截止日期:</span>"+tasks[task_label-1].end_date+"</div>"
+				+		"<div class='layui-timeline-title' ><span style='color:black'>优先级:</span>"+priority[tasks[task_label-1].priority-1]+"</div>"
 				+		"<div class='layui-timeline-title' >"
 				+       	"<i class='layui-icon' style='font-size: 30px; color: #FF5722;'>&#xe756;</i>"
-				+			"参与成员："+tasks[task_label-1].members
+				+			"<span style='color:black'>参与成员：</span>"+tasks[task_label-1].members
 				+		"</div>"
 				+ 	"</div>"
 			    +  "<div id='"+other_content_id+"'</div>"
@@ -182,7 +182,7 @@ function add_one_sub_task(task_label,sub_task_label)
 											+"<a onclick="+"change_display('"+sub_task_content_id+"');><i class='layui-icon layui-timeline-axis'></i></a>"
 											+"<div class='layui-timeline-content layui-text' >"
 											+	"<div class='layui-timeline-title' id='"+sub_task_id+"'>"
-											+		  "子项名称："+tasks[task_label-1].subtasks[sub_task_label-1].name
+											+		  "<span style='color:black'>子项名称：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].name
 											+		"<button onclick="+"finish_subtask_func('"+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+"','"+tasks[task_label-1].task_id+"') type='button'"
 											+		"class='layui-btn layui-btn-xs' style='margin-left:15px;float:right'>"
 											+		"确认完成"
@@ -190,10 +190,10 @@ function add_one_sub_task(task_label,sub_task_label)
 											+		"<span id='"+face_id+"'></span>"
 											+	"</div>"
 											+	"<div id='"+sub_task_content_id+"' style='display:none'>"
-											+		"<div class='layui-timeline-title' >开始日期："+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
-											+		"<div class='layui-timeline-title' >截止日期："+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
-											+		"<div class='layui-timeline-title'>负责人："+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
-                      +   '<div class="layui-timeline-title">操作:<button type="button" style="margin-left:20px" class="layui-btn layui-btn-xs" onclick=goto_subtask_blog("'+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+'")>添加子项日志</button></div>'
+											+		"<div class='layui-timeline-title' ><span style='color:black'>开始日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].start_date+ "</div>"
+											+		"<div class='layui-timeline-title' ><span style='color:black'>截止日期：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].end_date+ "</div>"
+											+		"<div class='layui-timeline-title'><span style='color:black'>负责人：</span>"+tasks[task_label-1].subtasks[sub_task_label-1].members+"</div>"
+                      +   '<div class="layui-timeline-title"><span style="color:black">操作:</span><button type="button" style="margin-left:20px" class="layui-btn layui-btn-xs" onclick=goto_subtask_blog("'+tasks[task_label-1].subtasks[sub_task_label-1].subtask_id+'")>添加子项日志</button></div>'
 											+	"</div>"
 											+"</div>"
 										+"</li>"
