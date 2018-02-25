@@ -1,4 +1,4 @@
-  var tasks=new Array();
+  //var tasks=new Array();转至全局变量管理中心
   //任务数及每个任务的子项数
   var task_num=0;
   var sub_task_num=new Array();

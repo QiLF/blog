@@ -27,7 +27,7 @@
   }
   function show_mate_info_iframe(value)
   {
-    var place_in=get_place_in(value.res['info'][0].cityid);
+    var place_in=get_place_in(value.res['info'][0].areaid);
     var show_info='昵称：'+value.res['info'][0].nickname+'<br/>'
                  +'性别：'+value.res['info'][0].sex+'<br/>'
                  +'地址：'+place_in+'<br/>'
@@ -49,8 +49,17 @@
 
   function get_place_in(value)
   {
-
-    /////////////
-
-    return '合肥';//暂时没做id转地名的函数，就合肥了
+    for(var prov in threeSelectData)
+    {
+      for(var city in threeSelectData[prov].items)
+      {
+        for(var area in threeSelectData[prov].items[city].items)
+        {
+          if(threeSelectData[prov].items[city].items[area]==value)
+          {
+            return area;
+          }
+        }
+      }
+    }
   }
