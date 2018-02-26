@@ -208,7 +208,6 @@
 						<span class="layui-text">'+subtask_state+'</span>\
 						<span style="margin-left:15px">评分:</span>\
 						<span class="layui-text" style="font-size:20px;color:#FFB800">'+subtask_evaluation+'</span>\
-						<span class="layui-text">分</span>\
 					</div>\
 					<div class="layui-col-sm3">\
 						<a style="cursor:pointer" onclick='+'set_evaluating_subtask_i('+i+')'+' name="subtask_evaluation_button" class="layui-text" style="margin-left:30px">\

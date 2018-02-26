@@ -38,7 +38,7 @@ $('#task_evalution_button').on('click', function(){
 			resize: false,
 			shade: 0.6,
 			shadeClose: true, //点击遮罩关闭层
-			area : ['900px' , '600px'],
+			area : ['900px' , '350px'],
 			content: 'subtask_evaluation_subframe.html'
 		  });
 		}
