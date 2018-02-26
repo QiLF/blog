@@ -1,5 +1,8 @@
   function fresh_team_info(value)
   {
+	//初始化flag
+	display_flag=true;
+	fresh_flag=false;
 	if(task_edit_state==true)
 	{
 		layer.msg('请退出任务编辑状态再切换团队！');
