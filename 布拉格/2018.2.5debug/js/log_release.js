@@ -17,17 +17,17 @@ function goto_subtask_blog(value)
 		log_load_task();
 		//选中任务
 		var target_task=null//用来存储子项目所在的任务
-		for(var i=0;i<group_tasks.length;i++)
+		for(var i=0;i<tasks.length;i++)
 		{
 			if(target_task!=null)
 			{
 				break;
 			}
-			for(var j=0;j<group_tasks[i].subtasks.length;j++)
+			for(var j=0;j<tasks[i].subtasks.length;j++)
 			{
-				if(group_tasks[i].subtasks[j].subtask_id==value)
+				if(tasks[i].subtasks[j].subtask_id==value)
 				{
-					target_task=group_tasks[i];
+					target_task=tasks[i];
 					break;
 				}
 			}
